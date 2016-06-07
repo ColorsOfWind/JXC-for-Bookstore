@@ -1,1 +1,35 @@
 # 这个是不想放到github里的文件及文件夹名单
+
+
+.DS_Store
+
+/codes/JXC-for_Books/application/cache/*
+!/codes/JXC-for_Books/application/cache/index.html
+!/codes/JXC-for_Books/application/cache/.htaccess
+
+/codes/JXC-for_Books/application/logs/*
+!/codes/JXC-for_Books/application/logs/index.html
+!/codes/JXC-for_Books/application/logs/.htaccess
+
+
+/codes/JXC-for_Books/user_guide_src/build/*
+/codes/JXC-for_Books/user_guide_src/cilexer/build/*
+/codes/JXC-for_Books/user_guide_src/cilexer/dist/*
+/codes/JXC-for_Books/user_guide_src/cilexer/pycilexer.egg-info/*
+
+# IDE Files
+#-------------------------
+/nbproject/
+.idea/*
+
+## Sublime Text cache files
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+*.sublime-workspace
+*.sublime-project
+
+
+# npm & bower
+/codes/JXC-for_Books/node_modules/*
+/codes/JXC-for_Books/public/bower/*
