@@ -21,46 +21,36 @@ class m_goods extends CI_Model {
     /*
     **删除商品类别
     */
-    public function delGood($goodID)
+    public function delGoodCat($catID)
     {
-        $query = $this->db->query("DELETE FROM goods_information WHERE inf_Barcode = '$goodID'");
-    }
-
-    /*
-    **修改价钱
-    */
-    public function changePrice($goodID, $price)
-    {
-        $query = $this->db->query("UPDATE goods_information SET inf_Commodityprice = '$price' WHERE inf_Barcode = '$goodID'");
+        $query = $this->db->query("DELETE FROM goods_categoryinformation WHERE catInf_ID = '$catID'");
     }
 
     /*
     **修改信息
     */
-    public function changeGood($goodID, $goodClassify, $goodName, $goodAlias, $goodMnemonniccode,$goodPinyincode, $goodManufacture)
+    public function changeGoodCat($goodCatID, $goodCatIndex, $goodCatName, $goodCatDescribe)
     {
-        $query = $this->db->query("UPDATE goods_information SET inf_Classify = '$goodClassify', inf_Name = '$goodName', inf_Alias = '$goodAlias', inf_Mnemonniccode = '$goodMnemonniccode', 
-            inf_Pinyincode = '$goodPinyincode'
-            inf_Manufacture = $goodManufacture
-            WHERE inf_Barcode = '$goodID'");
+        $query = $this->db->query("UPDATE goods_categoryinformation SET catInf_Index = '$goodCatIndex', catInf_Name = '$goodCatName', catInf_Describe = '$goodCatDescribe'
+            WHERE catInf_ID = '$goodCatID'");
         return $query;
     }
 
     /*
     **查询所有商品类别
     */
-    public function checkAllUsers()
+    public function checkAllGoodCat()
     {
-        $query = $this->db->query("SELECT * FROM goods_information");
+        $query = $this->db->query("SELECT * FROM goods_categoryinformation");
         return $query;
     }
 
     /*
     **查询指定商品类别
     */
-    public function checkUser($goodID)
+    public function checkGoodCat($goodCatID)
     {
-        $query = $this->db->query("SELECT * FROM goods_information WHERE inf_Barcode='$goodID'");
+        $query = $this->db->query("SELECT * FROM goods_categoryinformation WHERE catInf_ID='$goodCatID'");
         return $query;
     }
 }
