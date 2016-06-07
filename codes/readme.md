@@ -3,8 +3,11 @@
 ## install 
 
 `npm install`
+
 `bower install`
+
 `grunt`
+
 /application/config/database.php下改自己的密码
 
 ## 各部分命名规范
