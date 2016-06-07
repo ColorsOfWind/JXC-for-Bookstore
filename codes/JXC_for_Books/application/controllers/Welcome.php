@@ -23,9 +23,12 @@ class Welcome extends CI_Controller {
     	parent::__construct();
         $this->load->database();
     }
-	public function index()
-	{
-		$query = $this->db->query("select * from user");
-		$this->load->view('welcome_message');
-	}
+    public function index() {
+        $data = array('title' => "书店进销存管理系统");
+        $this->load->view('common/header.php',$data);
+        $this->load->view('common/menu.php');
+        $this->load->view('common/main.php');
+        $this->load->view('common/footer.php');
+
+    }
 }
