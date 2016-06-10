@@ -71,6 +71,15 @@ class m_users extends CI_Model {
         $query = $this->db->query("SELECT * FROM user WHERE user_id='$userID'");
         return $query;
     }
+
+    /*
+    **模糊查询用户
+    */
+    public function checkBlurUser($blur)
+    {
+        $query = $this->db->query("SELECT * FROM user WHERE user_id LIKE '%$blur%' OR user_Name LIKE '%$blur%'");
+        return $query;
+    }
 }
 
 ?>
