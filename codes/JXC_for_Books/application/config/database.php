@@ -77,7 +77,6 @@ $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
 	'username' => 'root',
-	'password' => 'newpass',
 	'database' => 'jxc_for_book',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
