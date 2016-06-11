@@ -11,11 +11,21 @@ class m_users extends CI_Model {
     }
 
     /*
+    **验证用户名密码
+    */
+    public function checkUserNamePassword($userID, $userPassword)
+    {
+        $query = $this -> db -> query("SELECT * FROM user WHERE user_ID = '$userID' AND user_Password='$userPassword'");
+        return $query;
+    }
+
+    /*
     **添加用户
     */
     public function addUser($userName, $userPassword)
     {
         $query = $this->db->query("INSERT INTO user(user_Name, user_Password) VALUES('$userName','$userPassword')");
+        return $query;
     }
 
     /*
@@ -24,6 +34,7 @@ class m_users extends CI_Model {
     public function delUser($userID)
     {
         $query = $this->db->query("DELETE FROM user WHERE user_ID='$userID'");
+        return $query;
     }
 
     /*
@@ -31,10 +42,10 @@ class m_users extends CI_Model {
     */
     public function changePassword($userID, $oldPassword, $newPassword)
     {
-        $query = $this->db->query("SELECT * FROM user WHERE user_id='$userID'");
+        $query = $this->db->query("SELECT * FROM user WHERE user_ID='$userID'");
         if($query)
         {
-            $query = $this->db->query("SELECT * FROM user WHERE user_id='$userID' AND user_Password='$oldPassword'");
+            $query = $this->db->query("SELECT * FROM user WHERE user_ID='$userID' AND user_Password='$oldPassword'");
             if($query)
             {
                 $query = $this->db->query("UPDATE user SET user_Password='$newPassword' where user_ID='$userID'");
@@ -43,6 +54,15 @@ class m_users extends CI_Model {
             else return "wrongPassword";
         }
         else return "noUser";
+    }
+    
+    /*
+    **查询密码
+    */
+    public function checkPassword($userID)
+    {
+        $query = $this->db->query("SELECT * FROM user WHERE user_ID = '$userID'");
+        return $query;
     }
 
     /*
@@ -64,20 +84,20 @@ class m_users extends CI_Model {
     }
 
     /*
-    **查询指定用户
+    **查询指定用户，通过ID
     */
-    public function checkUser($userID)
+    public function checkUserID($userID)
     {
-        $query = $this->db->query("SELECT * FROM user WHERE user_id='$userID'");
+        $query = $this->db->query("SELECT * FROM user WHERE user_ID='$userID'");
         return $query;
     }
 
     /*
-    **模糊查询用户
+    **查询指定用户，通过用户名
     */
-    public function checkBlurUser($blur)
+    public function checkUserName($userName)
     {
-        $query = $this->db->query("SELECT * FROM user WHERE user_id LIKE '%$blur%' OR user_Name LIKE '%$blur%'");
+        $query = $this->db->query("SELECT * FROM user WHERE user_Name='$userName'");
         return $query;
     }
 }
