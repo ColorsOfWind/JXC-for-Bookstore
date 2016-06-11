@@ -40,20 +40,10 @@ class m_users extends CI_Model {
     /*
     **修改密码
     */
-    public function changePassword($userID, $oldPassword, $newPassword)
+    public function changePassword($userID, $newPassword)
     {
-        $query = $this->db->query("SELECT * FROM user WHERE user_ID='$userID'");
-        if($query)
-        {
-            $query = $this->db->query("SELECT * FROM user WHERE user_ID='$userID' AND user_Password='$oldPassword'");
-            if($query)
-            {
-                $query = $this->db->query("UPDATE user SET user_Password='$newPassword' where user_ID='$userID'");
-                return $query;
-            }
-            else return "wrongPassword";
-        }
-        else return "noUser";
+        $query = $this->db->query("UPDATE user SET user_Password='$newPassword' where user_ID='$userID'");
+        return $query;
     }
     
     /*
@@ -68,9 +58,13 @@ class m_users extends CI_Model {
     /*
     **修改权限
     */
-    public function changeAdm($userBasic, $userPur, $userStock, $userSell)
+    public function changePermission($userID, $user_AllPermission, $user_BasicInformationPermission, $user_B_User, $user_B_Good, $user_B_Supplier, $user_B_Client, $user_B_Warehouse, $user_B_Gooddis, $user_PurchasePermission, $user_StockPermission, $user_SellPermission)
     {
-        $query = $this->db->query("UPDATE user SET user_BasicInformationPermission='$userBasic', user_PurchasePermission='$userPur', user_StockPermission='$userStock', user_SellPermission='$userSell' WHERE user_ID='$userSell'");
+        $query = $this->db->query("UPDATE user SET user_AllPermission = '$user_AllPermission', user_BasicInformationPermission='$user_BasicInformationPermission', 
+            user_B_User = '$user_B_User', 
+            user_B_Good = '$user_B_Good', 
+            user_B_Supplier = '$user_B_Supplier', 
+            user_B_Client = '$user_B_Client', user_B_Warehouse='$user_B_Warehouse', user_B_Gooddis='$user_B_Gooddis', user_StockPermission='$user_StockPermission', user_SellPermission='$user_SellPermission' WHERE user_ID='$userID'");
         return $query;
     }
 

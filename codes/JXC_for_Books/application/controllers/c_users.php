@@ -2,6 +2,9 @@
 defined('BASEPATH') OR exit('No direct script access allowed');	
 class c_users extends CI_Controller {
 
+    /*
+    **构造函数
+    */
 	public function __construct()
     {
     	parent::__construct();
@@ -58,7 +61,7 @@ class c_users extends CI_Controller {
     public function checkAllUsers()
     {
     	$allInfo = $this -> m_users -> checkAllUsers();
-    	$result = $allInfo->result();
+    	$result = $allInfo -> result();
     	$data = array('data' => $result);
     	$this->output
                 ->set_content_type('application/json')
@@ -66,17 +69,15 @@ class c_users extends CI_Controller {
     }
 
     /*
-	**验证当前用户密码
+	**验证当前用户
     */
     public function checkCurrentUser()
     {
-    	$userID = $this -> input->post('userID');
-    	$currentUserID = $this -> input->post('currentUserID');
+    	$currentUserID = $this -> input -> post('currentUserID');
     	$currentUserPassword = $this -> input->post('currentUserPassword');
-    	if($this->m_users->checkUserNamePassword($currentUserID, $currentUserPassword))
+    	if($this -> m_users -> checkUserNamePassword($currentUserID, $currentUserPassword))
     	{
-    		$this -> m_users ->
-    		$data=array('msg' => 'true', 'data'=>);
+    		$data=array('msg' => 'true');
     	}
     	else $data=array('msg' => 'false');
     	$this->output
@@ -85,19 +86,42 @@ class c_users extends CI_Controller {
     }
 
     /*
-	**修改密码
+    **返回该用户的密码，前提是验证密码成功
     */
-    public function changePassword()
+    public function getPassword()
     {
-
+        $userID = $this -> input -> post('userID');
+        checkPassword($userID)
     }
 
     /*
-    **修改权限
+	**修改密码，前提是验证密码成功
     */
-    public function changePer()
+    public function changePassword()
     {
+        $newPassword = $this -> input->post('newPassword');
+        $userID = $this -> input->post('userID');
+        $this -> m_users -> changePassword($userID, $newPassword);
+    }
 
+    /*
+    **修改权限，前提是验证密码成功
+    */
+    public function changePermission()
+    {
+        $userID = $this -> input -> post('userID');
+        $user_AllPermission = $this -> input -> post('user_AllPermission');
+        $user_BasicInformationPermission = $this -> input -> post('user_BasicInformationPermission');
+        $user_B_User = $this -> input -> post('user_B_User');
+        $user_B_Good = $this -> input -> post('user_B_Good');
+        $user_B_Supplier = $this -> input -> post('user_B_Supplier');
+        $user_B_Client = $this -> input -> post('user_B_Client');
+        $user_B_Warehouse = $this -> input -> post('user_B_Warehouse');
+        $user_B_Gooddis = $this -> input -> post('user_B_Gooddis');
+        $user_PurchasePermission = $this -> input -> post('user_PurchasePermission');
+        $user_StockPermission = $this -> input -> post('user_StockPermission');
+        $user_SellPermission = $this -> input -> post('user_SellPermission');
+        $this -> m_users -> changePermission($userID, $user_AllPermission, $user_BasicInformationPermission, $user_B_User, $user_B_Good, $user_B_Supplier, $user_B_Client, $user_B_Warehouse, $user_B_Gooddis, $user_PurchasePermission, $user_StockPermission, $user_SellPermission)
     }
 }
 
