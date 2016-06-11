@@ -22,11 +22,11 @@ CREATE TABLE `goods_categoryinformation` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE `goods_information` (
-  `inf-Barcode` bigint(11) NOT NULL auto_increment,
+  `inf_Barcode` bigint(11) NOT NULL auto_increment,
   `inf_Classify` varchar(255) NOT NULL default '',
   `inf_Name` varchar(255) NOT NULL default '',
   `inf_Alias` varchar(255) default NULL,
-  `Inf_Mnemonniccode` varchar(255) default NULL,
+  `inf_Mnemonniccode` varchar(255) default NULL,
   `inf_Pinyincode` varchar(255) NOT NULL default '',
   `inf_Measure` varchar(255) NOT NULL default '',
   `inf_Specifications` varchar(255) NOT NULL default '',
