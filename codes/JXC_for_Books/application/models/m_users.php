@@ -16,7 +16,14 @@ class m_users extends CI_Model {
     public function checkUserNamePassword($userID, $userPassword)
     {
         $query = $this -> db -> query("SELECT * FROM user WHERE user_ID = '$userID' AND user_Password='$userPassword'");
-        return $query;
+        if($query->num_rows() == 0)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 
     /*

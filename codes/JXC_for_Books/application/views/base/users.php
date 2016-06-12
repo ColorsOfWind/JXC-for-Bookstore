@@ -18,7 +18,7 @@
                 <button class="btn btn-success" data-toggle="modal" data-target="#modal-create">添加用户</button>
               </div>
               <div class="col-sm-6">
-                <button class="btn btn-danger" data-toggle="modal" data-target="#modal-deleteall">删除选中用户</button>
+                <!-- <button class="btn btn-danger" data-toggle="modal" data-target="#modal-deleteall">删除选中用户</button> -->
               </div>
             </div>
             <div class="row">
@@ -46,9 +46,9 @@
                     <tr>
                       <td>1</td>
                       <td>admin</td>
-                      <td><button  class='btn-password btn btn-warning btn-sm' type='button' onclick='password(this)' data-toggle='modal' data-target='#modal-password'>查看/修改密码</button>
+                      <td><button  class='btn-password btn btn-warning btn-sm' type='button' data-toggle='modal' data-target='#modal-password'>查看/修改密码</button>
                       </td>
-                      <td><button  class='btn-permision btn btn-info btn-sm' type='button' onclick='permission(this)' data-toggle='modal' data-target='#modal-permision'>查看/修改权限</button></td>
+                      <td><button  class='btn-permision btn btn-info btn-sm' type='button' data-toggle='modal' data-target='#modal-permision'>查看/修改权限</button></td>
                       <td><button  class='btn-delete btn btn-danger btn-sm' type='button' onclick='delete(this)' data-toggle='modal' data-target='#modal-delete'>删除</button></td>
                     </tr></tbody>
                   </table>
@@ -76,21 +76,21 @@
             <div class="form-group" id="create-username-div">
               <label for="create-username" class="col-sm-3 control-label">用户名</label>
               <div class="col-sm-7">
-                <input id="create-username" class="form-control" placeholder="请输入4-11位用户名" type="text" onblur="verifylength(4,11,'create-submit')">
+                <input id="create-username" class="form-control" placeholder="请输入4-11位用户名" type="text">
                 <p id="create-username-p" class="help-block"></p>
               </div>
             </div>
             <div class="form-group" id="create-password-div">
               <label for="create-password" class="col-sm-3 control-label">密码</label>
               <div class="col-sm-7">
-                <input id="create-password" class="form-control" placeholder="请输入4-16位密码" value="" type="password" onblur="verifylength(4,16,'create-submit')">
+                <input id="create-password" class="form-control" placeholder="请输入4-16位密码" value="" type="password">
                 <p id="create-password-p" class="help-block"></p>
               </div>
             </div>
             <div class="form-group" id="create-div-password4sure">
               <label for="create-password4sure" class="col-sm-3 control-label">确认密码</label>
               <div class="col-sm-7">
-                <input id="create-password4sure" class="form-control" placeholder="请重新输入刚才的密码" value="" type="password" onblur="verify4sure('create-password','create-submit')">
+                <input id="create-password4sure" class="form-control" placeholder="请重新输入刚才的密码" value="" type="password">
                 <p id="create-password4sure-p" class="help-block"></p>
               </div>
             </div>
@@ -116,39 +116,52 @@
           </div>
           <div class="modal-body panel-body" id="modal-password-body">
             <div class="panel">
+              <p>你正要查看这名用户的密码</p>
+              <div class="form-group">
+                <label for="password-userid" class="col-sm-3 control-label">用户ID</label>
+                <div class="col-sm-7">
+                  <input id="password-userid" class="form-control" value="" type="text" disabled>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="password-username" class="col-sm-3 control-label">用户名</label>
+                <div class="col-sm-7">
+                  <input id="password-username" class="form-control" value="" type="text" disabled>
+                </div>
+              </div>
               <div class="col-sm-8 col-sm-offset-2">
                 <div class="form-group input-group" id="password-verify-div">
                   <input id="password-verify" class="form-control" placeholder="请输入当前账号密码以验证权限" type="password">
                   <span class="input-group-btn">
-                      <button id="password-verify-submit" class="btn btn-warning" type="button" onclick="verifyPassword4password()"><i class="fa fa-unlock"> 验证</i>
-                      </button>
+                    <button id="password-verify-submit" class="btn btn-warning" type="button" onclick="verifyPassword4password()"><i class="fa fa-unlock"> 验证</i>
+                    </button>
                   </span>
                 </div>
-              </div>
-              <div class="form-group" id="password-password-div">
-                <label for="password-password" class="col-sm-3 control-label">密码</label>
-                <div class="col-sm-7">
-                  <input id="password-password" class="form-control" value="" type="text" disabled>
+                <div class="form-group" id="password-password-div">
+                  <input id="password-password" class="form-control" placeholder="输入正确密码后，密码将显示在这里" value="" type="text" disabled>
                 </div>
               </div>
+
             </div>
-            <div class="form-group" id="password-password-div">
-              <label for="password-password" class="col-sm-3 control-label">修改密码</label>
-              <div class="col-sm-7">
-                <input id="password-password" class="form-control" placeholder="请输入4-16位密码" value="" type="password" onblur="verifylength(4,16,'password-submit')">
-                <p id="password-password-p" class="help-block"></p>
+            <div id="password-changepassword" style="display: none">
+              <div class="form-group" id="password-password-div">
+                <label for="password-newpassword" class="col-sm-3 control-label">修改密码</label>
+                <div class="col-sm-7">
+                  <input id="password-newpassword" class="form-control" placeholder="请输入4-16位密码" value="" type="password">
+                  <p id="password-password-p" class="help-block"></p>
+                </div>
               </div>
-            </div>
-            <div class="form-group" id="password-div-password4sure">
-              <label for="password-password4sure" class="col-sm-3 control-label">确认修改密码</label>
-              <div class="col-sm-7">
-                <input id="password-password4sure" class="form-control" placeholder="请重新输入刚才的密码" value="" type="password" onblur="verify4sure('password-password','password-submit')">
-                <p id="password-password4sure-p" class="help-block"></p>
+              <div class="form-group" id="password-div-password4sure">
+                <label for="password-password4sure" class="col-sm-3 control-label">确认修改密码</label>
+                <div class="col-sm-7">
+                  <input id="password-password4sure" class="form-control" placeholder="请重新输入刚才的密码" value="" type="password">
+                  <p id="password-password4sure-p" class="help-block"></p>
+                </div>
               </div>
             </div>
           </div>
           <div class="modal-footer panel-footer">
-            <button id="password-submit" class='btn btn-warning' type='button' onclick="createsubmit()">确定</button>
+            <button id="password-submit" class='btn btn-warning' type='button' onclick="changepasswordsubmit()" style="display:none">确定修改密码</button>
             <button class='btn btn-default' type='button'  data-dismiss="modal">关闭</button>
           </div>
         </form>
@@ -188,13 +201,19 @@
           <h4 class="modal-title" id="myModalLabel">删除确认</h4>
         </div>
         <div class="modal-body panel-body">
-          你真的要删除以下用户么？
+          <p>你真的要删除以下用户么？</p>
+          <div class="form-group">
+            <label for="dele-userid" class="col-sm-3 control-label">用户ID</label>
+            <div class="col-sm-7">
+              <input id="dele-userid" class="form-control" value="" type="text" disabled>
+            </div>
+          </div>
           <div class="form-group">
             <label for="dele-username" class="col-sm-3 control-label">用户名</label>
             <div class="col-sm-7">
-              <input id="dele-username" class="form-control" placeholder="" value="" type="text" disabled>
+              <input id="dele-username" class="form-control" value="" type="text" disabled>
             </div>
-          </div>
+          </div>          
         </div>
         <div class="modal-footer panel-footer">
           <span id="dele-prompt" style="color: red; opacity: 0"></span>
@@ -220,37 +239,62 @@
     </div>
   </div>
   <script type="text/javascript">
-    function verifylength(min,max,submit) {
-      var that = window.event.target;
+    // function verifylength(min,max,submit) {
+    //   var that = window.event.target;
+    //   if(that.value.length < min || that.value.length > max) {
+    //     console.log("er: "+ that.value);
+    //     that.nextElementSibling.innerHTML = "请输入正确长度";
+    //     that.parentNode.parentNode.className = "has-error form-group";
+    //     document.getElementById(submit).disabled = true;
+    //   } else {
+    //     console.log(that.value);
+    //     that.nextElementSibling.innerHTML = "";
+    //     that.parentNode.parentNode.className = "has-success form-group";
+    //     document.getElementById(submit).disabled = false;
+    //   }
+    // }
+    function verifylength(id,min,max) {
+      var that = document.getElementById(id);
       if(that.value.length < min || that.value.length > max) {
-        console.log("er: "+ that.value);
         that.nextElementSibling.innerHTML = "请输入正确长度";
         that.parentNode.parentNode.className = "has-error form-group";
-        document.getElementById(submit).disabled = true;
+        return false;
       } else {
-        console.log(that.value);
         that.nextElementSibling.innerHTML = "";
         that.parentNode.parentNode.className = "has-success form-group";
-        document.getElementById(submit).disabled = false;
+        return true;
       }
     }
-    function verify4sure(element,submit) {
-      var ele = document.getElementById(element);
-      var that = window.event.target;
-      console.log(ele);
+    // function verify4sure(element,submit) {
+    //   var ele = document.getElementById(element);
+    //   var that = window.event.target;
+    //   console.log(ele);
+    //   if(ele.value === that.value) {
+    //     that.nextElementSibling.innerHTML = "";
+    //     that.parentNode.parentNode.className = "has-success form-group";
+    //     // document.getElementById(submit).disabled = false;
+    //   } else {
+    //     that.nextElementSibling.innerHTML = "两次密码输入不一致";
+    //     that.parentNode.parentNode.className = "has-error form-group";
+    //     document.getElementById(submit).disabled = true;
+    //   }
+    // }
+    function verify4sure(element1,element2) {
+      var ele = document.getElementById(element1);
+      var that = document.getElementById(element2);
       if(ele.value === that.value) {
         that.nextElementSibling.innerHTML = "";
         that.parentNode.parentNode.className = "has-success form-group";
-        document.getElementById(submit).disabled = false;
+        return true;
       } else {
-        that.nextElementSibling.innerHTML = "两次密码输入不一致";
+        that.nextElementSibling.innerHTML = "两次输入不一致";
         that.parentNode.parentNode.className = "has-error form-group";
-        document.getElementById(submit).disabled = true;
+        return false;
       }
-    }
+    }    
   </script>
   <script type="text/javascript">
-    var table = function (){
+    function table(){
       if ( $.fn.dataTable.isDataTable( '#table' ) ) {
         return $('#table').DataTable();
       }
@@ -280,31 +324,68 @@
               "sSortDescending": ": 以降序排列此列"
             }
           },
-          ajax: "/Baseuser/getAllUsers",
+          ajax: "/c_users/checkAllUsers",
           columns: [
-          { "data": "id" },
-          { "data": "username" },
-          { "data": null, "title":"操作","defaultContent": "<button  class='btn-password btn btn-warning btn-sm' type='button' onclick='password(this)' data-toggle='modal' data-target='#panel-password'>查看/修改密码</button>" },
-          { "data": null, "title":"操作","defaultContent": "<button  class='btn-permission btn btn-info btn-sm' type='button' onclick='permission(this)' data-toggle='modal' data-target='#panel-permission'>查看/修改权限</button>" },
-          { "data": null, "title":"操作","defaultContent": "<button  class='btn-delete btn btn-danger btn-sm' type='button' onclick='delete(this)' data-toggle='modal' data-target='#panel-delete'>删除</button>"}
+          { "data": "user_ID" },
+          { "data": "user_Name" },
+          { "data": null, "title":"操作","defaultContent": "<button  class='btn-password btn btn-warning btn-sm' type='button' onclick='password(this)' data-toggle='modal' data-target='#modal-password'>查看/修改密码</button>" },
+          { "data": null, "title":"操作","defaultContent": "<button  class='btn-permission btn btn-info btn-sm' type='button' onclick='permission(this)' data-toggle='modal' data-target='#modal-permission'>查看/修改权限</button>" },
+          { "data": null, "title":"操作","defaultContent": "<button  class='btn-delete btn btn-danger btn-sm' type='button' data-toggle='modal' data-target='#modal-delete'>删除</button>"}
           ],
-          select: true
+          select: false
         });
       }
     }
 
+    function bind() {
+      $('#modal-create').on('hidden.bs.modal', function (e) {
+        $('#modal-create-body').children(".form-group").attr("class","form-group");
+        $('#modal-create-body').find(".form-control").val("");
+        $('#modal-create-body').find(".help-block").text("");
+      });
+      $('#modal-password').on('show.bs.modal', function (e) {
+        $("#password-userid").val($(e.relatedTarget).parent().siblings()[0].innerText);
+        $("#password-username").val($(e.relatedTarget).parent().siblings()[1].innerText);
+      });
+      $('#modal-password').on('hidden.bs.modal', function (e) {
+        $("#password-userid").val("");
+        $("#password-username").val("");
+        $("#password-verify").val("");
+        $("#password-password").val("");
+        $('#modal-password-body').children(".form-group").attr("class","form-group");
+        $('#modal-password-body').find(".form-control").val("");
+        $('#modal-password-body').find(".help-block").text("");
+      });
+      $('#modal-delete').on('show.bs.modal', function (e) {
+        $("#dele-userid").val($(e.relatedTarget).parent().siblings()[0].innerText);
+        $("#dele-username").val($(e.relatedTarget).parent().siblings()[1].innerText);
+      });
+      $('#modal-delete').on('hidden.bs.modal', function (e) {
+        $("#dele-userid").val("");
+        $("#dele-username").val("");
+      });
+    }
+
+    function retable() {
+      dt.ajax.reload();
+    }
+
     $(document).ready(function() {
-    // table();
+      dt = table();
+      bind();
     });
     function createsubmit() {
+      if(!(verifylength("create-username",4,11)&&verifylength("create-password",4,16)&&verifylength("create-password4sure",4,16)&&verify4sure("create-password","create-password4sure"))) {
+        return false;
+      }
       var username = $("#create-username").val();
       var password = $("#create-password").val();
 
       $.ajax( {  
-        url:'/Baseuser/createuser',// 跳转到 action  
+        url:'/c_users/addUser',// 跳转到 action  
         data:{  
-          'username': username,
-          'password': password
+          'userName': username,
+          'userPassword': password
         },
         type:'post',
         cache:false,
@@ -312,10 +393,8 @@
         dataType:'json',
         success:function(data) {  
           if(data.msg =="true") {
+            retable();
             $('#modal-create').modal("hide");
-            $('#modal-create-body').children(".form-group").attr("class","form-group");
-            $('#modal-create-body').find(".form-control").val("");
-            document.getElementById('create-submit').disabled = false;
             $('#modal-prompt-content').text("新增用户成功");
             document.getElementById('modal-prompt-panel').className = "modal-content panel panel-success";
             $('#modal-prompt').modal('show');
@@ -326,49 +405,112 @@
           }
         },
         error : function() {
-          $('#modal-create-body').children(".form-group").attr("class","form-group");
-          $('#modal-create-body').find(".form-control").val("");
-          document.getElementById('create-submit').disabled = false;
-          alert("创建出现错误，请联系管理员或尝试重新登录");
+          $('#modal-create').modal("hide");
+          $('#modal-prompt-content').text("创建出现错误，请联系管理员或尝试重新登录");
+          document.getElementById('modal-prompt-panel').className = "modal-content panel panel-danger";
+          $('#modal-prompt').modal('show');
         }  
       });
     }
 
     function deletesubmit() {
-      changing("#dele-prompt");
-      var e_date = $("#dele-e_date").val();
-      var e_stime = $("#dele-e_stime").val();
-      var e_etime = $("#dele-e_etime").val();
-      var e_name = $("#dele-e_name").val();
-      var e_room = $("#dele-e_room").val();
-      $.ajax( { 
-            url:'/Baseuser/deleteexam',// 跳转到 action  
-            data:{  
-              'date': e_date,
-              'stime': e_stime,
-              'etime': e_etime,
-              'name': e_name,
-              'room': e_room
-            },
-            type:'post',  
-            cache:false,
-            async:false,
-            dataType:'json',  
-            success:function(data) {  
-              if(data.msg == true){
-                $("#dele-prompt").animate({opacity:1},1000,function() {
-                  $("#dele-prompt").text("成功删除考试"+e_name);
-                  changed("#dele-prompt");
-                });
-              }else{
-                $("#dele-prompt").text("");
-                alert(data.msg);
-              }
-            },
-            error : function() {
-              $("#dele-prompt").text(""); 
-              alert("删除出现错误，请联系管理员或尝试重新登录");
-            }  
-          });
+      var userid = $("#dele-userid").val();
+      $.ajax( {  
+        url:'/c_users/delUser',// 跳转到 action  
+        data:{  
+          'userID': userid
+        },
+        type:'post',
+        cache:false,
+        async:true,
+        dataType:'json',
+        success:function(data) {  
+          if(data.msg =="true") {
+            $('#modal-delete').modal("hide");
+            $('#modal-prompt-content').text("删除用户成功");
+            document.getElementById('modal-prompt-panel').className = "modal-content panel panel-success";
+            $('#modal-prompt').modal('show');
+            retable();
+          }
+          else {
+            document.getElementById("delete-username-p").innerHTML="删除失败，出现了一些错误⊙︿⊙";
+            document.getElementById("delete-username-div").className="has-error form-group";
+          }
+        },
+        error : function() {
+          $('#modal-delete').modal("hide");
+          $('#modal-prompt-content').text("删除出现错误，请联系管理员或尝试重新登录");
+          document.getElementById('modal-prompt-panel').className = "modal-content panel panel-danger";
+          $('#modal-prompt').modal('show');
+        }  
+      });
+    }
+
+    function verifyPassword4password() {
+      var userid = $("#password-userid").val();
+      var password = $("#password-verify").val();
+      $.ajax( {  
+        url:'/c_users/checkCurrentUser',// 跳转到 action  
+        data:{  
+          'userid': userid,
+          'currentUserPassword': password
+        },
+        type:'post',
+        cache:false,
+        async:true,
+        dataType:'json',
+        success:function(data) {  
+          if(data.msg =="true") {
+            $('#password-password').val(data.password[0].user_Password);
+            $('#password-changepassword').css("display","block");
+            $('#password-submit').css("display","inline-block");
+          }
+          else {
+            $('#password-password').val("密码输入错误");
+          }
+        },
+        error : function() {
+          $('#password-password').val("未知错误");
+        }  
+      });
+    }
+
+    function changepasswordsubmit() {
+      if(!(verifylength("password-newpassword",4,16)&&verifylength("password-password4sure",4,16)&&verify4sure("password-newpassword","password-password4sure"))) {
+        return false;
+      }
+      var userid = $("#password-userid").val();
+      var password = $("#password-newpassword").val();
+      $.ajax( {  
+        url:'/c_users/changePassword',// 跳转到 action  
+        data:{  
+          'userID': userid,
+          'newPassword': password
+        },
+        type:'post',
+        cache:false,
+        async:true,
+        dataType:'json',
+        success:function(data) {  
+          if(data.msg =="true") {
+            $('#modal-password').modal("hide");
+            $('#modal-prompt-content').text("修改用户密码成功");
+            document.getElementById('modal-prompt-panel').className = "modal-content panel panel-success";
+            $('#modal-prompt').modal('show');
+          }
+          else {
+            $('#modal-password').modal("hide");
+            $('#modal-prompt-content').text("修改出现错误，请联系管理员或尝试重新登录");
+            document.getElementById('modal-prompt-panel').className = "modal-content panel panel-danger";
+            $('#modal-prompt').modal('show');
+          }
+        },
+        error : function() {
+          $('#modal-password').modal("hide");
+          $('#modal-prompt-content').text("修改出现错误，请联系管理员或尝试重新登录");
+          document.getElementById('modal-prompt-panel').className = "modal-content panel panel-danger";
+          $('#modal-prompt').modal('show');
+        }  
+      });      
     }
   </script>

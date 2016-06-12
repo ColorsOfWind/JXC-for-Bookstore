@@ -31,7 +31,7 @@
 				            <a id="base" href="/base"><i class="fa fa-tachometer fa-fw"></i> 基础信息管理<span class="fa arrow"></span></a>
 				            <ul class="nav nav-second-level collapse">
 				                <li>
-				                    <a id="base_users" href="/welcome/users">用户管理</a>
+				                    <a id="base_users" href="/c_users/users">用户管理</a>
 				                </li>
 				                <li>
 				                    <a id="base_goods" href="/b_goods">商品管理</a>
