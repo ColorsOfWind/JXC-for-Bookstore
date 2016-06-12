@@ -8,5 +8,6 @@ function updateTime() {
 }
 $(document).ready(function() { 
 	updateTime();
+
 }); 
 // 工具函数
