@@ -33,15 +33,6 @@
                       <th>编辑</th>
                     </tr>
                   </thead>
-                  <tfoot>
-                    <tr>
-                      <th>ID</th>
-                      <th>用户名</th>
-                      <th>密码</th>
-                      <th>查看权限</th>
-                      <th>编辑</th>
-                    </tr>
-                  </tfoot>
                   <tbody>
                     <tr>
                       <td>1</td>
