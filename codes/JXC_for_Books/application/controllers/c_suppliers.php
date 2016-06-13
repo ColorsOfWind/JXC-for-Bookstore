@@ -27,6 +27,19 @@ class c_suppliers extends CI_Controller {
   public function addSupplier()
   {
     $supName = $this -> input -> post('supName');
+    $supArea = $this -> input -> post('supArea');
+    $supPinyin = $this -> input -> post('supPinyin');
+    $supBrief = $this -> input -> post('supBrief');
+    $supTel = $this -> input -> post('supTel');
+    $supContact = $this -> input -> post('supContact');
+    $supFax = $this -> input -> post('supFax');
+    $supPostcode = $this -> input -> post('supPostcode');
+    $supAddress = $this -> input -> post('supAddress');
+    $supBank = $this -> input -> post('supBank');
+    $supBankAccount = $this -> input -> post('supBankAccount');
+    $supEmail = $this -> input -> post('supEmail');
+    $supInternet = $this -> input -> post('supInternet');
+    $supNote = $this -> input -> post('supNote');
 
     $query = $this -> m_suppliers -> checkSuppliers($supName);
     if($query->num_rows() == 0)
@@ -75,7 +88,9 @@ class c_suppliers extends CI_Controller {
     ->set_output(json_encode($data));
   }
 
-  /*查找某个供应商*/
+  /*
+  **查找某个供应商
+  */
   public function checkSupplier()
   {
     $supID = $this -> input -> post('supID');
@@ -91,7 +106,23 @@ class c_suppliers extends CI_Controller {
   /*修改供应商*/
   public function changeSupplier()
   {
+    $supID = $this -> input -> post('supID');
+    $supName = $this -> input -> post('supName');
+    $supArea = $this -> input -> post('supArea');
+    $supPinyin = $this -> input -> post('supPinyin');
+    $supBrief = $this -> input -> post('supBrief');
+    $supTel = $this -> input -> post('supTel');
+    $supContact = $this -> input -> post('supContact');
+    $supFax = $this -> input -> post('supFax');
+    $supPostcode = $this -> input -> post('supPostcode');
+    $supAddress = $this -> input -> post('supAddress');
+    $supBank = $this -> input -> post('supBank');
+    $supBankAccount = $this -> input -> post('supBankAccount');
+    $supEmail = $this -> input -> post('supEmail');
+    $supInternet = $this -> input -> post('supInternet');
+    $supNote = $this -> input -> post('supNote');
 
+    $this -> m_suppliers -> changeSupplier($supID, $supName, $supPinyin, $supTel, $supContact,$supFax, $supPostcode, $supAddress, $supBank, $supBankAccount, $supEmail, $supInternet, $supNote);
   }
 }
 ?>

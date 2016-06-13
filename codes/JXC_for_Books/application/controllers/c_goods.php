@@ -14,7 +14,7 @@ class c_goods extends CI_Controller {
     $this -> load -> model('m_goodsDiscount');
   }
 
-  public function goods() 
+  public function index() 
   {
     $data = array('title' => "书店进销存管理系统");
     $this->load->view('common/header.php',$data);
@@ -28,7 +28,7 @@ class c_goods extends CI_Controller {
   */
   public function addGood()
   {
-    $goodCliassify = $this -> input->post('goodCliassify');
+    $goodClassify = $this -> input->post('goodClassify');
     $goodName = $this -> input->post('goodName');
     $goodAlias = $this -> input->post('goodAlias');
     $goodMnemonniccode = $this -> input->post('goodMnemonniccode');
@@ -44,9 +44,7 @@ class c_goods extends CI_Controller {
     }
     else $data = array('msg' => 'false');
 
-    $this->output
-    ->set_content_type('application/json')
-    ->set_output(json_encode($data));
+    $this->output -> set_content_type('application/json') -> set_output(json_encode($data));
   }
 
   /*添加商品类别*/
@@ -77,10 +75,11 @@ class c_goods extends CI_Controller {
   {
     $goodID = $this -> input -> post('goodID');
     $goodDiscount = $this -> input->post('goodDiscount');
+
     $query = $this -> m_goodsDiscount -> checkDiscountsGood($goodID);
     if($query -> num_rows == 0)
     {
-      $this -> m_goods -> addDiscount($goodID, $disDis)
+      $this -> m_goods -> addDiscount($goodID, $disDis);
       $data = array('msg' => 'true');
     }
     else $data = array('msg' => 'false');
@@ -139,7 +138,7 @@ class c_goods extends CI_Controller {
   {
     $goodCatID = $this -> input -> post('goodCatID');
 
-    $query = $this -> m_goodsCat -> delGoodCat($goodCatID);
+    $query = $this -> m_goodsCat -> checkGoodCat($goodCatID);
     if($query -> num_rows != 0)
     {
       $query = $this -> m_goodsCat -> delGoodCat($goodCatID);
@@ -169,7 +168,7 @@ class c_goods extends CI_Controller {
   /*查找所有商品类别*/
   public function checkAllGoodCat()
   {
-    $allInfo = $this -> m_goods -> checkAllGoodCat();
+    $allInfo = $this -> m_goodsCat -> checkAllGoodCat();
     $result = $allInfo -> result();
     $data = array('data' => $result);
     $this->output
@@ -180,7 +179,7 @@ class c_goods extends CI_Controller {
   /*查找所有商品折扣*/
   public function checkAllGoodDis()
   {
-    $allInfo = $this -> m_goods -> checkAllDiscounts();
+    $allInfo = $this -> m_goodsDiscount -> checkAllDiscounts();
     $result = $allInfo -> result();
     $data = array('data' => $result);
     $this->output
@@ -190,12 +189,45 @@ class c_goods extends CI_Controller {
 
 
   /*
-  **修改商品，待编辑
+  **修改商品
   */
   public function changeGoods()
   {
+    $goodID = $this -> input -> post('goodID');
+    $goodCliassify = $this -> input -> post('goodCliassify');
+    $goodName = $this -> input -> post('goodName');
+    $goodAlias = $this -> input -> post('goodAlias');
+    $goodMnemonniccode = $this -> input->post('goodMnemonniccode');
+    $goodPinyin = $this -> input -> post('goodPinyin');
+    $goodManufacture = $this -> input->post('goodManufacture');
+    $goodPrice = $this -> input -> post('goodPrice');
 
+    $this -> m_goods -> changeGood($goodID, $goodClassify, $goodName, $goodAlias, $goodMnemonniccode,$goodPinyincode, $goodManufacture);
   }
 
+  /*
+  **修改商品类别
+  */
+  public function changeGoodsCat()
+  {
+    $goodCatID = $this -> input -> post('goodCatID');
+    $goodCatIndex = $this -> input -> post('goodCatIndex');
+    $goodCatName = $this -> input -> post('goodCatName');
+    $goodCatDes = $this -> input -> post('goodCatDes');
+
+    $this -> m_goodsCat -> changeGoodCat($goodCatID, $goodCatIndex, $goodCatName, $goodCatDes);
+  }
+
+  /*
+  **修改商品折扣
+  */
+  public function changeGoodsDis()
+  {
+    $disID = $this -> this -> post('disID');
+    $goodID = $this -> input -> post('goodID');
+    $goodDiscount = $this -> input->post('goodDiscount');
+
+    $this -> m_goodsDiscount -> changeDiscount($disID, $goodID, $goodDiscount);
+  }
 }
 ?>

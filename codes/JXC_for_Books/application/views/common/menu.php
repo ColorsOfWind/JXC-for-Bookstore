@@ -34,7 +34,7 @@
 				                    <a id="base_users" href="/c_users/users">用户管理</a>
 				                </li>
 				                <li>
-				                    <a id="base_goods" href="/b_goods">商品管理</a>
+				                    <a id="base_goods" href="/c_goods">商品管理</a>
 				                </li>
 				                <li>
 				                    <a id="base_suppliers" href="/b_suppliers">供应商管理</a>
