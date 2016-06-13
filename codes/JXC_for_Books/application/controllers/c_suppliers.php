@@ -12,7 +12,7 @@ class c_suppliers extends CI_Controller {
     $this -> load -> model('m_suppliers');
   }
 
-  public function suppliers() 
+  public function index() 
   {
     $data = array('title' => "书店进销存管理系统");
     $this->load->view('common/header.php',$data);

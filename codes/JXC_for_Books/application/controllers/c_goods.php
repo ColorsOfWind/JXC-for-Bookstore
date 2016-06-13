@@ -194,15 +194,23 @@ class c_goods extends CI_Controller {
   public function changeGoods()
   {
     $goodID = $this -> input -> post('goodID');
-    $goodCliassify = $this -> input -> post('goodCliassify');
+    $goodClassify = $this -> input -> post('goodClassify');
     $goodName = $this -> input -> post('goodName');
     $goodAlias = $this -> input -> post('goodAlias');
     $goodMnemonniccode = $this -> input->post('goodMnemonniccode');
     $goodPinyin = $this -> input -> post('goodPinyin');
     $goodManufacture = $this -> input->post('goodManufacture');
     $goodPrice = $this -> input -> post('goodPrice');
-
-    $this -> m_goods -> changeGood($goodID, $goodClassify, $goodName, $goodAlias, $goodMnemonniccode,$goodPinyincode, $goodManufacture);
+    if($this -> m_goods -> changeGood($goodID, $goodClassify, $goodName, $goodAlias, $goodMnemonniccode,$goodPinyin, $goodManufacture)) {
+      $data = array('msg' => "true");
+    }
+    else{
+      $data = array('msg' => "false");
+    }
+    
+    $this->output
+    ->set_content_type('application/json')
+    ->set_output(json_encode($data));    
   }
 
   /*
