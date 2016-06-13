@@ -13,9 +13,9 @@ class m_clients extends CI_Model {
     /*
     **添加客户
     */
-    public function addClient($clientID, $clientName, $clientArea, $clientPinyin, $clientTel, $clientContact,$clientFax, $clientPostcode, $clientAddress, $clientBank, $clientBankAccount, $clientEmail, $clientInternet, $clientNote)
+    public function addClient($clientName, $clientArea, $clientPinyin, $clientBrief, $clientTel, $clientContact,$clientFax, $clientPostcode, $clientAddress, $clientBank, $clientBankAccount, $clientEmail, $clientInternet, $clientNote)
     {
-        $query = $this->db->query("INSERT INTO client_information VALUES('$clientID', '$clientName', '$clientArea', '$clientPinyin', '$clientTel', '$clientContact''$clientFax', '$clientPostcode', '$clientAddress', '$clientBank', '$clientBankAccount', '$clientEmail', '$clientInternet', '$clientNote')");
+        $query = $this->db->query("INSERT INTO client_information (cl_Name, cl_Area, cl_Pinyincode, cl_Brief, cl_Tel, cl_Contacts, cl_Fax, cl_Postcode, cl_Address, cl_Bank, cl_BankAccount, cl_Email, cl_Internet, cl_Note) VALUES('$clientID', '$clientName', '$clientArea', '$clientPinyin', '$clientBrief', '$clientTel', '$clientContact''$clientFax', '$clientPostcode', '$clientAddress', '$clientBank', '$clientBankAccount', '$clientEmail', '$clientInternet', '$clientNote')");
     }
 
     /*
