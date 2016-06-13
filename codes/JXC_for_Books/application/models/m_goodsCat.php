@@ -1,12 +1,13 @@
 <?php
 
-class m_goods extends CI_Model {
+class m_goodsCat extends CI_Model {
 
 	/*
 	**构造函数
 	*/
 	public function __construct()
-    {
+    {    
+        $this -> load -> model('m_goods');
         $this->load->database();
     }
 
@@ -48,7 +49,7 @@ class m_goods extends CI_Model {
     /*
     **查询指定商品类别，通过ID
     */
-    public function checkGoodCat($goodCatID)
+    public function checkGoodCatByID($goodCatID)
     {
         $query = $this->db->query("SELECT * FROM goods_categoryinformation WHERE catInf_ID='$goodCatID'");
         return $query;
@@ -57,7 +58,7 @@ class m_goods extends CI_Model {
         /*
     **查询指定商品类别，通过名称
     */
-    public function checkGoodCat($goodCatName)
+    public function checkGoodCatByName($goodCatName)
     {
         $query = $this -> db -> query("SELECT * FROM goods_categoryinformation WHERE catInf_Name='$goodCatName'");
         return $query;

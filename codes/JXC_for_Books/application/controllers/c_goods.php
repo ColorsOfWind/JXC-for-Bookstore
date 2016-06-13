@@ -14,7 +14,7 @@ class c_goods extends CI_Controller {
     $this -> load -> model('m_goodsDiscount');
   }
 
-  public function goods() 
+  public function index() 
   {
     $data = array('title' => "书店进销存管理系统");
     $this->load->view('common/header.php',$data);
@@ -28,7 +28,7 @@ class c_goods extends CI_Controller {
   */
   public function addGood()
   {
-    $goodCliassify = $this -> input->post('goodCliassify');
+    $goodClassify = $this -> input->post('goodClassify');
     $goodName = $this -> input->post('goodName');
     $goodAlias = $this -> input->post('goodAlias');
     $goodMnemonniccode = $this -> input->post('goodMnemonniccode');
@@ -80,7 +80,7 @@ class c_goods extends CI_Controller {
     $query = $this -> m_goodsDiscount -> checkDiscountsGood($goodID);
     if($query -> num_rows == 0)
     {
-      $this -> m_goods -> addDiscount($goodID, $disDis)
+      $this -> m_goods -> addDiscount($goodID, $disDis);
       $data = array('msg' => 'true');
     }
     else $data = array('msg' => 'false');
@@ -169,7 +169,7 @@ class c_goods extends CI_Controller {
   /*查找所有商品类别*/
   public function checkAllGoodCat()
   {
-    $allInfo = $this -> m_goods -> checkAllGoodCat();
+    $allInfo = $this -> m_goodsCat -> checkAllGoodCat();
     $result = $allInfo -> result();
     $data = array('data' => $result);
     $this->output

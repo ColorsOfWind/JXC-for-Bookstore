@@ -1,15 +1,15 @@
-<div id="page-wrapper" style="min-height: 368px;">
+<div id="page-wrapper">
   <div class="row">
-    <div class="col-lg-12">
-      <h1 class="page-header">主页</h1>
-    </div>
-    <!-- /.col-lg-12 -->
+      <div class="col-lg-12">
+          <h1 class="page-header"></h1>
+      </div>
+      <!-- /.col-lg-12 -->
   </div>
   <!-- /.row -->
   <div class="row">
     <div class="col-lg-12">
       <div class="panel panel-default">
-        <div class="panel-heading">考试信息查询</div>
+        <div class="panel-heading">用户信息管理</div>
         <!-- /.panel-heading -->    
         <div class="panel-body">
           <div id="table_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
