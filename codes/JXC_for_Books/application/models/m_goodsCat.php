@@ -13,9 +13,9 @@ class m_goods extends CI_Model {
     /*
     **添加商品类别
     */
-    public function addGoodCat($catID, $catName)
+    public function addGoodCat($catIndex, $catName, $catDes)
     {
-        $query = $this->db->query("INSERT INTO goods_categoryinformation(catInf_ID, catInf_Name) VALUES('$catID', '$catName')");
+        $query = $this->db->query("INSERT INTO goods_categoryinformation(catInf_Index, catInf_Name, catInf_Describe) VALUES('$catIndex', '$catName', '$catDes')");
     }
 
     /*
@@ -46,11 +46,20 @@ class m_goods extends CI_Model {
     }
 
     /*
-    **查询指定商品类别
+    **查询指定商品类别，通过ID
     */
     public function checkGoodCat($goodCatID)
     {
         $query = $this->db->query("SELECT * FROM goods_categoryinformation WHERE catInf_ID='$goodCatID'");
+        return $query;
+    }
+
+        /*
+    **查询指定商品类别，通过名称
+    */
+    public function checkGoodCat($goodCatName)
+    {
+        $query = $this -> db -> query("SELECT * FROM goods_categoryinformation WHERE catInf_Name='$goodCatName'");
         return $query;
     }
 }
