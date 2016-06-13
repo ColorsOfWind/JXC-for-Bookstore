@@ -13,17 +13,18 @@ class m_suppliers extends CI_Model {
     /*
     **添加供应商
     */
-    public function addSupplier($supID, $supName, $supPinyin, $supTel, $supContact,$supFax, $supPostcode, $supAddress, $supBank, $supBankAccount, $supEmail, $supInternet, $supNote)
+    public function addSupplier($supName, $supArea, $supPinyin, $sup_Brief, $supTel, $supContact, $supFax, $supPostcode, $supAddress, $supBank, $supBankAccount, $supEmail, $supInternet, $supNote)
     {
-        $query = $this->db->query("INSERT INTO supplier_information(sup_ID, sup_Name) VALUES('$supID', '$supName', '$supPinyin', '$supTel', '$supContact', '$supFax', '$supPostcode', '$supAddress', '$supBank', '$supBankAccount', '$supEmail', '$supInternet', '$supNote')");
+        $query = $this->db->query("INSERT INTO supplier_information(sup_Name, sup_Area, sup_Pinyincode, sup_Brief, sup_Tel, sup_Contact, sup_Fax, sup_Postcode, sup_Address, sup_Bank, sup_BankAccount, sup_Email, sup_Internet, sup_Note) VALUES('$supName', '$supArea', $supPinyin', '$sup_Brief', $supTel', '$supContact', '$supFax', '$supPostcode', '$supAddress', '$supBank', '$supBankAccount', '$supEmail', '$supInternet', '$supNote')");
+        return $query;
     }
 
     /*
     **删除供应商
     */
-    public function delSupplier($supplierID)
+    public function delSupplier($supID)
     {
-        $query = $this->db->query("DELETE FROM supplier_information WHERE sup_ID = '$supplierID'");
+        $query = $this->db->query("DELETE FROM supplier_information WHERE sup_ID = '$supID'");
     }
 
     /*
@@ -50,11 +51,20 @@ class m_suppliers extends CI_Model {
     }
 
     /*
-    **查询指定供货商
+    **查询指定供货商，通过ID
     */
     public function checkSuppliers($supID)
     {
         $query = $this->db->query("SELECT * FROM supplier_information WHERE sup_ID='$supID'");
+        return $query;
+    }
+
+    /*
+    **查询指定供货商，通过名称
+    */
+    public function checkSuppliers($supName)
+    {
+        $query = $this->db->query("SELECT * FROM supplier_information WHERE sup_Name = '$supName'");
         return $query;
     }
 }

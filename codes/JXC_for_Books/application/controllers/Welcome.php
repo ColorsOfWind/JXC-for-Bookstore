@@ -29,6 +29,12 @@ class Welcome extends CI_Controller {
         $this->load->view('common/menu.php');
         $this->load->view('common/main.php');
         $this->load->view('common/footer.php');
-
+    }
+    public function users() {
+        $data = array('title' => "书店进销存管理系统");
+        $this->load->view('common/header.php',$data);
+        $this->load->view('common/menu.php');
+        $this->load->view('base/users.php');
+        $this->load->view('common/footer.php');
     }
 }

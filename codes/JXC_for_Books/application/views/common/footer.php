@@ -3,7 +3,7 @@
 	<p>当前时间：<span id="current_time"></span></p>
 </footer>
 
-<script src="/public/js/javascript.js"></script>
+
 <script src="/public/js/extra.js"></script>
 </div>
 </body>
