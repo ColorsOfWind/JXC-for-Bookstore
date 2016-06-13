@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Purchase extends CI_Controller {
+class c_purchase extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -27,7 +27,7 @@ class Purchase extends CI_Controller {
         $data = array('title' => "书店进销存管理系统");
         $this->load->view('common/header.php',$data);
         $this->load->view('common/menu.php');
-        $this->load->view('base/addpurchase.php');
+        $this->load->view('purchase/main.php');
         $this->load->view('common/footer.php');
     }
 

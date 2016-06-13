@@ -45,7 +45,7 @@
 				            <a id="purchase" href="/purchase"><i class="fa fa-tachometer fa-fw"></i> 进货管理<span class="fa arrow"></span></a>
 				            <ul class="nav nav-second-level collapse">
 				                <li>
-				                    <a id="purchase_typelists" href="/c_purchase/index">填写进货单</a>
+				                    <a id="purchase_typelists" href="/c_purchase/addPurchase">填写进货单</a>
 				                </li>
 				                <li>
 				                    <a id="purchase_typelists" href="/purchase_typelists">审核进货单</a>
