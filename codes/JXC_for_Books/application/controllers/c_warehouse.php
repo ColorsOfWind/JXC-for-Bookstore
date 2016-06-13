@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');	
-class c_users extends CI_Controller {
+class c_warehouses extends CI_Controller {
 
   /*
   **构造函数
