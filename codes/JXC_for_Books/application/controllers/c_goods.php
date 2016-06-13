@@ -36,10 +36,10 @@ class c_goods extends CI_Controller {
     $goodManufacture = $this -> input->post('goodManufacture');
     $goodPrice = $this -> input->post('goodPrice');
 
-    $query = $this -> m_goods -> checkGoodID($goodID);
+    $query = $this -> m_goods -> checkGoodByName($goodName);
     if($query -> num_rows() == 0)
     {
-      $this -> m_goods -> addGood($goodClassify, $goodName, $goodAlias, $goodMnemonniccode, $goodPinyin, $goodManufacture, $goodPirce);
+      $this -> m_goods -> addGood($goodClassify, $goodName, $goodAlias, $goodMnemonniccode, $goodPinyin, $goodManufacture, $goodPrice);
       $data = array('msg' => 'true');
     }
     else $data = array('msg' => 'false');
@@ -96,7 +96,7 @@ class c_goods extends CI_Controller {
   {
     $goodID = $this -> input -> post('goodID');
 
-    $query = $this -> m_goods -> checkUserID($goodID);
+    $query = $this -> m_goods -> checkGoodID($goodID);
     if($query -> num_rows() != 0)
     {
       $this -> m_goods -> delGood($goodID);

@@ -61,6 +61,11 @@ class m_goods extends CI_Model {
         $query = $this->db->query("SELECT * FROM goods_information WHERE inf_Barcode='$goodID'");
         return $query;
     }
+    public function checkGoodByName($goodName)
+    {
+        $query = $this->db->query("SELECT * FROM goods_information WHERE inf_Name='$goodName'");
+        return $query;
+    }
 }
 
 ?>

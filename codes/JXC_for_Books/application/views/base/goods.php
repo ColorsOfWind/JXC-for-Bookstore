@@ -27,7 +27,7 @@
 									<thead>
 										<tr role="row">
 											<th>商品IDinf-Barcode</th>
-											<th>商品名iinf_Name</th>
+											<th>商品名 inf_Name</th>
 											<th>商品别名inf_Alias</th>
 											<th>商品分类inf_Classify</th>
 											<th>商品拼音inf_Pinyincode</th>
@@ -48,7 +48,7 @@
 		</div>
 	</div>
 
-	<!-- 新增用户 -->
+	<!-- 新增商品 -->
 	<div class="modal fade model" id="modal-create" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content panel panel-info">
@@ -207,7 +207,7 @@
 			</div>
 		</div>
 	</div>
-	<!-- 删除用户 -->
+	<!-- 删除商品 -->
 	<div class="modal fade model" id="modal-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content panel panel-danger">
@@ -218,17 +218,17 @@
 					<h4 class="modal-title" id="myModalLabel">删除确认</h4>
 				</div>
 				<div class="modal-body panel-body">
-					<p>你真的要删除以下用户么？</p>
+					<p>你真的要删除以下商品么？</p>
 					<div class="form-group">
-						<label for="dele-userid" class="col-sm-3 control-label">用户ID</label>
+						<label for="dele-Barcode" class="col-sm-3 control-label">商品ID</label>
 						<div class="col-sm-7">
-							<input id="dele-userid" class="form-control" value="" type="text" disabled>
+							<input id="dele-Barcode" class="form-control" value="" type="text" disabled>
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="dele-username" class="col-sm-3 control-label">用户名</label>
+						<label for="dele-inf_Name" class="col-sm-3 control-label">商品名</label>
 						<div class="col-sm-7">
-							<input id="dele-username" class="form-control" value="" type="text" disabled>
+							<input id="dele-inf_Name" class="form-control" value="" type="text" disabled>
 						</div>
 					</div>          
 				</div>
@@ -288,8 +288,8 @@
 				},
 				ajax: "/c_goods/checkAllGood",
 				columns: [
-				{ "data": "inf-Barcode" },
-				{ "data": "iinf_Name" },
+				{ "data": "inf_Barcode" },
+				{ "data": "inf_Name" },
 				{ "data": "inf_Alias" },
 				{ "data": "inf_Classify" },
 				{ "data": "inf_Pinyincode" },
@@ -323,8 +323,8 @@
 			$('#modal-password-body').find(".help-block").text("");
 		});
 		$('#modal-delete').on('show.bs.modal', function (e) {
-			$("#dele-userid").val($(e.relatedTarget).parent().siblings()[0].innerText);
-			$("#dele-username").val($(e.relatedTarget).parent().siblings()[1].innerText);
+			$("#dele-Barcode").val($(e.relatedTarget).parent().siblings()[0].innerText);
+			$("#dele-inf_Name").val($(e.relatedTarget).parent().siblings()[1].innerText);
 		});
 		$('#modal-delete').on('hidden.bs.modal', function (e) {
 			$("#dele-userid").val("");
@@ -340,23 +340,14 @@
         async:true,
         dataType:'json',
         success:function(data) {  
-        	console.log(data);
-        	catInf_Name
-        	for(var i=0;i<data.length;i++) {
-
-        		$('#modal-create').modal("hide");
-        		$('#modal-prompt-content').text("新增用户成功");
-        		document.getElementById('modal-prompt-panel').className = "modal-content panel panel-success";
-        		$('#modal-prompt').modal('show');
-        	}
-        	else {
-        		document.getElementById("create-username-p").innerHTML="用户名已存在";
-        		document.getElementById("create-username-div").className="has-error form-group";
+        	console.log(data.data);
+        	for(var i=0;i<data.data.length;i++) {
+        		$('#create-goodClassify').append("<option>"+data.data[i]["catInf_Name"]+"</option>");
         	}
         },
         error : function() {
         	$('#modal-create').modal("hide");
-        	$('#modal-prompt-content').text("创建出现错误，请联系管理员或尝试重新登录");
+        	$('#modal-prompt-content').text("连接出现错误，请联系管理员或尝试重新登录");
         	document.getElementById('modal-prompt-panel').className = "modal-content panel panel-danger";
         	$('#modal-prompt').modal('show');
         }  
@@ -364,7 +355,6 @@
 	}
 	function retable() {
 		dt.ajax.reload();
-		
 	}
 
 	$(document).ready(function() {
@@ -373,17 +363,28 @@
 		getClassify();
 	});
 	function createsubmit() {
-		if(!(verifylength("create-username",4,11)&&verifylength("create-password",4,16)&&verifylength("create-password4sure",4,16)&&verify4sure("create-password","create-password4sure"))) {
+
+		if(!(verifylength("create-goodName",1,20)&&verifylength("create-goodAlias",1,20)&&verifylength("create-goodMnemonniccode",1,20)&&verifylength("create-goodPinyin",1,20)&&verifylength("create-goodManufacture",1,20)&&verifylength("create-goodPrice",1,20))) { 
 			return false;
 		}
-		var username = $("#create-username").val();
-		var password = $("#create-password").val();
 
+		var goodClassify = $("#create-goodClassify").val();
+		var goodName = $("#create-goodName").val();
+		var goodAlias = $("#create-goodAlias").val();
+		var goodMnemonniccode = $("#create-goodMnemonniccode").val();
+		var goodPinyin = $("#create-goodPinyin").val();
+		var goodManufacture = $("#create-goodManufacture").val();
+		var goodPrice = $("#create-goodPrice").val();
 		$.ajax( {  
-        url:'/c_users/addUser',// 跳转到 action  
+        url:'/c_goods/addGood',// 跳转到 action  
         data:{  
-        	'userName': username,
-        	'userPassword': password
+        	'goodClassify': goodClassify,
+        	'goodName': goodName,
+        	'goodAlias': goodAlias,
+        	'goodMnemonniccode': goodMnemonniccode,
+        	'goodPinyin': goodPinyin,
+        	'goodManufacture': goodManufacture,
+        	'goodPrice': goodPrice
         },
         type:'post',
         cache:false,
@@ -393,13 +394,13 @@
         	if(data.msg =="true") {
         		retable();
         		$('#modal-create').modal("hide");
-        		$('#modal-prompt-content').text("新增用户成功");
+        		$('#modal-prompt-content').text("新增商品成功");
         		document.getElementById('modal-prompt-panel').className = "modal-content panel panel-success";
         		$('#modal-prompt').modal('show');
         	}
         	else {
-        		document.getElementById("create-username-p").innerHTML="用户名已存在";
-        		document.getElementById("create-username-div").className="has-error form-group";
+        		document.getElementById("create-goodName-p").innerHTML="商品已存在";
+        		document.getElementById("create-goodName-div").className="has-error form-group";
         	}
         },
         error : function() {
@@ -412,11 +413,11 @@
 	}
 
 	function deletesubmit() {
-		var userid = $("#dele-userid").val();
+		var Barcode = $("#dele-Barcode").val();
 		$.ajax( {  
-        url:'/c_users/delUser',// 跳转到 action  
+        url:'/c_goods/delGood',// 跳转到 action  
         data:{  
-        	'userID': userid
+        	'goodID': Barcode,
         },
         type:'post',
         cache:false,
@@ -425,15 +426,16 @@
         success:function(data) {  
         	if(data.msg =="true") {
         		$('#modal-delete').modal("hide");
-        		$('#modal-prompt-content').text("删除用户成功");
+        		$('#modal-prompt-content').text("删除商品成功");
         		document.getElementById('modal-prompt-panel').className = "modal-content panel panel-success";
         		$('#modal-prompt').modal('show');
         		retable();
         	}
         	else {
-        		document.getElementById("delete-username-p").innerHTML="删除失败，出现了一些错误⊙︿⊙";
-        		document.getElementById("delete-username-div").className="has-error form-group";
-        	}
+        		$('#modal-delete').modal("hide");
+        		$('#modal-prompt-content').text("删除商品失败，无此商品");
+        		document.getElementById('modal-prompt-panel').className = "modal-content panel panel-danger";
+        		$('#modal-prompt').modal('show');        	}
         },
         error : function() {
         	$('#modal-delete').modal("hide");
@@ -476,7 +478,7 @@
 	function changepasswordsubmit() {
 		if(!(verifylength("password-newpassword",4,16)&&verifylength("password-password4sure",4,16)&&verify4sure("password-newpassword","password-password4sure"))) {
 			return false;
-		}
+		}goodPinyin
 		var userid = $("#password-userid").val();
 		var password = $("#password-newpassword").val();
 		$.ajax( {  
