@@ -13,9 +13,9 @@ class m_goodsDiscount extends CI_Model {
     /*
     **添加折扣
     */
-    public function addDiscount($disID, $goodID, $disDis)
+    public function addDiscount($goodID, $disDis)
     {
-        $query = $this->db->query("INSERT INTO goods_discoutinformation VALUES('$disID', '$goodID', '$disDis')");
+        $query = $this->db->query("INSERT INTO goods_discoutinformation (inf_Barcode, disInf_Discount) VALUES('$disID', '$goodID', '$disDis')");
     }
 
     /*
@@ -27,7 +27,7 @@ class m_goodsDiscount extends CI_Model {
     }
 
     /*
-    **修改仓库信息
+    **修改折扣信息
     */
     public function changeDiscount($disID, $goodID, $disDis)
     {

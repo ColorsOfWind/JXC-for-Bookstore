@@ -13,9 +13,9 @@ class m_goods extends CI_Model {
     /*
     **添加商品
     */
-    public function addGood($goodName, $userPassword)
+    public function addGood($goodClassify, $goodName, $goodAlias, $goodMnemonniccode, $goodPinyin, $goodManufacture, $goodPirce)
     {
-        $query = $this->db->query("INSERT INTO goods_information(inf_Barcode, inf_Classify, inf_Name, inf_Commodityprice) VALUES('$barcode', '$classify', '$name', '$price')");
+        $query = $this->db->query("INSERT INTO goods_information (inf_Classify, inf_Name, inf_Alias, inf_Mnemonniccode, inf_Pinyincode, inf_Manufacture, inf_Commodityprice) VALUES('$goodClassify', '$goodName', '$goodAlias', '$goodMnemonniccode', '$goodPinyin', '$goodManufacture', '$goodPirce')");
     }
 
     /*
@@ -56,9 +56,9 @@ class m_goods extends CI_Model {
     }
 
     /*
-    **查询指定商品
+    **查询指定商品，通过ID
     */
-    public function checkGoods($goodID)
+    public function checkGoodID($goodID)
     {
         $query = $this->db->query("SELECT * FROM goods_information WHERE inf_Barcode='$goodID'");
         return $query;

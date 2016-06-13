@@ -8,8 +8,8 @@ class c_users extends CI_Controller {
   public function __construct() 
   {
     parent::__construct();
-    $this->load->database();
-    $this->load->model('m_users');
+    $this -> load -> database();
+    $this -> load -> model('m_users');
   }
 
   public function users() 
@@ -28,7 +28,8 @@ class c_users extends CI_Controller {
   {
     $userName = $this -> input -> post('userName');
     $userPassword = $this -> input->post('userPassword');
-    if($this -> m_users -> checkUserName($userName))
+    $query = $this -> m_users -> checkUserName($userName);
+    if($query->num_rows() == 0)
     {
       $this -> m_users -> addUser($userName, $userPassword);
       $data = array('msg' => 'true');
@@ -39,11 +40,14 @@ class c_users extends CI_Controller {
     ->set_output(json_encode($data));
   }
 
-  /*删除用户*/
+  /*
+  **删除用户
+  */
   public function delUser()
   {
-    $userID = $this -> input->post('userID');
-    if($this->m_users->checkUserID($userID))
+    $userID = $this -> input -> post('userID');
+    $query = $this -> m_users -> checkUserID($userID);
+    if($query -> num_rows() != 0)
     {
       $this->m_users->delUser($userID);
       $data = array('msg' => 'true');
@@ -107,15 +111,15 @@ class c_users extends CI_Controller {
     $userID = $this -> input->post('userID');
     if($this -> m_users -> changePassword($userID, $newPassword))
     {
-      $data=array('msg' => 'true');
+      $data = array('msg' => 'true');
     }
     else
     {
-      $data=array('msg' => 'false');
+      $data = array('msg' => 'false');
     }
-    $this->output
-    ->set_content_type('application/json')
-    ->set_output(json_encode($data));
+    $this -> output 
+    -> set_content_type('application/json') 
+    -> set_output(json_encode($data));
   }
 
   /*
