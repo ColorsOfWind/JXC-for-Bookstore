@@ -39,6 +39,9 @@
 				                <li>
 				                    <a id="base_suppliers" href="/c_suppliers">供应商管理</a>
 				                </li>
+				                <li>
+				                    <a id="base_clientss" href="/c_clients">客户管理</a>
+				                </li>
 				            </ul>
 				        </li>     
 				        <li>
