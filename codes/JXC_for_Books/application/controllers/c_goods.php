@@ -36,10 +36,10 @@ class c_goods extends CI_Controller {
     $goodManufacture = $this -> input->post('goodManufacture');
     $goodPrice = $this -> input->post('goodPrice');
 
-    $query = $this -> m_goods -> checkGoodID($goodID);
+    $query = $this -> m_goods -> checkGoodByName($goodName);
     if($query -> num_rows() == 0)
     {
-      $this -> m_goods -> addGood($goodClassify, $goodName, $goodAlias, $goodMnemonniccode, $goodPinyin, $goodManufacture, $goodPirce);
+      $this -> m_goods -> addGood($goodClassify, $goodName, $goodAlias, $goodMnemonniccode, $goodPinyin, $goodManufacture, $goodPrice);
       $data = array('msg' => 'true');
     }
     else $data = array('msg' => 'false');
@@ -96,7 +96,7 @@ class c_goods extends CI_Controller {
   {
     $goodID = $this -> input -> post('goodID');
 
-    $query = $this -> m_goods -> checkUserID($goodID);
+    $query = $this -> m_goods -> checkGoodID($goodID);
     if($query -> num_rows() != 0)
     {
       $this -> m_goods -> delGood($goodID);
@@ -194,15 +194,23 @@ class c_goods extends CI_Controller {
   public function changeGoods()
   {
     $goodID = $this -> input -> post('goodID');
-    $goodCliassify = $this -> input -> post('goodCliassify');
+    $goodClassify = $this -> input -> post('goodClassify');
     $goodName = $this -> input -> post('goodName');
     $goodAlias = $this -> input -> post('goodAlias');
     $goodMnemonniccode = $this -> input->post('goodMnemonniccode');
     $goodPinyin = $this -> input -> post('goodPinyin');
     $goodManufacture = $this -> input->post('goodManufacture');
     $goodPrice = $this -> input -> post('goodPrice');
-
-    $this -> m_goods -> changeGood($goodID, $goodClassify, $goodName, $goodAlias, $goodMnemonniccode,$goodPinyincode, $goodManufacture);
+    if($this -> m_goods -> changeGood($goodID, $goodClassify, $goodName, $goodAlias, $goodMnemonniccode,$goodPinyin, $goodManufacture)) {
+      $data = array('msg' => "true");
+    }
+    else{
+      $data = array('msg' => "false");
+    }
+    
+    $this->output
+    ->set_content_type('application/json')
+    ->set_output(json_encode($data));    
   }
 
   /*

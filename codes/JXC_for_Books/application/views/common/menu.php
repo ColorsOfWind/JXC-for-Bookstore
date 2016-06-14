@@ -31,13 +31,13 @@
 				            <a id="base" href="/base"><i class="fa fa-tachometer fa-fw"></i> 基础信息管理<span class="fa arrow"></span></a>
 				            <ul class="nav nav-second-level collapse">
 				                <li>
-				                    <a id="base_users" href="/c_users/users">用户管理</a>
+				                    <a id="base_users" href="/c_users">用户管理</a>
 				                </li>
 				                <li>
 				                    <a id="base_goods" href="/c_goods">商品管理</a>
 				                </li>
 				                <li>
-				                    <a id="base_suppliers" href="/b_suppliers">供应商管理</a>
+				                    <a id="base_suppliers" href="/c_suppliers">供应商管理</a>
 				                </li>
 				            </ul>
 				        </li>     

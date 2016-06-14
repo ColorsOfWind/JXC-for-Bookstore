@@ -12,7 +12,7 @@ class c_users extends CI_Controller {
     $this -> load -> model('m_users');
   }
 
-  public function users() 
+  public function index() 
   {
     $data = array('title' => "书店进销存管理系统");
     $this->load->view('common/header.php',$data);
