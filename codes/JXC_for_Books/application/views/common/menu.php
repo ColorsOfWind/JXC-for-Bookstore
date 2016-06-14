@@ -56,10 +56,10 @@
 				            <a id="stock" href="/stock"><i class="fa fa-tachometer fa-fw"></i> 库存管理<span class="fa arrow"></span></a>
 				            <ul class="nav nav-second-level collapse">
 				                <li>
-				                    <a id="stock_users" href="/s_querys">商品查询</a>
+				                    <a id="stock_users" href="/c_stock/checkStockCommodity">库存商品信息查询</a>
 				                </li>
 				                <li>
-				                    <a id="stock_users" href="/s_querys">库存盘点</a>
+				                    <a id="stock_users" href="/c_stock/stockwarning">库存警告查询</a>
 				                </li>
 				            </ul>
 				        </li>    
