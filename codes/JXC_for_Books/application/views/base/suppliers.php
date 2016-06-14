@@ -30,15 +30,15 @@
 											<th>供应商名</th>
 											<th>供应商拼音码</th>
 											<th>供应商电话</th>
-											<th>供应商Contact</th>
+											<th>供应商联系人</th>
 											<th>供应商传真</th>
 											<th>供应商邮编</th>
 											<th>供应商地址</th>
 											<th>供应商银行</th>
 											<th>供应商银行账户</th>
-											<th>供应商Email</th>
-											<th>供应商Note</th>
-											<th>供应商Internet</th>
+											<th>供应商电子邮件</th>
+											<th>供应商备注</th>
+											<th>供应商网址</th>
 											<th>编辑</th>
 										</tr>
 									</thead>
@@ -82,7 +82,7 @@
 						</div>
 					</div> -->
 					<div class="form-group" id="create-supPinyin-div">
-						<label for="create-supPinyin" class="col-sm-3 control-label">supPinyin</label>
+						<label for="create-supPinyin" class="col-sm-3 control-label">供应商拼音</label>
 						<div class="col-sm-7">
 							<input id="create-supPinyin" class="form-control" placeholder="请输入供应商拼音" value="" type="text">
 							<p id="create-supPinyin-p" class="help-block"></p>
@@ -96,72 +96,72 @@
 						</div>
 					</div>	 -->			
 					<div class="form-group" id="create-supTel-div">
-						<label for="create-supTel" class="col-sm-3 control-label">supTel</label>
+						<label for="create-supTel" class="col-sm-3 control-label">供应商电话</label>
 						<div class="col-sm-7">
-							<input id="create-supTel" class="form-control" placeholder="请输入goodPinyin" value="" type="text">
+							<input id="create-supTel" class="form-control" placeholder="请输入电话号码" value="" type="text">
 							<p id="create-supTel-p" class="help-block"></p>
 						</div>
 					</div>	
 					<div class="form-group" id="create-supContact-div">
-						<label for="create-supContact" class="col-sm-3 control-label">supContact</label>
+						<label for="create-supContact" class="col-sm-3 control-label">供应商联系人</label>
 						<div class="col-sm-7">
-							<input id="create-supContact" class="form-control" placeholder="请输入goodManufacture" value="" type="text">
+							<input id="create-supContact" class="form-control" placeholder="请输入联系人" value="" type="text">
 							<p id="create-supContact-p" class="help-block"></p>
 						</div>
 					</div>		
 					<div class="form-group" id="create-supFax-div">
-						<label for="create-supFax" class="col-sm-3 control-label">supFax</label>
+						<label for="create-supFax" class="col-sm-3 control-label">供应商传真</label>
 						<div class="col-sm-7">
-							<input id="create-supFax" class="form-control" placeholder="请输入supFax" value="" type="text">
+							<input id="create-supFax" class="form-control" placeholder="请输入传真" value="" type="text">
 							<p id="create-supFax-p" class="help-block"></p>
 						</div>
 					</div>			
 					<div class="form-group" id="create-supPostcode-div">
-						<label for="create-supPostcode" class="col-sm-3 control-label">supPostcode</label>
+						<label for="create-supPostcode" class="col-sm-3 control-label">供应商邮编</label>
 						<div class="col-sm-7">
-							<input id="create-supPostcode" class="form-control" placeholder="请输入supPostcode" value="" type="text">
+							<input id="create-supPostcode" class="form-control" placeholder="请输入邮编" value="" type="text">
 							<p id="create-supPostcode-p" class="help-block"></p>
 						</div>
 					</div>			
 					<div class="form-group" id="create-supAddress-div">
-						<label for="create-supAddress" class="col-sm-3 control-label">supAddress</label>
+						<label for="create-supAddress" class="col-sm-3 control-label">供应商地址</label>
 						<div class="col-sm-7">
-							<input id="create-supAddress" class="form-control" placeholder="请输入supAddress" value="" type="text">
+							<input id="create-supAddress" class="form-control" placeholder="请输入地址" value="" type="text">
 							<p id="create-supAddress-p" class="help-block"></p>
 						</div>
 					</div>			
 					<div class="form-group" id="create-supBank-div">
-						<label for="create-supBank" class="col-sm-3 control-label">supBank</label>
+						<label for="create-supBank" class="col-sm-3 control-label">开户银行</label>
 						<div class="col-sm-7">
-							<input id="create-supBank" class="form-control" placeholder="请输入supBank" value="" type="text">
+							<input id="create-supBank" class="form-control" placeholder="请输入银行名称" value="" type="text">
 							<p id="create-supBank-p" class="help-block"></p>
 						</div>
 					</div>			
 					<div class="form-group" id="create-supBankAccount-div">
-						<label for="create-supBankAccount" class="col-sm-3 control-label">supBankAccount</label>
+						<label for="create-supBankAccount" class="col-sm-3 control-label">银行账户</label>
 						<div class="col-sm-7">
-							<input id="create-supBankAccount" class="form-control" placeholder="请输入supBankAccount" value="" type="text">
+							<input id="create-supBankAccount" class="form-control" placeholder="请输入银行账户" value="" type="text">
 							<p id="create-supBankAccount-p" class="help-block"></p>
 						</div>
 					</div>			
 					<div class="form-group" id="create-supEmail-div">
-						<label for="create-supEmail" class="col-sm-3 control-label">supEmail</label>
+						<label for="create-supEmail" class="col-sm-3 control-label">电子邮件</label>
 						<div class="col-sm-7">
-							<input id="create-supEmail" class="form-control" placeholder="请输入supEmail" value="" type="text">
+							<input id="create-supEmail" class="form-control" placeholder="请输入电子邮件帐号" value="" type="text">
 							<p id="create-supEmail-p" class="help-block"></p>
 						</div>
 					</div>						
 					<div class="form-group" id="create-supInternet-div">
-						<label for="create-supInternet" class="col-sm-3 control-label">supInternet</label>
+						<label for="create-supInternet" class="col-sm-3 control-label">供应商网址</label>
 						<div class="col-sm-7">
-							<input id="create-supInternet" class="form-control" placeholder="请输入supInternet" value="" type="text">
+							<input id="create-supInternet" class="form-control" placeholder="请输入网址" value="" type="text">
 							<p id="create-supInternet-p" class="help-block"></p>
 						</div>
 					</div>			
 					<div class="form-group" id="create-supNote-div">
-						<label for="create-supNote" class="col-sm-3 control-label">supNote</label>
+						<label for="create-supNote" class="col-sm-3 control-label">备注</label>
 						<div class="col-sm-7">
-							<input id="create-supNote" class="form-control" placeholder="请输入supNote" value="" type="text">
+							<input id="create-supNote" class="form-control" placeholder="请输入备注" value="" type="text">
 							<p id="create-supNote-p" class="help-block"></p>
 						</div>
 					</div>
@@ -210,7 +210,7 @@
 						</div>
 					</div> -->
 					<div class="form-group" id="edit-supPinyin-div">
-						<label for="edit-supPinyin" class="col-sm-3 control-label">supPinyin</label>
+						<label for="edit-supPinyin" class="col-sm-3 control-label">供应商拼音</label>
 						<div class="col-sm-7">
 							<input id="edit-supPinyin" class="form-control" placeholder="请输入供应商拼音" value="" type="text">
 							<p id="edit-supPinyin-p" class="help-block"></p>
@@ -224,72 +224,72 @@
 						</div>
 					</div>	 -->			
 					<div class="form-group" id="edit-supTel-div">
-						<label for="edit-supTel" class="col-sm-3 control-label">supTel</label>
+						<label for="edit-supTel" class="col-sm-3 control-label">联系电话</label>
 						<div class="col-sm-7">
-							<input id="edit-supTel" class="form-control" placeholder="请输入goodPinyin" value="" type="text">
+							<input id="edit-supTel" class="form-control" placeholder="请输入电话号码" value="" type="text">
 							<p id="edit-supTel-p" class="help-block"></p>
 						</div>
 					</div>	
 					<div class="form-group" id="edit-supContact-div">
-						<label for="edit-supContact" class="col-sm-3 control-label">supContact</label>
+						<label for="edit-supContact" class="col-sm-3 control-label">供应商联系人</label>
 						<div class="col-sm-7">
-							<input id="edit-supContact" class="form-control" placeholder="请输入goodManufacture" value="" type="text">
+							<input id="edit-supContact" class="form-control" placeholder="请输入联系人" value="" type="text">
 							<p id="edit-supContact-p" class="help-block"></p>
 						</div>
 					</div>		
 					<div class="form-group" id="edit-supFax-div">
-						<label for="edit-supFax" class="col-sm-3 control-label">supFax</label>
+						<label for="edit-supFax" class="col-sm-3 control-label">供应商传真</label>
 						<div class="col-sm-7">
-							<input id="edit-supFax" class="form-control" placeholder="请输入supFax" value="" type="text">
+							<input id="edit-supFax" class="form-control" placeholder="请输入传真" value="" type="text">
 							<p id="edit-supFax-p" class="help-block"></p>
 						</div>
 					</div>			
 					<div class="form-group" id="edit-supPostcode-div">
-						<label for="edit-supPostcode" class="col-sm-3 control-label">supPostcode</label>
+						<label for="edit-supPostcode" class="col-sm-3 control-label">邮编</label>
 						<div class="col-sm-7">
-							<input id="edit-supPostcode" class="form-control" placeholder="请输入supPostcode" value="" type="text">
+							<input id="edit-supPostcode" class="form-control" placeholder="请输入邮编" value="" type="text">
 							<p id="edit-supPostcode-p" class="help-block"></p>
 						</div>
 					</div>			
 					<div class="form-group" id="edit-supAddress-div">
-						<label for="edit-supAddress" class="col-sm-3 control-label">supAddress</label>
+						<label for="edit-supAddress" class="col-sm-3 control-label">供应商地址</label>
 						<div class="col-sm-7">
-							<input id="edit-supAddress" class="form-control" placeholder="请输入supAddress" value="" type="text">
+							<input id="edit-supAddress" class="form-control" placeholder="请输入地址" value="" type="text">
 							<p id="edit-supAddress-p" class="help-block"></p>
 						</div>
 					</div>			
 					<div class="form-group" id="edit-supBank-div">
-						<label for="edit-supBank" class="col-sm-3 control-label">supBank</label>
+						<label for="edit-supBank" class="col-sm-3 control-label">开户银行</label>
 						<div class="col-sm-7">
-							<input id="edit-supBank" class="form-control" placeholder="请输入supBank" value="" type="text">
+							<input id="edit-supBank" class="form-control" placeholder="请输入银行名称" value="" type="text">
 							<p id="edit-supBank-p" class="help-block"></p>
 						</div>
 					</div>			
 					<div class="form-group" id="edit-supBankAccount-div">
-						<label for="edit-supBankAccount" class="col-sm-3 control-label">supBankAccount</label>
+						<label for="edit-supBankAccount" class="col-sm-3 control-label">银行账户</label>
 						<div class="col-sm-7">
-							<input id="edit-supBankAccount" class="form-control" placeholder="请输入supBankAccount" value="" type="text">
+							<input id="edit-supBankAccount" class="form-control" placeholder="请输入银行账户" value="" type="text">
 							<p id="edit-supBankAccount-p" class="help-block"></p>
 						</div>
 					</div>			
 					<div class="form-group" id="edit-supEmail-div">
-						<label for="edit-supEmail" class="col-sm-3 control-label">supEmail</label>
+						<label for="edit-supEmail" class="col-sm-3 control-label">电子邮件</label>
 						<div class="col-sm-7">
-							<input id="edit-supEmail" class="form-control" placeholder="请输入supEmail" value="" type="text">
+							<input id="edit-supEmail" class="form-control" placeholder="请输入电子邮件张号" value="" type="text">
 							<p id="edit-supEmail-p" class="help-block"></p>
 						</div>
 					</div>					
 					<div class="form-group" id="edit-supInternet-div">
-						<label for="edit-supInternet" class="col-sm-3 control-label">supInternet</label>
+						<label for="edit-supInternet" class="col-sm-3 control-label">供应商网址</label>
 						<div class="col-sm-7">
-							<input id="edit-supInternet" class="form-control" placeholder="请输入supInternet" value="" type="text">
+							<input id="edit-supInternet" class="form-control" placeholder="请输入网址" value="" type="text">
 							<p id="edit-supInternet-p" class="help-block"></p>
 						</div>
 					</div>			
 					<div class="form-group" id="edit-supNote-div">
-						<label for="edit-supNote" class="col-sm-3 control-label">supNote</label>
+						<label for="edit-supNote" class="col-sm-3 control-label">备注</label>
 						<div class="col-sm-7">
-							<input id="edit-supNote" class="form-control" placeholder="请输入supNote" value="" type="text">
+							<input id="edit-supNote" class="form-control" placeholder="请输入备注" value="" type="text">
 							<p id="edit-supNote-p" class="help-block"></p>
 						</div>
 					</div>

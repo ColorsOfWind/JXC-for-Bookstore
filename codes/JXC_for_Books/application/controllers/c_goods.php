@@ -54,7 +54,7 @@ class c_goods extends CI_Controller {
     $goodCatName = $this -> input -> post('goodCatName');
     $goodCatDes = $this -> input -> post('goodCatDes');
 
-    $query = $this -> m_goodsCat ->checkGoodCat($goodCatName);
+    $query = $this -> m_goodsCat ->checkGoodCatByName($goodCatName);
     if($query -> num_rows() == 0)
     {
       $this -> m_goodsCat -> addGoodCat($goodCatIndex, $goodCatName, $goodCatDes);

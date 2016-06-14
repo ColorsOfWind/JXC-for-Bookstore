@@ -22,6 +22,7 @@ class c_sale extends CI_Controller {
 		$this->load->view('base/users.php');
 		$this->load->view('common/footer.php');
 	}
+
 	public function sale() 
 	{
 		$data = array('title' => "书店进销存管理系统");
@@ -38,6 +39,39 @@ class c_sale extends CI_Controller {
 		$this->load->view('sales/showSale.php');
 		$this->load->view('common/footer.php');
 	}
+
+
+	/*新建一行，返回单据编号*/
+	public function getSaleID()
+	{
+		$clientName = $this -> input -> post('clientName');
+		$query = $this -> m_saleFront -> getSaleID($clientName);
+		$row = $query->row();
+		$saleID = $row -> salebill_ID;
+
+		$data = array('saleID' => $saleID);
+		$this->output ->set_content_type('application/json') ->set_output(json_encode($data));
+	}
+
+	/*返回客户列表*/
+	public function getClient()
+	{
+		$allInfo = $this -> m_saleFront -> getClient();
+    	$result = $allInfo -> result();
+    	$data = array('data' => $result);
+    	$this->output ->set_content_type('application/json') ->set_output(json_encode($data));
+	}
+
+	/*通过书籍条形码获取书籍基本信息*/
+	public function getBookInfo()
+	{
+		$goodID = $this -> input -> post('goodID');
+
+		$data = $this -> m_saleFrontDetail -> getBookInfo($goodID);
+
+		$this->output ->set_content_type('application/json') ->set_output(json_encode($data));
+	}
+
 	/*添加销售单*/
 	public function addSale()
 	{
@@ -72,7 +106,9 @@ class c_sale extends CI_Controller {
 		$saleState = $this -> input -> post('saleState');
 		$saleRemarks = $this -> input -> post('saleRemarks');
 
-		$this -> m_saleFront -> changeSaleFront($saleID, $clName, $saleUserID, $saleCounter, $saleFilldate, $saleDealdate, $saleState, $saleRemarks);
+		$data = $this -> m_saleFront -> changeSaleFront($saleID, $clName, $saleUserID, $saleCounter, $saleFilldate, $saleDealdate, $saleState, $saleRemarks);
+
+		$this->output ->set_content_type('application/json') ->set_output(json_encode($data));
 	}
 
 	/*查看销售单*/

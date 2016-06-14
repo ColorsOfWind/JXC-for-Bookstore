@@ -22,37 +22,84 @@ class c_purchase extends CI_Controller {
     {
     	parent::__construct();
         $this->load->database();
+        $this -> load -> model('m_purchase');
     }
     public function index() {
         $data = array('title' => "书店进销存管理系统");
         $this->load->view('common/header.php',$data);
         $this->load->view('common/menu.php');
-        $this->load->view('purchase/main.php');
+        $this->load->view('purchase/addPurchase.php');
         $this->load->view('common/footer.php');
     }
 
     public function addPurchase() { //添加进货单，权限需求：请购员
-        $data = array('title' => "书店进销存管理系统");
-        $this->load->view('common/header.php',$data);
-        $this->load->view('common/menu.php');
-        $this->load->view('purchase/addPurchase.php');
-        $this->load->view('common/footer.php');
+        //$data = array('title' => "书店进销存管理系统");
+        //$this->load->view('common/header.php',$data);
+        //$this->load->view('common/menu.php');
+        //$this->load->view('purchase/addPurchase.php');
+        //$this->load->view('common/footer.php');
+
+        
+        $sup_Name = $this -> input -> post('sup_Name');
+        $Qinggouyuan = $this -> input->post('Qinggouyuan');
+        $Dinggouyuan = $this -> input -> post('Dinggouyuan'); 
+        $Yanshouyuan = $this -> input->post('Yanshouyuan');
+        $Crashguanliyuan = $this -> input->post('Crashguanliyuan');
+        $Shouhuoaddress = $this -> input -> post('Shouhuoaddress');
+        $warehouse_Name = $this -> input->post('warehouse_Name');
+        $Dingdandate = $this -> input -> post('Dingdandate');
+        $Daohuodate = $this -> input->post('Daohuodate');
+        
+        $Note = $this -> input -> post('Note');
+       
+
+        if(1==1)
+        {
+          $this -> m_purchase -> addpurchase(/*$purchase_ID,*/$sup_Name, $Qinggouyuan,$Dinggouyuan,$Yanshouyuan,$Crashguanliyuan,$Shouhuoaddress,$warehouse_Name,$Dingdandate,$Daohuodate,0,$Note);
+          $data = array('msg' => 'true');
+        }
+        else $data = array('msg' => 'false');
+        $this->output
+        ->set_content_type('application/json')
+        ->set_output(json_encode($data));
     }
 
     public function CheckPurchase () { //审核进货单，权限需求：订购员
-        $data = array('title' => "书店进销存管理系统");
-        $this->load->view('common/header.php',$data);
-        $this->load->view('common/menu.php');
-        $this->load->view('purchase/addPurchase.php');
-        $this->load->view('common/footer.php');
+        $allInfo = $this -> m_purchase -> CheckPurchase();
+        $result = $allInfo -> result();
+        $data = array('data' => $result);
+        $this->output
+        ->set_content_type('application/json')
+        ->set_output(json_encode($data));
     }
 
     public function DeletePurchase () { //撤销进货单，权限需求：请购员/订购员
-        $data = array('title' => "书店进销存管理系统");
-        $this->load->view('common/header.php',$data);
-        $this->load->view('common/menu.php');
-        $this->load->view('purchase/addPurchase.php');
-        $this->load->view('common/footer.php');
+        $purchase_ID = $this -> input -> post('purchase_ID');
+        
+        $query=  $this->m_purchase->DeletePurchase($purchase_ID);
+        if($query)
+        {
+          $data = array('msg' => 'true');
+        }
+        else
+        {
+          $data = array('msg' => 'false');
+        }
+        $this->output
+        ->set_content_type('application/json')
+        ->set_output(json_encode($data));
+    }
+    public function seePurchase() { //查看进货单
+        $purchase_ID = $this -> input -> post('purchase_ID');
+    
+        if(1==1)
+        {
+          $data = array('msg' => 'true', "data" => $this -> m_purchase -> seePurchase($purchase_ID)->result());
+        }
+        else $data = array('msg' => 'false');
+        $this->output
+        ->set_content_type('application/json')
+        ->set_output(json_encode($data));
     }
 
     public function CheckGoods () { //货物检查，权限需求：验收员

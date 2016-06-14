@@ -8,6 +8,30 @@ class m_saleFrontDetail extends CI_Model{
 		$this -> load ->database();
 	}
 
+	/*通过书籍ID获取书籍基本信息*/
+	public function getBookInfo($goodID)
+	{
+		/*获取商品名称，价格*/
+		$query = $this -> db -> query("SELECT FROM goods_information WHERE inf_Barcode = '$goodID'");
+		$row = $query->row();
+		$inf_Name = $row -> inf_Name;
+		$inf_Commodityprice = $row -> inf_Commodityprice;
+
+		/*获取商品折扣*/
+		$query = $this -> db -> query("SELECT FROM goods_discoutinformation WHERE inf_Barcode = '$goodID'");
+		$row = $query->row();
+		$saledetail_Discount = $row -> disInf_Discount;
+
+		/*商品打折后售价*/
+		$goodPrice = $saledetail_Discount * $inf_Commodityprice;
+
+		$data = array('id' => $goodID,
+			'name' => $inf_Name, 
+			'price' => $inf_Commodityprice, 
+			'salePrice' => $goodPrice);
+		return $data;
+	}
+
 	/*添加前台销售明细信息*/
 	public function addSaleFrontDetail($saleID, $goodID, $saledetailNumber)
 	{
