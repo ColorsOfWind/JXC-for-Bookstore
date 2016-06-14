@@ -37,9 +37,9 @@ class m_goods extends CI_Model {
     /*
     **修改信息
     */
-    public function changeGood($goodID, $goodClassify, $goodName, $goodAlias, $goodMnemonniccode,$goodPinyincode, $goodManufacture)
+    public function changeGood($goodID, $goodClassify, $goodName, $goodAlias, $goodMnemonniccode,$goodPinyin, $goodManufacture)
     {
-        $query = $this->db->query("UPDATE goods_information SET inf_Classify = '$goodClassify', inf_Name = '$goodName', inf_Alias = '$goodAlias', inf_Mnemonniccode = '$goodMnemonniccode', inf_Pinyincode = '$goodPinyincode', inf_Manufacture = $goodManufacture
+        $query = $this->db->query("UPDATE goods_information SET inf_Classify = '$goodClassify', inf_Name = '$goodName', inf_Alias = '$goodAlias', inf_Mnemonniccode = '$goodMnemonniccode', inf_Pinyincode = '$goodPinyin', inf_Manufacture = $goodManufacture
             WHERE inf_Barcode = '$goodID'");
         return $query;
     }
@@ -59,6 +59,11 @@ class m_goods extends CI_Model {
     public function checkGoodID($goodID)
     {
         $query = $this->db->query("SELECT * FROM goods_information WHERE inf_Barcode='$goodID'");
+        return $query;
+    }
+    public function checkGoodByName($goodName)
+    {
+        $query = $this->db->query("SELECT * FROM goods_information WHERE inf_Name='$goodName'");
         return $query;
     }
 }
