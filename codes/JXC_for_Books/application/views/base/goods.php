@@ -16,6 +16,7 @@
 						<div class="row" style="margin-bottom: 20px">
 							<div class="col-sm-6">
 								<button class="btn btn-success" data-toggle="modal" data-target="#modal-create">添加商品</button>
+								<button class="btn btn-success" data-toggle="modal" data-target="#modal-createCat">添加商品分类</button>
 							</div>
 							<div class="col-sm-6">
 								<!-- <button class="btn btn-danger" data-toggle="modal" data-target="#modal-deleteall">删除选中用户</button> -->
@@ -26,14 +27,14 @@
 								<table id="table" class="table table-striped table-bordered dataTable" cellspacing="0" width="100%" role="grid" aria-describedby="table_info" style="width: 100%;">
 									<thead>
 										<tr role="row">
-											<th>商品IDinf-Barcode</th>
-											<th>商品名 inf_Name</th>
-											<th>商品别名inf_Alias</th>
-											<th>商品分类inf_Classify</th>
-											<th>商品拼音inf_Pinyincode</th>
-											<th>Inf_Mnemonniccode</th>
-											<th>inf_Manufacture</th>
-											<th>inf_Commodityprice</th>
+											<th>商品ID</th>
+											<th>商品名</th>
+											<th>商品别名</th>
+											<th>商品分类</th>
+											<th>商品拼音</th>
+											<th>商品助记码</th>
+											<th>出版社</th>
+											<th>商品售价</th>
 											<th>编辑</th>
 										</tr>
 									</thead>
@@ -83,30 +84,30 @@
 						</div>
 					</div>	
 					<div class="form-group" id="create-goodMnemonniccode-div">
-						<label for="create-goodMnemonniccode" class="col-sm-3 control-label">goodMnemonniccode</label>
+						<label for="create-goodMnemonniccode" class="col-sm-3 control-label">商品助记码</label>
 						<div class="col-sm-7">
-							<input id="create-goodMnemonniccode" class="form-control" placeholder="请输入goodMnemonniccode" value="" type="goodMnemonniccode">
+							<input id="create-goodMnemonniccode" class="form-control" placeholder="请输入商品助记码" value="" type="goodMnemonniccode">
 							<p id="create-goodMnemonniccode-p" class="help-block"></p>
 						</div>
 					</div>
 					<div class="form-group" id="create-goodPinyin-div">
-						<label for="create-goodPinyin" class="col-sm-3 control-label">goodPinyin</label>
+						<label for="create-goodPinyin" class="col-sm-3 control-label">商品拼音</label>
 						<div class="col-sm-7">
-							<input id="create-goodPinyin" class="form-control" placeholder="请输入goodPinyin" value="" type="goodPinyin">
+							<input id="create-goodPinyin" class="form-control" placeholder="请输入拼音" value="" type="goodPinyin">
 							<p id="create-goodPinyin-p" class="help-block"></p>
 						</div>
 					</div>	
 					<div class="form-group" id="create-goodManufacture-div">
-						<label for="create-goodManufacture" class="col-sm-3 control-label">goodManufacture</label>
+						<label for="create-goodManufacture" class="col-sm-3 control-label">出版社</label>
 						<div class="col-sm-7">
-							<input id="create-goodManufacture" class="form-control" placeholder="请输入goodManufacture" value="" type="goodManufacture">
+							<input id="create-goodManufacture" class="form-control" placeholder="请输入出版社" value="" type="goodManufacture">
 							<p id="create-goodManufacture-p" class="help-block"></p>
 						</div>
 					</div>		
 					<div class="form-group" id="create-goodPrice-div">
-						<label for="create-goodPrice" class="col-sm-3 control-label">goodPrice</label>
+						<label for="create-goodPrice" class="col-sm-3 control-label">商品售价</label>
 						<div class="col-sm-7">
-							<input id="create-goodPrice" class="form-control" placeholder="请输入goodPrice" value="" type="goodPrice">
+							<input id="create-goodPrice" class="form-control" placeholder="请输入价格" value="" type="goodPrice">
 							<p id="create-goodPrice-p" class="help-block"></p>
 						</div>
 					</div>			
@@ -114,6 +115,49 @@
 				</div>
 				<div class="modal-footer panel-footer">
 					<button id="create-submit" class='btn btn-warning' type='button' onclick="createsubmit()">确定</button>
+					<button class='btn btn-default' type='button'  data-dismiss="modal">关闭</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<!-- 新增商品分类 -->
+<div class="modal fade model" id="modal-createCat" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content panel panel-info">
+			<form class="form-horizontal">
+				<div class="panel-heading">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">新增商品分类</h4>
+				</div>
+
+				<div class="modal-body panel-body" id="modal-createCat-body">
+					<div class="form-group" id="createCat-goodCatIndex-div">
+						<label for="createCat-goodCatIndex" class="col-sm-3 control-label">新商品分类父索引</label>
+						<div class="col-sm-7">
+							<input id="createCat-goodCatIndex" class="form-control" placeholder="请输入新商品分类父索引" value="" type="text">
+							<p id="createCat-goodCatIndex-p" class="help-block"></p>
+						</div>
+					</div>
+					<div class="form-group" id="createCat-goodCatName-div">
+						<label for="createCat-goodCatName" class="col-sm-3 control-label">商品分类名</label>
+						<div class="col-sm-7">
+							<input id="createCat-goodCatName" class="form-control" placeholder="请输入商品分类名" value="" type="text">
+							<p id="createCat-goodCatName-p" class="help-block"></p>
+						</div>
+					</div>
+					<div class="form-group" id="createCat-goodCatDes-div">
+						<label for="createCat-goodCatDes" class="col-sm-3 control-label">商品分类描述</label>
+						<div class="col-sm-7">
+							<input id="createCat-goodCatDes" class="form-control" placeholder="商品分类描述" value="" type="goodCatDes">
+							<p id="createCat-goodCatDes-p" class="help-block"></p>
+						</div>
+					</div>	
+				</div>
+				<div class="modal-footer panel-footer">
+					<button id="createCat-submit" class='btn btn-warning' type='button' onclick="createCatsubmit()">确定</button>
 					<button class='btn btn-default' type='button'  data-dismiss="modal">关闭</button>
 				</div>
 			</form>
@@ -162,23 +206,23 @@
 						</div>
 					</div>	
 					<div class="form-group" id="edit-goodMnemonniccode-div">
-						<label for="edit-goodMnemonniccode" class="col-sm-3 control-label">goodMnemonniccode</label>
+						<label for="edit-goodMnemonniccode" class="col-sm-3 control-label">商品助记码</label>
 						<div class="col-sm-7">
-							<input id="edit-goodMnemonniccode" class="form-control" placeholder="请输入goodMnemonniccode" value="" type="goodMnemonniccode">
+							<input id="edit-goodMnemonniccode" class="form-control" placeholder="请输入助记码" value="" type="goodMnemonniccode">
 							<p id="edit-goodMnemonniccode-p" class="help-block"></p>
 						</div>
 					</div>
 					<div class="form-group" id="edit-goodPinyin-div">
-						<label for="edit-goodPinyin" class="col-sm-3 control-label">goodPinyin</label>
+						<label for="edit-goodPinyin" class="col-sm-3 control-label">商品拼音</label>
 						<div class="col-sm-7">
-							<input id="edit-goodPinyin" class="form-control" placeholder="请输入goodPinyin" value="" type="goodPinyin">
+							<input id="edit-goodPinyin" class="form-control" placeholder="请输入拼音" value="" type="goodPinyin">
 							<p id="edit-goodPinyin-p" class="help-block"></p>
 						</div>
 					</div>	
 					<div class="form-group" id="edit-goodManufacture-div">
-						<label for="edit-goodManufacture" class="col-sm-3 control-label">goodManufacture</label>
+						<label for="edit-goodManufacture" class="col-sm-3 control-label">出版社</label>
 						<div class="col-sm-7">
-							<input id="edit-goodManufacture" class="form-control" placeholder="请输入goodManufacture" value="" type="goodManufacture">
+							<input id="edit-goodManufacture" class="form-control" placeholder="请输入出版社" value="" type="goodManufacture">
 							<p id="edit-goodManufacture-p" class="help-block"></p>
 						</div>
 					</div>					
@@ -278,7 +322,7 @@
 				{ "data": "inf_Alias" },
 				{ "data": "inf_Classify" },
 				{ "data": "inf_Pinyincode" },
-				{ "data": "Inf_Mnemonniccode" },
+				{ "data": "inf_Mnemonniccode" },
 				{ "data": "inf_Manufacture" },
 				{ "data": "inf_Commodityprice" },
 				{ "data": null, "title":"操作","defaultContent": "<button  class='btn-delete btn btn-warning btn-sm' type='button' data-toggle='modal' data-target='#modal-edit'>修改</button>&nbsp;<button  class='btn-delete btn btn-danger btn-sm' type='button' data-toggle='modal' data-target='#modal-delete'>删除</button>"}
@@ -294,6 +338,11 @@
 			$('#modal-create-body').find(".form-control").val("");
 			$('#modal-create-body').find(".help-block").text("");
 		});
+		$('#modal-createCat').on('hidden.bs.modal', function (e) {
+			$('#modal-createCat-body').children(".form-group").attr("class","form-group");
+			$('#modal-createCat-body').find(".form-control").val("");
+			$('#modal-createCat-body').find(".help-block").text("");
+		});		
 		$('#modal-edit').on('show.bs.modal', function (e) {
 			$("#edit-goodID").val($(e.relatedTarget).parent().siblings()[0].innerText);
 			$("#edit-goodName").val($(e.relatedTarget).parent().siblings()[1].innerText);
@@ -406,6 +455,49 @@
 	        }  
     	});
 	}
+	function createCatsubmit() {
+
+
+
+		if(!(verifylength("createCat-goodCatIndex",1,20)&&verifylength("createCat-goodCatName",1,20)&&verifylength("createCat-goodCatDes",1,20))) { 
+			return false;
+		}
+
+		var goodCatIndex = $("#createCat-goodCatIndex").val();
+		var goodCatName = $("#createCat-goodCatName").val();
+		var goodCatDes = $("#createCat-goodCatDes").val();
+		$.ajax( {  
+	        url:'/c_goods/addGoodCat',// 跳转到 action  
+	        data:{  
+	        	'goodCatIndex': goodCatIndex,
+	        	'goodCatName': goodCatName,
+	        	'goodCatDes': goodCatDes
+	        },
+	        type:'post',
+	        cache:false,
+	        async:true,
+	        dataType:'json',
+	        success:function(data) {  
+	        	if(data.msg =="true") {
+	        		retable();
+	        		$('#modal-createCat').modal("hide");
+	        		$('#modal-prompt-content').text("新增商品分类成功");
+	        		document.getElementById('modal-prompt-panel').className = "modal-content panel panel-success";
+	        		$('#modal-prompt').modal('show');
+	        	}
+	        	else {
+	        		document.getElementById("createCat-goodName-p").innerHTML="商品分类已存在";
+	        		document.getElementById("createCat-goodName-div").className="has-error form-group";
+	        	}
+	        },
+	        error : function() {
+	        	$('#modal-createCat').modal("hide");
+	        	$('#modal-prompt-content').text("创建出现错误，请联系管理员或尝试重新登录");
+	        	document.getElementById('modal-prompt-panel').className = "modal-content panel panel-danger";
+	        	$('#modal-prompt').modal('show');
+	        }  
+    	});
+	}	
 	function editsubmit() {
 
 		if(!(verifylength("edit-goodName",1,20)&&verifylength("edit-goodAlias",1,20)&&verifylength("edit-goodMnemonniccode",1,20)&&verifylength("edit-goodPinyin",1,20)&&verifylength("edit-goodManufacture",1,20))) { 

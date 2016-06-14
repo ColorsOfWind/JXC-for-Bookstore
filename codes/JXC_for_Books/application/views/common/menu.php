@@ -39,6 +39,9 @@
 				                <li>
 				                    <a id="base_suppliers" href="/c_suppliers">供应商管理</a>
 				                </li>
+				                <li>
+				                    <a id="base_clientss" href="/c_clients">客户管理</a>
+				                </li>
 				            </ul>
 				        </li>     
 				        <li>
@@ -56,13 +59,13 @@
 				            <a id="stock" href="/stock"><i class="fa fa-tachometer fa-fw"></i> 库存管理<span class="fa arrow"></span></a>
 				            <ul class="nav nav-second-level collapse">
 				                <li>
-				                    <a id="stock_users" href="/c_stock/stockcommodity">库存商品信息查询</a>
+				                    <a id="stock_users" href="/c_stock/stockcommodity">库存商品查询管理</a>
 				                </li>
 				                <li>
-				                    <a id="stock_users" href="/c_stock/stockwarning">库存警告查询</a>
+				                    <a id="stock_users" href="/c_stock/stockwarning">库存警告管理</a>
 				                </li>
 				                <li>
-				                    <a id="stock_users" href="/c_stock/stockbill">库存单据信息查询</a>
+				                    <a id="stock_users" href="/c_stock/stockbill">库存单据查询管理</a>
 				                </li>
 				            </ul>
 				        </li>    
