@@ -62,7 +62,7 @@ class c_stock extends CI_Controller {
     ->set_output(json_encode($data));
   }
 
-  public function checkAllstockbill() //查询库存商品  权限用户  库存商品管理员  。
+  public function checkAllstockbill() //库存单据查询  权限用户  库存单据管理员  。
   {
     $allInfo = $this -> m_stockbill -> checkAllstockbill();
     $result = $allInfo -> result();
