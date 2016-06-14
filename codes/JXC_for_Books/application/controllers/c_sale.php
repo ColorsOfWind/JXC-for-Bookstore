@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');	
-class c_users extends CI_Controller {
+class c_sale extends CI_Controller {
 
 	/*
 	**构造函数
@@ -11,6 +11,7 @@ class c_users extends CI_Controller {
 		$this -> load -> database();
 		$this -> load -> model('m_saleFront');
 		$this -> load -> model('m_saleFrontDetail');
+		$this -> load -> model('m_goods');
 	}
 
 	public function index() 
@@ -21,7 +22,22 @@ class c_users extends CI_Controller {
 		$this->load->view('base/users.php');
 		$this->load->view('common/footer.php');
 	}
-
+	public function sale() 
+	{
+		$data = array('title' => "书店进销存管理系统");
+		$this->load->view('common/header.php',$data);
+		$this->load->view('common/menu.php');
+		$this->load->view('sales/sale.php');
+		$this->load->view('common/footer.php');
+	}
+	public function showSale() 
+	{
+		$data = array('title' => "书店进销存管理系统");
+		$this->load->view('common/header.php',$data);
+		$this->load->view('common/menu.php');
+		$this->load->view('sales/showSale.php');
+		$this->load->view('common/footer.php');
+	}
 	/*添加销售单*/
 	public function addSale()
 	{
@@ -152,10 +168,16 @@ class c_users extends CI_Controller {
 	/*查询销售明细，单据编号*/
 	public function checkSaleDetailBySaleID()
 	{
-		$saleID = $this -> input -> post('saleID');
+		$saleID = $this -> input -> get('saleID');
 
 		$allInfo = $this -> m_saleFrontDetail -> checkSaleFrontDetailBySaleID($saleID);
 		$result = $allInfo -> result();
+	    $arrlength=count($result);
+	    for ($i=0; $i < $arrlength; $i++) { 
+			$result[$i] = (array)$result[$i];
+			$res = $this -> m_goods -> checkGoodID($result[$i]["inf_Barcode"])-> row_array();
+			$result[$i]["inf_Name"] = $res["inf_Name"];
+		}
     	$data = array('data' => $result);
     	$this->output ->set_content_type('application/json') ->set_output(json_encode($data));
 	}
