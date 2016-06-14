@@ -8,11 +8,20 @@ class m_saleFront extends CI_Model{
 		$this -> load ->database();
 	}
 
-	/*添加前台销售信息*/
-	public function addSaleFront($clName, $saleUserID, $saleCounter, $saleFilldate, $saleDealdate, $saleState, $saleRemarks)
+	/*新建一行，返回单据编号*/
+	public function getSaleID($clientName)
 	{
-		$query = $this->db->query("INSERT INTO front_sale(cl_Name, sale_userID, sale_Counter, sale_Filldate, sale_Dealdate, sale_State, sale_Remarks) VALUES('$clName', '$saleUserID', '$saleCounter', '$saleFilldate', '$saleDealdate', '$saleState', '$saleRemarks')");
+		$query = $this->db->query("INSERT INTO front_sale(cl_Name) VALUES('$clientName')");
+
+		$query = $this->db->query("SELECT * FROM front_saledetail ORDER BY saledetail_ID DESC LIMIT 0,1");
 		return $query;
+	}
+
+	/*获取客户列表*/
+	public function getClient()
+	{
+		$query = $this->db->query("SELECT * FROM client_information");
+        return $query;
 	}
 
 	/*删除前台销售信息*/
