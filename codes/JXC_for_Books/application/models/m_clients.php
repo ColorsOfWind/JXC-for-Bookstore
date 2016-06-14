@@ -13,9 +13,10 @@ class m_clients extends CI_Model {
     /*
     **添加客户
     */
-    public function addClient($clientName, $clientArea, $clientPinyin, $clientBrief, $clientTel, $clientContact,$clientFax, $clientPostcode, $clientAddress, $clientBank, $clientBankAccount, $clientEmail, $clientInternet, $clientNote)
+    public function addClient($clientName, $clientArea, $clientPinyin,  $clientTel, $clientContact, $clientPostcode, $clientBank, $clientBankAccount, $clientEmail, $clientInternet, $clientNote)
     {
-        $query = $this->db->query("INSERT INTO client_information (cl_Name, cl_Area, cl_Pinyincode, cl_Brief, cl_Tel, cl_Contacts, cl_Fax, cl_Postcode, cl_Address, cl_Bank, cl_BankAccount, cl_Email, cl_Internet, cl_Note) VALUES('$clientID', '$clientName', '$clientArea', '$clientPinyin', '$clientBrief', '$clientTel', '$clientContact''$clientFax', '$clientPostcode', '$clientAddress', '$clientBank', '$clientBankAccount', '$clientEmail', '$clientInternet', '$clientNote')");
+        $query = $this->db->query("INSERT INTO client_information (cl_Name, cl_Area, cl_Pinyincode,  cl_Tel, cl_Contacts,  cl_Postcode,  cl_Bank, cl_BankAccount, cl_Email, cl_Internet, cl_Note) VALUES('$clientName', '$clientArea', '$clientPinyin',  '$clientTel', '$clientContact', '$clientPostcode',  '$clientBank', '$clientBankAccount', '$clientEmail', '$clientInternet', '$clientNote')");
+        return $query;
     }
 
     /*
@@ -29,12 +30,12 @@ class m_clients extends CI_Model {
     /*
     **修改客户信息
     */
-    public function changeClient($clientID, $clientName, $clientArea, $clientPinyin, $clientTel, $clientContact,$clientFax, $clientPostcode, $clientAddress, $clientBank, $clientBankAccount, $clientEmail, $clientInternet, $clientNote)
+    public function changeClient($clientID,$clientName, $clientArea, $clientPinyin, $clientTel, $clientContact, $clientPostcode,  $clientBank, $clientBankAccount, $clientEmail, $clientInternet, $clientNote)
     {
         $query = $this->db->query("UPDATE client_information SET cl_Name = '$clientName', cl_Area = '$clientArea', cl_Pinyincode = '$clientPinyin', cl_Tel = '$clientTel', 
-            cl_Contacts = '$clientContact'
-            cl_Fax = $clientFax, cl_Postcode = '$clientPostcode', cl_Address = '$clientAddress', cl_Bank = '$clientBank', cl_BankAccount = '$clientBankAccount', 
-            cl_Email = '$clientEmail'
+            cl_Contacts = '$clientContact',
+            cl_Postcode = '$clientPostcode',  cl_Bank = '$clientBank', cl_BankAccount = '$clientBankAccount', 
+            cl_Email = '$clientEmail',
             cl_Internet = $clientInternet, cl_Note = '$clientNote'
             WHERE client_ID = '$clientID'");
         return $query;

@@ -10,7 +10,7 @@ class m_stockbill extends CI_Model {
         $this->load->database();
     }
     /*
-    **查询库存商品信息
+    **查询库存单据信息
     */
     public function checkAllstockbill()
     {
