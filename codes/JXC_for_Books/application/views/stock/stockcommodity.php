@@ -20,7 +20,6 @@
                 <table id="table" class="table table-striped table-bordered dataTable" cellspacing="0" width="100%" role="grid" aria-describedby="table_info" style="width: 100%;">
                   <thead>
                     <tr role="row">
-                      <th>商品名称</th>
                       <th>仓库</th>
                       <th>商品条形码</th>
                       <th>进货价</th>
@@ -86,9 +85,8 @@
             "sSortDescending": ": 以降序排列此列"
           }
         },
-        ajax: "/c_stock/checkStockCommodity",
+        ajax: "/c_stock/checkAllstockcommodity",
         columns: [
-        { "data": "inf_Name" },
         { "data": "warehouse_ID" },
         { "data": "inf_Barcode" },
         { "data": "calinf_Purprice" },
@@ -96,7 +94,6 @@
         { "data": "commodity_Period" },
         { "data": "commodity_Totle" },
         { "data": "commodity_Valperiod" },
-        { "data": "inf_Commodityprice" }
         ],
         select: false
       });
