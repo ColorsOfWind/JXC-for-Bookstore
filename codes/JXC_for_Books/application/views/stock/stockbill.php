@@ -1,15 +1,15 @@
 <div id="page-wrapper">
   <div class="row">
-      <div class="col-lg-12">                                
+      <div class="col-lg-12">
           <h1 class="page-header"></h1>
       </div>
       <!-- /.col-lg-12 -->
   </div>
-  <!-- /.row -->                                                   
+  <!-- /.row -->
   <div class="row">
     <div class="col-lg-12">
       <div class="panel panel-default">
-        <div class="panel-heading">库存警告查询</div>
+        <div class="panel-heading">库存单据信息查询</div>
         <!-- /.panel-heading -->    
         <div class="panel-body">
           <div id="table_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
@@ -20,12 +20,16 @@
                 <table id="table" class="table table-striped table-bordered dataTable" cellspacing="0" width="100%" role="grid" aria-describedby="table_info" style="width: 100%;">
                   <thead>
                     <tr role="row">
-                      <th>商品条形码</th>
-                      <th>商品名称</th>
-                      <th>库存最大数</th>
-                      <th>库存最小数</th>
-                      <th>库存数量</th>
-                      <th>库存状态</th>
+                      <th>单据编号</th>
+                      <th>关联标识</th>
+                      <th>填写用户</th>
+                      <th>检查用户</th>
+                      <th>调出/入仓库</th>
+                      <th>仓库</th>
+                      <th>填写日期</th>
+                      <th>检查日期</th>
+                      <th>完成状态</th>
+                      <th>备注</th>
                     </tr>
                   </thead>
                   <tbody></tbody>
@@ -84,14 +88,18 @@
             "sSortDescending": ": 以降序排列此列"
           }
         },
-        ajax: "/c_stock/checkAllstockwarning",
+        ajax: "/c_stock/checkAllstockbill",
         columns: [
-        { "data": "inf_Barcode" },
-        { "data": "inf_Name" },
-        { "data": "warning_Max" },
-        { "data": "warning_Min" },
-        { "data": "commodity_Number" },
-        { "data": "warning_State" }
+        { "data": "bill_ID" },
+        { "data": "bill_Identifier" },
+        { "data": "bill_Filler" },
+        { "data": "bill_Checker" },
+        { "data": "bill_Action" },
+        { "data": "warehouse_ID" },
+        { "data": "bill_Filldate" },
+        { "data": "bill_Checkdate" },
+        { "data": "bill_State" },
+        { "data": "bill_Remarks" },
         ],
         select: false
       });
