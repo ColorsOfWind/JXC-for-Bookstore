@@ -14,11 +14,24 @@ class c_warehouses extends CI_Controller {
 
   public function warehouses() 
   {
-    $data = array('title' => "书店进销存管理系统");
-    $this->load->view('common/header.php',$data);
-    $this->load->view('common/menu.php');
-    $this->load->view('base/users.php');
-    $this->load->view('common/footer.php');
+    if($this -> m_admin -> getSuper() || 
+      ($this -> m_admin -> getBasic() && 
+        $this -> m_admin -> getBasicWarehouse()))
+    {
+      $data = array('title' => "书店进销存管理系统");
+      $this->load->view('common/header.php',$data);
+      $this->load->view('common/menu.php');
+      $this->load->view('base/users.php');
+      $this->load->view('common/footer.php');
+    }
+    else
+    {
+      $data = array('title' => "书店进销存管理系统");
+      $this->load->view('common/header.php',$data);
+      $this->load->view('common/menu.php');
+      $this->load->view('common/401.php');
+      $this->load->view('common/footer.php');
+    }
   }
 
   /*
