@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class=" col-sm-offset-3 col-sm-3">
-        	<div id="normal-panel" class="panel panel-green">
+        	<div id="normal-panel" class="panel">
               <div class="panel-heading">
                   <div class="row">
                       <div class="col-xs-3">
@@ -27,7 +27,7 @@
                       </div>
                   </div>
               </div>
-              <a href="">
+              <a href="/c_stock/stockwarning">
                   <div class="panel-footer">
                       <span class="pull-left">点击查看详细信息</span>
                       <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -39,3 +39,37 @@
     </div>
 
 </div>
+<script type="text/javascript">
+function checkWaringNumbers() {
+    $.ajax( {  
+        url:'/c_stock/checkWaringNumbers',// 跳转到 action  
+        data:{
+        },
+        type:'get',
+        cache:false,
+        async:true,
+        dataType:'json',
+        success:function(data) {
+          if(data.num == 0) {
+            $("#normal-panel").addClass("panel-green")
+            $("#normal-huges").text(data.num);
+            $("#normal-pmts").text("无库存预警书籍");
+          }
+          else {
+            $("#normal-panel").addClass("panel-yellow")
+            $("#normal-huges").text(data.num);
+            $("#normal-pmts").text("有库存预警书籍");            
+          }
+        },
+        error : function() {
+            $("#normal-panel").addClass("panel-red")
+            $("#normal-huges").text(data.num);
+            $("#normal-pmts").text("库存预警书籍加载失败");  
+        }  
+    });
+}
+  $(document).ready(function() {
+    checkWaringNumbers();
+  });
+</script>
+

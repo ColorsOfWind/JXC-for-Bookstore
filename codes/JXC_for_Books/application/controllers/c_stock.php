@@ -49,7 +49,15 @@ class c_stock extends CI_Controller {
     $arrlength=count($result);
     for ($i=0; $i < $arrlength; $i++) { 
       $result[$i] = (array)$result[$i];
-      $result[$i]["warning_State"] = ($result[$i]["warning_State"]=='1')?"小于最小值":"大于最大值";
+      if($result[$i]["warning_State"]=='1') {
+        $result[$i]["warning_State"] = "小于最小值";
+      }
+      else if($result[$i]["warning_State"]=='2') {
+        $result[$i]["warning_State"] = "大于最大值";
+      }
+      else {
+        $result[$i]["warning_State"] = "正常";
+      }
     }
     $data = array('data' => $result);
     $this->output
@@ -77,6 +85,12 @@ class c_stock extends CI_Controller {
     ->set_output(json_encode($data));
   }
 
+  public function checkWaringNumbers() {
+    $data = array('num' => $this -> m_stockwarning -> checkWaringNumbers());
+    $this->output
+    ->set_content_type('application/json')
+    ->set_output(json_encode($data));
+  }
 }
 
 
