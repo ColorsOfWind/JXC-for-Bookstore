@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
-                <div class="panel-heading">考试信息查询</div>
+                <div class="panel-heading">进货单管理</div>
                 <!-- /.panel-heading -->    
                 <div class="panel-body">
                     <div id="table_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
@@ -261,7 +261,7 @@
           <h4 class="modal-title" id="myModalLabel">删除确认</h4>
         </div>
         <div class="modal-body panel-body">
-          <p>你真的要删除以下用户么？</p>
+          <p>你真的要删除以下记录么？</p>
           <div class="form-group">
             <label for="dele-userid" class="col-sm-3 control-label">进货单编号</label>
             <div class="col-sm-7">
@@ -336,7 +336,7 @@
       columns: [
       { "data": "purchase_ID" },
       { "data": "sup_Name" },
-      { "data": null, "title":"进货单操作","defaultContent": "<button  class='btn-password btn btn-warning btn-sm' type='button' onclick='password(this)' data-toggle='modal' data-target='#modal-see'>查看</button> <button  class='btn-password btn btn-warning btn-sm' type='button' onclick='password(this)' data-toggle='modal' data-target='#modal-delete'>删除</button>" },
+      { "data": null, "title":"进货单操作","defaultContent": "<button  class='btn-password btn btn-warning btn-sm' type='button' onclick='password(this)' data-toggle='modal' data-target='#modal-see'>查看</button> <button  class='btn-password btn btn-danger btn-sm' type='button' onclick='password(this)' data-toggle='modal' data-target='#modal-delete'>删除</button>" },
       { "data": null, "title":"进货单明细操作","defaultContent": "<button  class='btn-permission btn btn-info btn-sm' type='button' onclick='permission(this)' data-toggle='modal' data-target='#modal-permission'>查看/修改权限</button>" },
       //{ "data": null, "title":"操作","defaultContent": "<button  class='btn-delete btn btn-danger btn-sm' type='button' data-toggle='modal' data-target='#modal-delete'>删除</button>"}
       ],
