@@ -672,7 +672,9 @@ CREATE TABLE `user` (
   `user_ID` bigint(11)   AUTO_INCREMENT,
   `user_Name` varchar(255)   DEFAULT '',
   `user_Password` varchar(255)   DEFAULT '',
+
   `user_AllPermission` varchar(2)   DEFAULT '0',
+
   `user_BasicInformationPermission` varchar(2)   DEFAULT '0',
   `user_B_User` varchar(2)   DEFAULT '0',
   `user_B_Good` varchar(2)   DEFAULT '0',
@@ -680,17 +682,23 @@ CREATE TABLE `user` (
   `user_B_Client` varchar(2)   DEFAULT '0',
   `user_B_Warehouse` varchar(2)   DEFAULT '0',
   `user_B_Gooddis` varchar(2)   DEFAULT '0',
+
   `user_PurchasePermission` varchar(2)   DEFAULT '0',
   `user_P_QingGouyuan` varchar(2)   DEFAULT '0',
   `user_P_DingGouyuan` varchar(2)   DEFAULT '0',
   `user_P_YanShouyuan` varchar(2)   DEFAULT '0',
   `user_P_ChuNayuan` varchar(2)   DEFAULT '0',
+
   `user_StockPermission` varchar(2)   DEFAULT '0',
   `user_St_GoodFinder` varchar(2)   DEFAULT '0',
   `user_St_BillFinder` varchar(2)   DEFAULT '0',
   `user_St_WarningFinder` varchar(2)   DEFAULT '0',
 
   `user_SellPermission` varchar(2)   DEFAULT '0',
+  `user_Se_Discount` varchar(2)   DEFAULT '0',
+  `user_Se_SaleEdit` varchar(2)   DEFAULT '0',
+  `user_Se_SaleShow` varchar(2)   DEFAULT '0',
+
   PRIMARY KEY (`user_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
