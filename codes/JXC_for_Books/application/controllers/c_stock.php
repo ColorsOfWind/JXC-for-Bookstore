@@ -46,6 +46,11 @@ class c_stock extends CI_Controller {
   {
     $allInfo = $this -> m_stockwarning -> checkAllstockwarning();
     $result = $allInfo -> result();
+    $arrlength=count($result);
+    for ($i=0; $i < $arrlength; $i++) { 
+      $result[$i] = (array)$result[$i];
+      $result[$i]["warning_State"] = ($result[$i]["warning_State"]=='1')?"小于最小值":"大于最大值";
+    }
     $data = array('data' => $result);
     $this->output
     ->set_content_type('application/json')

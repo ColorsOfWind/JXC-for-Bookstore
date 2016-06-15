@@ -48,7 +48,7 @@
 				            <a id="purchase" href="/purchase"><i class="fa fa-tachometer fa-fw"></i> 进货管理<span class="fa arrow"></span></a>
 				            <ul class="nav nav-second-level collapse">
 				                <li>
-				                    <a id="purchase_typelists" href="/c_purchase/addPurchase">填写进货单</a>
+				                    <a id="purchase_typelists" href="/c_purchase/index">填写进货单</a>
 				                </li>
 				                <li>
 				                    <a id="purchase_typelists" href="/purchase_typelists">审核进货单</a>
@@ -73,10 +73,13 @@
 				            <a id="sales" href="/sales"><i class="fa fa-tachometer fa-fw"></i> 销售管理<span class="fa arrow"></span></a>
 				            <ul class="nav nav-second-level collapse">
 				                <li>
-				                    <a id="sales_users" href="/s_querys">前台销售</a>
+				                    <a id="sales_sale" href="/c_sale/sale">前台销售</a>
 				                </li>
 				                <li>
-				                    <a id="sales_users" href="/s_querys">库存盘点</a>
+				                    <a id="sales_showSale" href="/c_sale/showSale">销售单查询</a>
+				                </li>
+				                <li>
+				                    <a id="sales_showSale" href="/c_sale/showOnSale">特价查询</a>
 				                </li>
 				            </ul>
 				        </li> 
