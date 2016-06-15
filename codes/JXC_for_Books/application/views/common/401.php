@@ -11,6 +11,7 @@
             <div class="panel panel-default">
                 <div class="panel-body">
                     错误401:没有使用此功能的权限
+                    <a href="localhost/login">点击以重新登录</a>
                 </div>
             </div>
         </div>

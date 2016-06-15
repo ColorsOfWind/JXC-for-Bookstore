@@ -10,6 +10,8 @@ class c_warehouses extends CI_Controller {
     parent::__construct();
     $this -> load -> database();
     $this -> load -> model('m_warehouses');
+    $this -> load -> model('m_admin');
+    $this->load->library('session');    
   }
 
   public function warehouses() 

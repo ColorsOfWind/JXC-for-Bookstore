@@ -29,5 +29,10 @@ class login extends CI_Controller {
 	        }
         }
     }
+    public function logout(){
+        $this->session->sess_destroy(); 
+        $data = array('title' => '小型书店进销存管理系统-登录','word' => "已成功退出登录，现在可重新登录");
+        $this->load->view('common/login.php',$data);
+    }
 }
 ?>

@@ -11,8 +11,14 @@ class m_admin extends CI_Model{
 	/*获得权限函数*/
 	public function getAdmin()
 	{
-		$query = $this -> db -> query("SELECT * FROM user");
-		return $query;
+		if(isset($_SESSION['id'])) {
+			$user_ID = $_SESSION['id'];
+			$query = $this -> db -> query("SELECT * FROM user WHERE user_ID='$user_ID'");
+			return $query;
+		}
+		else {
+			return false;
+		}
 	}
 
 	/*获得超级管理员权限*/
@@ -20,9 +26,8 @@ class m_admin extends CI_Model{
 	{
 		$query = $this -> getAdmin();
 		$row = $query->row();
-		// var_dump($row);
 		$index = $row -> user_AllPermission;
-		if($index == '0')
+		if($index != '1')
 			return false;
 		else return true;
 	}
@@ -33,7 +38,7 @@ class m_admin extends CI_Model{
 		$query = $this -> getAdmin();
 		$row = $query->row();
 		$index = $row -> user_BasicInformationPermission;
-		if($index == '0')
+		if($index != '1')
 			return false;
 		else return true;
 	}
@@ -44,7 +49,7 @@ class m_admin extends CI_Model{
 		$query = $this -> getAdmin();
 		$row = $query->row();
 		$index = $row -> user_B_User;
-		if($index == '0')
+		if($index != '1')
 			return false;
 		else return true;
 	}
@@ -55,7 +60,7 @@ class m_admin extends CI_Model{
 		$query = $this -> getAdmin();
 		$row = $query->row();
 		$index = $row -> user_B_Good;
-		if($index == '0')
+		if($index != '1')
 			return false;
 		else return true;
 	}
@@ -66,7 +71,7 @@ class m_admin extends CI_Model{
 		$query = $this -> getAdmin();
 		$row = $query->row();
 		$index = $row -> user_B_Supplier;
-		if($index == '0')
+		if($index != '1')
 			return false;
 		else return true;
 	}
@@ -77,7 +82,7 @@ class m_admin extends CI_Model{
 		$query = $this -> getAdmin();
 		$row = $query->row();
 		$index = $row -> user_B_Cient;
-		if($index == '0')
+		if($index != '1')
 			return false;
 		else return true;
 	}
@@ -88,7 +93,7 @@ class m_admin extends CI_Model{
 		$query = $this -> getAdmin();
 		$row = $query->row();
 		$index = $row -> user_B_warehouse;
-		if($index == '0')
+		if($index != '1')
 			return false;
 		else return true;
 	}
@@ -99,7 +104,7 @@ class m_admin extends CI_Model{
 		$query = $this -> getAdmin();
 		$row = $query->row();
 		$index = $row -> user_PurchasePermission;
-		if($index == '0')
+		if($index != '1')
 			return false;
 		else return true;
 	}
@@ -110,7 +115,7 @@ class m_admin extends CI_Model{
 		$query = $this -> getAdmin();
 		$row = $query->row();
 		$index = $row -> user_P_QingGouyuan;
-		if($index == '0')
+		if($index != '1')
 			return false;
 		else return true;
 	}
@@ -121,7 +126,7 @@ class m_admin extends CI_Model{
 		$query = $this -> getAdmin();
 		$row = $query->row();
 		$index = $row -> user_P_DingGouyuan;
-		if($index == '0')
+		if($index != '1')
 			return false;
 		else return true;
 	}
@@ -132,7 +137,7 @@ class m_admin extends CI_Model{
 		$query = $this -> getAdmin();
 		$row = $query->row();
 		$index = $row -> user_P_YanShouyuan;
-		if($index == '0')
+		if($index != '1')
 			return false;
 		else return true;
 	}
@@ -143,7 +148,7 @@ class m_admin extends CI_Model{
 		$query = $this -> getAdmin();
 		$row = $query->row();
 		$index = $row -> user_P_ChuNayuan;
-		if($index == '0')
+		if($index != '1')
 			return false;
 		else return true;
 	}
@@ -154,7 +159,7 @@ class m_admin extends CI_Model{
 		$query = $this -> getAdmin();
 		$row = $query->row();
 		$index = $row -> user_StockPermission;
-		if($index == '0')
+		if($index != '1')
 			return false;
 		else return true;
 	}
@@ -165,7 +170,7 @@ class m_admin extends CI_Model{
 		$query = $this -> getAdmin();
 		$row = $query->row();
 		$index = $row -> user_St_GoodFinder;
-		if($index == '0')
+		if($index != '1')
 			return false;
 		else return true;
 	}
@@ -176,7 +181,7 @@ class m_admin extends CI_Model{
 		$query = $this -> getAdmin();
 		$row = $query->row();
 		$index = $row -> user_St_BillFinder;
-		if($index == '0')
+		if($index != '1')
 			return false;
 		else return true;
 	}
@@ -187,7 +192,7 @@ class m_admin extends CI_Model{
 		$query = $this -> getAdmin();
 		$row = $query->row();
 		$index = $row -> user_St_WarningFinder;
-		if($index == '0')
+		if($index != '1')
 			return false;
 		else return true;
 	}
@@ -199,7 +204,7 @@ class m_admin extends CI_Model{
 		$query = $this -> getAdmin();
 		$row = $query->row();
 		$index = $row -> user_SellPermission;
-		if($index == '0')
+		if($index != '1')
 			return false;
 		else return true;
 	}
@@ -210,7 +215,7 @@ class m_admin extends CI_Model{
 		$query = $this -> getAdmin();
 		$row = $query->row();
 		$index = $row -> user_Se_SaleEdit;
-		if($index == '0')
+		if($index != '1')
 			return false;
 		else return true;
 	}
@@ -221,7 +226,7 @@ class m_admin extends CI_Model{
 		$query = $this -> getAdmin();
 		$row = $query->row();
 		$index = $row -> user_Se_SaleShow;
-		if($index == '0')
+		if($index != '1')
 			return false;
 		else return true;
 	}
@@ -232,7 +237,7 @@ class m_admin extends CI_Model{
 		$query = $this -> getAdmin();
 		$row = $query->row();
 		$index = $row -> user_Se_Discount;
-		if($index == '0')
+		if($index != '1')
 			return false;
 		else return true;
 	}
