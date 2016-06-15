@@ -6,10 +6,10 @@ CREATE TABLE `user` (
   `user_Name` varchar(255) NOT NULL default '',
   `user_Password` varchar(255) NOT NULL default '',
   `user_AllPermission` varchar(255) NOT NULL default '',
-  `user_BasicInformationPermission` varchar(255) NOT NULL default '',
-  `user_PurchasePermission` varchar(255) NOT NULL default '',
-  `user_StockPermission` varchar(255) NOT NULL default '',
-  `user_SellPermission` varchar(255) NOT NULL default '',
+  `user_QingGouyuan` varchar(255) NOT NULL default '',
+  `user_DingGouyuan` varchar(255) NOT NULL default '',
+  `user_YanShouyuan` varchar(255) NOT NULL default '',
+  `user_ChuNayuan` varchar(255) NOT NULL default '',
   PRIMARY KEY  (`user_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

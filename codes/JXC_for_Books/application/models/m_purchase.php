@@ -18,9 +18,26 @@ class m_purchase extends CI_Model {
         $query = $this->db->query("INSERT INTO client_information VALUES('$clientID', '$clientName', '$clientArea', '$clientPinyin', '$clientTel', '$clientContact''$clientFax', '$clientPostcode', '$clientAddress', '$clientBank', '$clientBankAccount', '$clientEmail', '$clientInternet', '$clientNote')");
     }
 */
-    public function addpurchase($sup_Name, $Qinggouyuan,$Dinggouyuan,$Yanshouyuan,$Crashguanliyuan,$Shouhuoaddress,$warehouse_Name,$Dingdandate,$Daohuodate,$Finishstate,$Note)
+    public function addpurchase($sup_Name,$Qinggouyuan,$Dinggouyuan,$Yanshouyuan,$Crashguanliyuan,$Shouhuoaddress,$warehouse_Name,$Dingdandate,$Daohuodate,$Finishstate,$Note)
     {
         $query = $this->db->query("INSERT INTO purchase_information(sup_Name,purchase_Qinggouyuan,purchase_Dinggouyuan,purchase_Yanshouyuan,purchase_Crashguanliyuan,purchase_Shouhuoaddress,warehouse_Name,purchase_Dingdandate,purchase_Daohuodate,purchase_Finishstate,purhase_Note) VALUES( '$sup_Name', '$Qinggouyuan', '$Dinggouyuan', '$Yanshouyuan', '$Crashguanliyuan','$Shouhuoaddress', '$warehouse_Name', '$Dingdandate', '$Daohuodate', '$Finishstate', '$Note')");
+        return $query;
+    }
+
+    public function addpurchase_r($purchase_ID, $inf_Barcode,$calinf_Purprice,$calinf_Number,$calinf_JinE,$calinf_Time,$calinf_TotalPrice)
+    {
+        $query = $this->db->query("INSERT INTO purchase_calculateinf(purchase_ID, inf_Barcode,calinf_Purprice,calinf_Number,calinf_JinE,calinf_Time,calinf_TotalPrice) VALUES( '$purchase_ID', '$inf_Barcode', '$calinf_Purprice', '$calinf_Number', '$calinf_JinE','$calinf_Time', '$calinf_TotalPrice')");
+        return $query;
+    }
+
+
+
+
+
+
+    public function addpaypurchase($payment_Sign, $payment_JinE,$sup_Name,$payment_Ticketuser,$payment_Crashguanliyuan,$payment_TicketDate,$payment_PayDate,$Finishstate,$payment_Note)
+    {
+        $query = $this->db->query("INSERT INTO payment_inf(payment_Sign,payment_JinE,sup_Name,payment_Ticketuser,payment_Crashguanliyuan,payment_TicketDate,payment_PayDate,payment_FinishState,payment_Note) VALUES( '$payment_Sign', '$payment_JinE', '$sup_Name', '$payment_Ticketuser', '$payment_Crashguanliyuan','$payment_TicketDate', '$payment_PayDate', '$Finishstate', '$payment_Note')");
         return $query;
     }
 
@@ -37,6 +54,12 @@ class m_purchase extends CI_Model {
     public function seePurchase($purchase_ID)
     {
         $query = $this->db->query("SELECT * FROM purchase_information WHERE purchase_ID='$purchase_ID'");
+        return $query;
+    }
+
+    public function checkDetail($purchase_ID)
+    {
+        $query = $this->db->query("SELECT * FROM purchase_calculateinf WHERE purchase_ID='$purchase_ID'");
         return $query;
     }
 }

@@ -51,11 +51,18 @@
 				            <a id="purchase" href="/purchase"><i class="fa fa-tachometer fa-fw"></i> 进货管理<span class="fa arrow"></span></a>
 				            <ul class="nav nav-second-level collapse">
 				                <li>
-				                    <a id="purchase_typelists" href="/c_purchase/index">填写进货单</a>
+				                    <a id="purchase_typelists" href="/c_purchase/index">进货单管理</a>
 				                </li>
 				                <li>
-				                    <a id="purchase_typelists" href="/purchase_typelists">审核进货单</a>
+				                    <a id="purchase_typelists" href="/c_purchase/check">审核管理</a>
 				                </li>
+				                <li>
+				                    <a id="purchase_typelists" href="/c_purchase/checkgoods">进货验收管理</a>
+				                </li>
+				                <li>
+				                    <a id="purchase_typelists" href="/c_purchase/paypurchase">付款管理</a>
+				                </li>
+				                
 				            </ul>
 				        </li>				                       
 				        <li>

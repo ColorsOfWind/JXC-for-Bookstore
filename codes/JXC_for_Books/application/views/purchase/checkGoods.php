@@ -9,14 +9,14 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
-                <div class="panel-heading">进货单管理</div>
+                <div class="panel-heading">进货验收管理</div>
                 <!-- /.panel-heading -->    
                 <div class="panel-body">
                     <div id="table_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
                         <div class="row" style="margin-bottom: 20px">
                             <div class="col-sm-6">
-                                <button class="btn btn-success" data-toggle="modal" data-target="#modal-create">添加进货单</button>
-                            </div>
+                                <!-- <button class="btn btn-success" data-toggle="modal" data-target="#modal-create">添加进货单</button>
+                                                            </div> -->
                             <div class="col-sm-6">
                                 <!-- <button class="btn btn-danger" data-toggle="modal" data-target="#modal-deleteall">删除选中用户</button> -->
                             </div>
@@ -29,8 +29,8 @@
                                           <th>编号</th>
                                           <th>供货商</th>
                                           <th>进货单操作</th>
-                                          <th>进货单明细操作</th>
-                                          
+                                          <th>进货单明细</th>
+                                          <th>验收操作</th>
                                         </tr>
                                     </thead>
                                     <tbody></tbody>
@@ -284,82 +284,47 @@
     </div>
   </div>
 
-  <div class="modal fade model" id="modal-add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content panel panel-info">
-        <form class="form-horizontal">
-          <div class="panel-heading">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-            <h4 class="modal-title" id="myModalLabel">新增进货明细</h4>
+
+  <div class="modal fade model" id="modal-look" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content panel panel-info">
+      <form class="form-horizontal">
+        <div class="panel-heading">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="myModalLabel">查看进货明细</h4>
+        </div>
+
+
+        <div class="modal-body panel-body" id="modal-look-body">
+          <div class="dataTables_wrapper form-inline dt-bootstrap">
+            <div class="row">
+              <div class="col-sm-12">
+                <table id="tabledetail" class="table table-striped table-bordered dataTable" cellspacing="0" width="100%" role="grid" aria-describedby="table_info" style="width: 100%;">
+                  <thead>
+                    <tr role="row">   
+                      <th>明细编号</th>
+                      <th>进货单据编号</th>
+                      <th>商品条形码</th>
+                      <th>进货价</th>
+                      <th>数量</th>
+                      <th>金额</th>
+                      <th>有效期</th>
+                      <th>总价</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </div>
           </div>
-          <div class="modal-body panel-body" id="modal-add-body">
-
-            <div class="form-group" id="add-purchase_ID-div">
-              <label for="add-purchase_ID" class="col-sm-3 control-label">进货单据编号</label>
-              <div class="col-sm-7">
-                <input id="add-purchase_ID" class="form-control" placeholder="进货单据编号" type="text">
-                <p id="add-purchase_ID-p" class="help-block"></p>
-              </div>
-            </div>
-
-            <div class="form-group" id="add-inf_Barcode-div">
-              <label for="add-inf_Barcode" class="col-sm-3 control-label">商品条形码</label>
-              <div class="col-sm-7">
-                <input id="add-inf_Barcode" class="form-control" placeholder="商品条形码" type="text">
-                <p id="add-inf_Barcode-p" class="help-block"></p>
-              </div>
-            </div>
-
-            <div class="form-group" id="add-calinf_Purprice-div">
-              <label for="add-calinf_Purprice" class="col-sm-3 control-label">进货价</label>
-              <div class="col-sm-7">
-                <input id="add-calinf_Purprice" class="form-control" placeholder="进货价" type="text">
-                <p id="add-calinf_Purprice-p" class="help-block"></p>
-              </div>
-            </div>
-
-            <div class="form-group" id="add-calinf_Number-div">
-              <label for="add-calinf_Number" class="col-sm-3 control-label">数量</label>
-              <div class="col-sm-7">
-                <input id="add-calinf_Number" class="form-control" placeholder="数量" type="text">
-                <p id="add-calinf_Number-p" class="help-block"></p>
-              </div>
-            </div>
-
-            <div class="form-group" id="add-calinf_JinE-div">
-              <label for="add-calinf_JinE" class="col-sm-3 control-label">金额</label>
-              <div class="col-sm-7">
-                <input id="add-calinf_JinE" class="form-control" placeholder="金额" type="text">
-                <p id="add-calinf_JinE-p" class="help-block"></p>
-              </div>
-            </div>
-
-            <div class="form-group" id="add-calinf_Time-div">
-              <label for="add-calinf_Time" class="col-sm-3 control-label">有效期</label>
-              <div class="col-sm-7">
-                <input id="add-calinf_Time" class="form-control" placeholder="有效期" type="text">
-                <p id="add-calinf_Time-p" class="help-block"></p>
-              </div>
-            </div>
-
-            <div class="form-group" id="add-calinf_TotalPrice-div">
-              <label for="add-calinf_TotalPrice" class="col-sm-3 control-label">总价</label>
-              <div class="col-sm-7">
-                <input id="add-calinf_TotalPrice" class="form-control" placeholder="总价" type="text">
-                <p id="add-calinf_TotalPrice-p" class="help-block"></p>
-              </div>
-            </div>
-
-            
-          </div>
-          <div class="modal-footer panel-footer">
-            <button id="add-submit" class='btn btn-warning' type='button' onclick="addsubmit()">确定</button>
-            <button class='btn btn-default' type='button'  data-dismiss="modal">关闭</button>
-          </div>
-        </form>
-      </div>
+        </div>
+        <div class="modal-footer panel-footer">
+          <button class='btn btn-default' type='button'  data-dismiss="modal">关闭</button>
+        </div>
+      </form>
+    </div>
     </div>
   </div>
 <!-- 提示 -->
@@ -384,92 +349,139 @@
     function table(){
       if ( $.fn.dataTable.isDataTable( '#table' ) ) {
         return $('#table').DataTable();
+      }
+      else {
+          return $('#table').DataTable( {
+            language: {
+              "sProcessing":   "处理中...",
+              "sLengthMenu":   "显示 _MENU_ 项结果",
+              "sZeroRecords":  "没有匹配结果",
+              "sInfo":         "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+              "sInfoEmpty":    "显示第 0 至 0 项结果，共 0 项",
+              "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+              "sInfoPostFix":  "",
+              "sSearch":       "搜索:",
+              "sUrl":          "",
+              "sEmptyTable":     "表中数据为空",
+              "sLoadingRecords": "载入中...",
+              "sInfoThousands":  ",",
+              "oPaginate": {
+                "sFirst":    "首页",
+                "sPrevious": "上页",
+                "sNext":     "下页",
+                "sLast":     "末页"
+            },
+            "oAria": {
+                "sSortAscending":  ": 以升序排列此列",
+                "sSortDescending": ": 以降序排列此列"
+            }
+        },
+        ajax: "/c_purchase/CheckPurchase",
+        columns: [
+        { "data": "purchase_ID" },
+        { "data": "sup_Name" },
+        { "data": null, "title":"进货单操作","defaultContent": "<button  class='btn-password btn btn-warning btn-sm' type='button' onclick='password(this)' data-toggle='modal' data-target='#modal-see'>查看</button> <button  class='btn-password btn btn-danger btn-sm' type='button' onclick='password(this)' data-toggle='modal' data-target='#modal-delete'>删除</button>" },
+        { "data": null, "title":"进货单明细","defaultContent": "<button  class='btn-permission btn btn-info btn-sm' type='button' onclick='permission(this)' data-toggle='modal' data-target='#modal-look'>查看</button>" },
+        { "data": null, "title":"验收操作","defaultContent": "<button  class='btn-permission btn btn-info btn-sm' type='button' onclick='permission(this)' data-toggle='modal' data-target='#modal-permission'>电子签名</button>" },
+        //{ "data": null, "title":"操作","defaultContent": "<button  class='btn-delete btn btn-danger btn-sm' type='button' data-toggle='modal' data-target='#modal-delete'>删除</button>"}
+        ],
+        select: false
+        });
+      }
     }
-    else {
-        return $('#table').DataTable( {
-          language: {
-            "sProcessing":   "处理中...",
-            "sLengthMenu":   "显示 _MENU_ 项结果",
-            "sZeroRecords":  "没有匹配结果",
-            "sInfo":         "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
-            "sInfoEmpty":    "显示第 0 至 0 项结果，共 0 项",
-            "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
-            "sInfoPostFix":  "",
-            "sSearch":       "搜索:",
-            "sUrl":          "",
-            "sEmptyTable":     "表中数据为空",
-            "sLoadingRecords": "载入中...",
-            "sInfoThousands":  ",",
-            "oPaginate": {
-              "sFirst":    "首页",
-              "sPrevious": "上页",
-              "sNext":     "下页",
-              "sLast":     "末页"
-          },
-          "oAria": {
-              "sSortAscending":  ": 以升序排列此列",
-              "sSortDescending": ": 以降序排列此列"
-          }
+
+    function tabledetail(){
+    return $('#tabledetail').DataTable( {
+      language: {
+        "sProcessing":   "处理中...",
+        "sLengthMenu":   "显示 _MENU_ 项结果",
+        "sZeroRecords":  "没有匹配结果",
+        "sInfo":         "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+        "sInfoEmpty":    "显示第 0 至 0 项结果，共 0 项",
+        "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+        "sInfoPostFix":  "",
+        "sSearch":       "搜索:",
+        "sUrl":          "",
+        "sEmptyTable":     "表中数据为空",
+        "sLoadingRecords": "载入中...",
+        "sInfoThousands":  ",",
+        "oPaginate": {
+          "sFirst":    "首页",
+          "sPrevious": "上页",
+          "sNext":     "下页",
+          "sLast":     "末页"
+        },
+        "oAria": {
+          "sSortAscending":  ": 以升序排列此列",
+          "sSortDescending": ": 以降序排列此列"
+        }
       },
-      ajax: "/c_purchase/CheckPurchase",
-      columns: [
+
+      
+
+      "destroy": true,
+      ajax: "/c_purchase/checkSaleDetailBySaleID",
+      columns: [  
+      { "data": "calinf_ID" },
       { "data": "purchase_ID" },
-      { "data": "sup_Name" },
-      { "data": null, "title":"进货单操作","defaultContent": "<button  class='btn-password btn btn-warning btn-sm' type='button' onclick='password(this)' data-toggle='modal' data-target='#modal-see'>查看</button> <button  class='btn-password btn btn-danger btn-sm' type='button' onclick='password(this)' data-toggle='modal' data-target='#modal-delete'>删除</button>" },
-      { "data": null, "title":"进货单明细操作","defaultContent": "<button  class='btn-permission btn btn-info btn-sm' type='button' data-toggle='modal' data-target='#modal-add'>添加</button> <button  class='btn-permission btn btn-info btn-sm' type='button' data-toggle='modal'>删除</button>" },
-      //{ "data": null, "title":"操作","defaultContent": "<button  class='btn-delete btn btn-danger btn-sm' type='button' data-toggle='modal' data-target='#modal-delete'>删除</button>"}
+      { "data": "inf_Barcode" },
+      { "data": "calinf_Purprice" },
+      { "data": "calinf_Number" },
+      { "data": "calinf_JinE" },
+      { "data": "calinf_Time" },
+      { "data": "calinf_TotalPrice" }
+      
       ],
       select: false
-  });
+    });
     }
-}
+
+
 function bind() {
-  $('#modal-create').on('hidden.bs.modal', function (e) {
-    $('#modal-create-body').children(".form-group").attr("class","form-group");
-    $('#modal-create-body').find(".form-control").val("");
-    $('#modal-create-body').find(".help-block").text("");
-});
   $('#modal-see').on('show.bs.modal', function (e) {
-  var userid = $(e.relatedTarget).parent().siblings()[0].innerText;
-  $.ajax( {  
-        url:'/c_purchase/seePurchase',// 跳转到 action  
-        data:{  
-          'purchase_ID': userid
-      },
-      type:'post',
-      cache:false,
-      async:true,
-      dataType:'json',
-      success:function(data) {  
-          if(data.msg =="true") {
-            $('#see-sup_Name').val(data.data[0].sup_Name);
-            $('#see-Qinggouyuan').val(data.data[0].purchase_Qinggouyuan);
-            $('#see-Dinggouyuan').val(data.data[0].purchase_Dinggouyuan);
-            $('#see-Yanshouyuan').val(data.data[0].purchase_Yanshouyuan);
-            $('#see-Crashguanliyuan').val(data.data[0].purchase_Crashguanliyuan);
-            $('#see-Shouhuoaddress').val(data.data[0].purchase_Shouhuoaddress);
-            $('#see-warehouse_Name').val(data.data[0].warehouse_Name);
-            $('#see-Dingdandate').val(data.data[0].purchase_Dingdandate);
-            $('#see-Daohuodate').val(data.data[0].purchase_Daohuodate);
-            $('#see-Note').val(data.data[0].purhase_Note);
+      var userid = $(e.relatedTarget).parent().siblings()[0].innerText;
+      $.ajax( {  
+            url:'/c_purchase/seePurchase',// 跳转到 action  
+            data:{  
+              'purchase_ID': userid
+          },
+          type:'post',
+          cache:false,
+          async:true,
+          dataType:'json',
+          success:function(data) {  
+              if(data.msg =="true") {
+                $('#see-sup_Name').val(data.data[0].sup_Name);
+                $('#see-Qinggouyuan').val(data.data[0].purchase_Qinggouyuan);
+                $('#see-Dinggouyuan').val(data.data[0].purchase_Dinggouyuan);
+                $('#see-Yanshouyuan').val(data.data[0].purchase_Yanshouyuan);
+                $('#see-Crashguanliyuan').val(data.data[0].purchase_Crashguanliyuan);
+                $('#see-Shouhuoaddress').val(data.data[0].purchase_Shouhuoaddress);
+                $('#see-warehouse_Name').val(data.data[0].warehouse_Name);
+                $('#see-Dingdandate').val(data.data[0].purchase_Dingdandate);
+                $('#see-Daohuodate').val(data.data[0].purchase_Daohuodate);
+                $('#see-Note').val(data.data[0].purhase_Note);
 
 
-        }
-        else {
-            $('#modal-delete').modal("hide");
-            $('#modal-prompt-content').text("查看出现错误，请联系管理员或尝试重新登录");
-            document.getElementById('modal-prompt-panel').className = "modal-content panel panel-danger";
-            $('#modal-prompt').modal('show');
-              }
-    },
-    error : function() {
-      $('#modal-delete').modal("hide");
-      $('#modal-prompt-content').text("查看出现错误，请联系管理员或尝试重新登录");
-      document.getElementById('modal-prompt-panel').className = "modal-content panel panel-danger";
-      $('#modal-prompt').modal('show');
-  }  
-});
-});
+            }
+            else {
+                $('#modal-delete').modal("hide");
+                $('#modal-prompt-content').text("查看出现错误，请联系管理员或尝试重新登录");
+                document.getElementById('modal-prompt-panel').className = "modal-content panel panel-danger";
+                $('#modal-prompt').modal('show');
+                  }
+        },
+        error : function() {
+          $('#modal-delete').modal("hide");
+          $('#modal-prompt-content').text("查看出现错误，请联系管理员或尝试重新登录");
+          document.getElementById('modal-prompt-panel').className = "modal-content panel panel-danger";
+          $('#modal-prompt').modal('show');
+      }  
+    });
+  });
+  $('#modal-look').on('show.bs.modal', function (e) {
+    dt2.ajax.url('/c_purchase/checkSaleDetailBySaleID?saleID='+$(e.relatedTarget).parent().siblings()[0].innerText).load();
+  });  
   $('#modal-password').on('hidden.bs.modal', function (e) {
     $("#password-userid").val("");
     $("#password-username").val("");
@@ -495,6 +507,7 @@ function retable() {
 
 $(document).ready(function() {
   dt = table();
+  dt2 = tabledetail();
   bind();
 });
 function createsubmit() {
@@ -537,54 +550,6 @@ function createsubmit() {
         },
       error : function() {
         $('#modal-create').modal("hide");
-        $('#modal-prompt-content').text("创建出现错误，请联系管理员或尝试重新登录");
-        document.getElementById('modal-prompt-panel').className = "modal-content panel panel-danger";
-        $('#modal-prompt').modal('show');
-      }  
-  });
-}
-
-
-
-
-function addsubmit() {
-  if(!(verifylength("add-purchase_ID",1,999)&&verifylength("add-inf_Barcode",1,999)&&verifylength("add-calinf_Purprice",1,999)&&verifylength("add-calinf_Number",1,999)&&verifylength("add-calinf_JinE",1,999)&&verifylength("add-calinf_Time",1,999)&&verifylength("add-calinf_TotalPrice",1,999))) {
-      return false;
-  }
-
-  $.ajax( {  
-          url:'/c_purchase/addPurchase_R',// 跳转到 action  
-          data:{  
-            
-            'purchase_ID': $("#add-purchase_ID").val(),
-            'inf_Barcode': $("#add-inf_Barcode").val(),
-            'calinf_Purprice': $("#add-calinf_Purprice").val(),
-            'calinf_Number': $("#add-calinf_Number").val(),
-            'calinf_JinE': $("#add-calinf_JinE").val(),
-            'calinf_Time': $("#add-calinf_Time").val(),
-            'calinf_TotalPrice': $("#add-calinf_TotalPrice").val(),
-            
-            
-          },
-        type:'post',
-        cache:false,
-        async:true,
-        dataType:'json',
-        success:function(data) {  
-            if(data.msg =="true") {
-              retable(); 
-              $('#modal-add').modal("hide");
-              $('#modal-prompt-content').text("新增进货单成功");
-              document.getElementById('modal-prompt-panel').className = "modal-content panel panel-success";
-              $('#modal-prompt').modal('show');
-            }
-          else {
-              document.getElementById("add-username-p").innerHTML="新增进货明细失败";
-              document.getElementById("add-username-div").className="has-error form-group";
-          }
-        },
-      error : function() {
-        $('#modal-add').modal("hide");
         $('#modal-prompt-content').text("创建出现错误，请联系管理员或尝试重新登录");
         document.getElementById('modal-prompt-panel').className = "modal-content panel panel-danger";
         $('#modal-prompt').modal('show');
