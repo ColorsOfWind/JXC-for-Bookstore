@@ -686,6 +686,9 @@ CREATE TABLE `user` (
   `user_P_YanShouyuan` varchar(2)   DEFAULT '0',
   `user_P_ChuNayuan` varchar(2)   DEFAULT '0',
   `user_StockPermission` varchar(2)   DEFAULT '0',
+  `user_St_GoodFinder` varchar(2)   DEFAULT '0',
+  `user_St_BillFinder` varchar(2)   DEFAULT '0',
+  `user_St_WarningFinder` varchar(2)   DEFAULT '0',
 
   `user_SellPermission` varchar(2)   DEFAULT '0',
   PRIMARY KEY (`user_ID`)
