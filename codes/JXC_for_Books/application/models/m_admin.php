@@ -11,33 +11,21 @@ class m_admin extends CI_Model{
 	/*获得权限函数*/
 	public function getAdmin()
 	{
-		$query = $this -> db -> query("SELECT * FROM users");
+		$query = $this -> db -> query("SELECT * FROM user");
 		return $query;
 	}
-
-
-
-
-
-
-
-
 
 	/*获得超级管理员权限*/
 	public function getSuper()
 	{
 		$query = $this -> getAdmin();
 		$row = $query->row();
+		// var_dump($row);
 		$index = $row -> user_AllPermission;
 		if($index == '0')
 			return false;
 		else return true;
 	}
-
-
-
-
-
 
 	/*获得基础信息模块权限*/
 	public function getBasic()
@@ -105,11 +93,6 @@ class m_admin extends CI_Model{
 		else return true;
 	}
 
-
-
-
-
-
 	/*获得进货模块管理权限*/
 	public function getPurchase()
 	{
@@ -165,13 +148,6 @@ class m_admin extends CI_Model{
 		else return true;
 	}
 
-
-
-
-
-
-
-
 	/*获得库存模块管理权限*/
 	public function getStock()
 	{
@@ -217,14 +193,6 @@ class m_admin extends CI_Model{
 	}
 
 
-
-
-
-
-
-
-
-
 	/*获得销售模块管理权限*/
 	public function getSell()
 	{
@@ -268,5 +236,6 @@ class m_admin extends CI_Model{
 			return false;
 		else return true;
 	}
+}
 
 ?>

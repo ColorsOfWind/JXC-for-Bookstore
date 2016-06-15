@@ -160,8 +160,8 @@
     </div>
   </div>
   <!-- 查看/修改权限 -->
-  <div class="modal fade model" id="modal-permision" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
+  <div class="modal fade model" id="modal-permission" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content panel panel-info">
         <form class="form-horizontal">
           <div class="panel-heading">
@@ -171,7 +171,101 @@
             <h4 class="modal-title" id="myModalLabel">查看/修改权限</h4>
           </div>
           <div class="modal-body panel-body" id="modal-permision-body">
-            这块应该是个表格
+              <p>你正要查看这名用户的权限</p>
+              <div class="form-group">
+                <label for="permission-userid" class="col-sm-3 control-label">用户ID</label>
+                <div class="col-sm-7">
+                  <input id="permission-userid" class="form-control" value="" type="text" disabled>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="permission-username" class="col-sm-3 control-label">用户名</label>
+                <div class="col-sm-7">
+                  <input id="permission-username" class="form-control" value="" type="text" disabled>
+                </div>
+              </div>          
+            <div class="col-sm-8 col-sm-offset-2">
+              <div class="form-group input-group" id="permission-verify-div">
+                <input id="permission-verify" class="form-control" placeholder="请输入当前账号密码以验证权限" type="password">
+                <span class="input-group-btn">
+                  <button id="permission-verify-submit" class="btn btn-warning" type="button" onclick="verifyPassword4permision()"><i class="fa fa-unlock"> 验证</i>
+                  </button>
+                </span>
+                <p id="permission-verify-p" class="help-block"></p>
+              </div>
+            </div>
+            <div class="col-sm-8 col-sm-offset-2 hide" id="permission-div">
+              <div class="checkbox" id="user_BasicInformationPermission-div">
+                <label>
+                  <input type="checkbox" value="" id="user_BasicInformationPermission">基础管理权限
+                </label>
+              </div>
+              <div class="checkboxs" id="user_BasicInformationPermission-divs">
+                <label class="checkbox-inline">
+                  <input type="checkbox" id="user_B_User" value="1">用户管理
+                </label>
+                <label class="checkbox-inline">
+                  <input type="checkbox" id="user_B_Good" value="1">商品管理
+                </label>
+                <label class="checkbox-inline">
+                  <input type="checkbox" id="user_B_Supplier" value="1">供应商管理
+                </label>
+                <label class="checkbox-inline">
+                  <input type="checkbox" id="user_B_Client" value="1">客户管理
+                </label>
+              </div>
+              <div class="checkbox" id="user_PurchasePermission-div">
+                <label>
+                  <input type="checkbox" value="" id="user_PurchasePermission">进货管理权限
+                </label>
+              </div>
+              <div class="checkboxs" id="user_PurchasePermission-divs">
+                <label class="checkbox-inline">
+                  <input type="checkbox" id="user_P_QingGouyuan" value="1">请购员
+                </label>
+                <label class="checkbox-inline">
+                  <input type="checkbox" id="user_P_DingGouyuan" value="1">订购员
+                </label>
+                <label class="checkbox-inline">
+                  <input type="checkbox" id="user_P_YanShouyuan" value="1">验收员
+                </label>
+                <label class="checkbox-inline">
+                  <input type="checkbox" id="user_P_ChuNayuan" value="1">出纳员
+                </label>
+              </div>          
+              <div class="checkbox" id="user_StockPermission-div">
+                <label>
+                  <input type="checkbox" value="" id="user_StockPermission">库存管理权限
+                </label>
+              </div>
+              <div class="checkboxs" id="user_StockPermission-divs">
+                <label class="checkbox-inline">
+                  <input type="checkbox" id="user_St_GoodFinder" value="1">库存商品查询
+                </label>
+                <label class="checkbox-inline">
+                  <input type="checkbox" id="user_St_BillFinder" value="1">库存单据查询
+                </label>
+                <label class="checkbox-inline">
+                  <input type="checkbox" id="user_St_WarningFinder" value="1">库存预警查询
+                </label>
+              </div>          
+              <div class="checkbox" id="user_SellPermission-div">
+                <label>
+                  <input type="checkbox" value="" id="user_SellPermission">库存管理权限
+                </label>
+              </div>
+              <div class="checkboxs" id="user_SellPermission-divs">
+                <label class="checkbox-inline">
+                  <input type="checkbox" id="user_Se_Discount" value="1">特价商品查询
+                </label>
+                <label class="checkbox-inline">
+                  <input type="checkbox" id="user_Se_SaleEdit" value="1">销售单管理
+                </label>
+                <label class="checkbox-inline">
+                  <input type="checkbox" id="user_Se_SaleShow" value="1">销售单查询
+                </label>
+              </div>                           
+            </div>            
           </div>
           <div class="modal-footer panel-footer">
             <button id="permision-submit" class='btn btn-warning' type='button' onclick="permisionsubmit()">确定</button>
@@ -319,8 +413,8 @@
           columns: [
           { "data": "user_ID" },
           { "data": "user_Name" },
-          { "data": null, "title":"操作","defaultContent": "<button  class='btn-password btn btn-warning btn-sm' type='button' onclick='password(this)' data-toggle='modal' data-target='#modal-password'>查看/修改密码</button>" },
-          { "data": null, "title":"操作","defaultContent": "<button  class='btn-permission btn btn-info btn-sm' type='button' onclick='permission(this)' data-toggle='modal' data-target='#modal-permission'>查看/修改权限</button>" },
+          { "data": null, "title":"操作","defaultContent": "<button  class='btn-password btn btn-warning btn-sm' type='button' data-toggle='modal' data-target='#modal-password'>查看/修改密码</button>" },
+          { "data": null, "title":"操作","defaultContent": "<button  class='btn-permission btn btn-info btn-sm' type='button' data-toggle='modal' data-target='#modal-permission'>查看/修改权限</button>" },
           { "data": null, "title":"操作","defaultContent": "<button  class='btn-delete btn btn-danger btn-sm' type='button' data-toggle='modal' data-target='#modal-delete'>删除</button>"}
           ],
           select: false
@@ -347,6 +441,20 @@
         $('#modal-password-body').find(".form-control").val("");
         $('#modal-password-body').find(".help-block").text("");
       });
+      $('#modal-permission').on('show.bs.modal', function (e) {
+        $("#permission-userid").val($(e.relatedTarget).parent().siblings()[0].innerText);
+        $("#permission-username").val($(e.relatedTarget).parent().siblings()[1].innerText);
+      });
+      $('#modal-permission').on('hidden.bs.modal', function (e) {
+        $("#permission-userid").val("");
+        $("#permission-username").val("");
+        $("#permission-verify").val("");
+        $("#permission-password").val("");
+        $('#permission-div').addClass("hide");
+        $('#modal-permission-body').children(".form-group").attr("class","form-group");
+        $('#modal-permission-body').find(".form-control").val("");
+        $('#modal-permission-body').find(".help-block").text("");
+      });      
       $('#modal-delete').on('show.bs.modal', function (e) {
         $("#dele-userid").val($(e.relatedTarget).parent().siblings()[0].innerText);
         $("#dele-username").val($(e.relatedTarget).parent().siblings()[1].innerText);
@@ -462,6 +570,119 @@
         },
         error : function() {
           $('#password-password').val("未知错误");
+        }  
+      });
+    }
+    function verifyPassword4permision() {
+      var userid = $("#permission-userid").val();
+      var password = $("#permission-verify").val();
+      $.ajax( {  
+        url:'/c_users/checkCurrentUserforPermission',// 跳转到 action  
+        data:{  
+          'userid': userid,
+          'currentUserPassword': password
+        },
+        type:'post',
+        cache:false,
+        async:true,
+        dataType:'json',
+        success:function(data) {  
+          if(data.msg =="true") {
+            $('#permission-div').removeClass("hide");
+            document.getElementById("user_BasicInformationPermission").checked = parseInt(data.data.user_BasicInformationPermission);
+            document.getElementById("user_B_User").checked = parseInt(data.data.user_B_User);
+            document.getElementById("user_B_Good").checked = parseInt(data.data.user_B_Good);
+            document.getElementById("user_B_Supplier").checked = parseInt(data.data.user_B_Supplier);
+            document.getElementById("user_B_Client").checked = parseInt(data.data.user_B_Client);
+            document.getElementById("user_PurchasePermission").checked = parseInt(data.data.user_PurchasePermission);
+            document.getElementById("user_P_QingGouyuan").checked = parseInt(data.data.user_P_QingGouyuan);
+            document.getElementById("user_P_DingGouyuan").checked = parseInt(data.data.user_P_DingGouyuan);
+            document.getElementById("user_P_YanShouyuan").checked = parseInt(data.data.user_P_YanShouyuan);
+            document.getElementById("user_P_ChuNayuan").checked = parseInt(data.data.user_P_ChuNayuan);
+            document.getElementById("user_StockPermission").checked = parseInt(data.data.user_StockPermission);
+            document.getElementById("user_St_GoodFinder").checked = parseInt(data.data.user_St_GoodFinder);
+            document.getElementById("user_St_BillFinder").checked = parseInt(data.data.user_St_BillFinder);
+            document.getElementById("user_St_WarningFinder").checked = parseInt(data.data.user_St_WarningFinder);
+            document.getElementById("user_SellPermission").checked = parseInt(data.data.user_SellPermission);
+            document.getElementById("user_Se_Discount").checked = parseInt(data.data.user_Se_Discount);
+            document.getElementById("user_Se_SaleEdit").checked = parseInt(data.data.user_Se_SaleEdit);
+            document.getElementById("user_Se_SaleShow").checked = parseInt(data.data.user_Se_SaleShow);
+          }
+          else {
+            $('#permission-password').val("密码输入错误");
+          }
+        },
+        error : function() {
+          $('#permission-password').val("未知错误");
+        }  
+      });
+    }
+
+    function permisionsubmit() {
+      var userid = $("#permission-userid").val();
+      var user_BasicInformationPermission = Number(document.getElementById("user_BasicInformationPermission").checked);
+      var user_B_User = Number(document.getElementById("user_B_User").checked);
+      var user_B_Good = Number(document.getElementById("user_B_Good").checked);
+      var user_B_Supplier = Number(document.getElementById("user_B_Supplier").checked);
+      var user_B_Client = Number(document.getElementById("user_B_Client").checked);
+      var user_PurchasePermission = Number(document.getElementById("user_PurchasePermission").checked);
+      var user_P_QingGouyuan = Number(document.getElementById("user_P_QingGouyuan").checked);
+      var user_P_DingGouyuan = Number(document.getElementById("user_P_DingGouyuan").checked);
+      var user_P_YanShouyuan = Number(document.getElementById("user_P_YanShouyuan").checked);
+      var user_P_ChuNayuan = Number(document.getElementById("user_P_ChuNayuan").checked);
+      var user_StockPermission = Number(document.getElementById("user_StockPermission").checked);
+      var user_St_GoodFinder = Number(document.getElementById("user_St_GoodFinder").checked);
+      var user_St_BillFinder = Number(document.getElementById("user_St_BillFinder").checked);
+      var user_St_WarningFinder = Number(document.getElementById("user_St_WarningFinder").checked);
+      var user_SellPermission = Number(document.getElementById("user_SellPermission").checked);
+      var user_Se_Discount = Number(document.getElementById("user_Se_Discount").checked);
+      var user_Se_SaleEdit = Number(document.getElementById("user_Se_SaleEdit").checked);
+      var user_Se_SaleShow = Number(document.getElementById("user_Se_SaleShow").checked);
+      $.ajax( {  
+        url:'/c_users/changePermission',// 跳转到 action  
+        data:{  
+          'userID': userid,
+          'user_BasicInformationPermission':user_BasicInformationPermission,
+          'user_B_User':user_B_User,
+          'user_B_Good':user_B_Good,
+          'user_B_Supplier':user_B_Supplier,
+          'user_B_Client':user_B_Client,
+          'user_PurchasePermission':user_PurchasePermission,
+          'user_P_QingGouyuan':user_P_QingGouyuan,
+          'user_P_DingGouyuan':user_P_DingGouyuan,
+          'user_P_YanShouyuan':user_P_YanShouyuan,
+          'user_P_ChuNayuan':user_P_ChuNayuan,
+          'user_StockPermission':user_StockPermission,
+          'user_St_GoodFinder':user_St_GoodFinder,
+          'user_St_BillFinder':user_St_BillFinder,
+          'user_St_WarningFinder':user_St_WarningFinder,
+          'user_SellPermission':user_SellPermission,
+          'user_Se_Discount':user_Se_Discount,
+          'user_Se_SaleEdit':user_Se_SaleEdit,
+          'user_Se_SaleShow':user_Se_SaleShow
+        },
+        type:'post',
+        cache:false,
+        async:true,
+        dataType:'json',
+        success:function(data) {  
+          if(data.msg =="true") {
+            $('#modal-permission').modal("hide");
+            $('#modal-prompt-content').text("修改用户权限用户成功");
+            document.getElementById('modal-prompt-panel').className = "modal-content panel panel-success";
+            $('#modal-prompt').modal('show');
+            retable();
+          }
+          else {
+            document.getElementById("permission-username-p").innerHTML="删除失败，出现了一些错误⊙︿⊙";
+            document.getElementById("permission-username-div").className="has-error form-group";
+          }
+        },
+        error : function() {
+          $('#modal-permission').modal("hide");
+          $('#modal-prompt-content').text("删除出现错误，请联系管理员或尝试重新登录");
+          document.getElementById('modal-prompt-panel').className = "modal-content panel panel-danger";
+          $('#modal-prompt').modal('show');
         }  
       });
     }
