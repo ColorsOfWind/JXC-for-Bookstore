@@ -14,6 +14,9 @@ class c_sale extends CI_Controller {
 		$this -> load -> model('m_goods');
 		$this -> load -> model('m_goodsDiscount');
 		$this -> load -> model('m_salespecialgoods');
+		$this -> load -> model('m_stockcommodity');
+		$this -> load -> model('m_stockwarning');
+
 	}
 
 	public function index() 
@@ -98,6 +101,7 @@ class c_sale extends CI_Controller {
 		$saleRemarks = $this -> input -> post('saleRemarks');
 
 		$this -> m_saleFront -> addSaleFront($clName, $saleUserID, $saleCounter, $saleFilldate, $saleDealdate, $saleState, $saleRemarks);
+		
 	}
 
 	/*删除销售单*/
