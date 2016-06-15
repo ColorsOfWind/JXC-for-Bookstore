@@ -32,14 +32,31 @@ class c_purchase extends CI_Controller {
         $this->load->view('common/footer.php');
     }
 
-    public function addPurchase() { //添加进货单，权限需求：请购员
-        //$data = array('title' => "书店进销存管理系统");
-        //$this->load->view('common/header.php',$data);
-        //$this->load->view('common/menu.php');
-        //$this->load->view('purchase/addPurchase.php');
-        //$this->load->view('common/footer.php');
+    public function check() {
+        $data = array('title' => "书店进销存管理系统");
+        $this->load->view('common/header.php',$data);
+        $this->load->view('common/menu.php');
+        $this->load->view('purchase/checkPurchase.php');
+        $this->load->view('common/footer.php');
+    }
+    public function checkgoods() {//货物检查，权限需求：验收员
+        $data = array('title' => "书店进销存管理系统");
+        $this->load->view('common/header.php',$data);
+        $this->load->view('common/menu.php');
+        $this->load->view('purchase/checkGoods.php');
+        $this->load->view('common/footer.php');
+    }
 
-        
+    public function paypurchase () { //进货付款，权限需求：现金管理用户
+        $data = array('title' => "书店进销存管理系统");
+        $this->load->view('common/header.php',$data);
+        $this->load->view('common/menu.php');
+        $this->load->view('purchase/payPurchase.php');
+        $this->load->view('common/footer.php');
+    }
+
+    public function addPurchase() { //添加进货单，权限需求：请购员
+
         $sup_Name = $this -> input -> post('sup_Name');
         $Qinggouyuan = $this -> input->post('Qinggouyuan');
         $Dinggouyuan = $this -> input -> post('Dinggouyuan'); 
@@ -49,13 +66,34 @@ class c_purchase extends CI_Controller {
         $warehouse_Name = $this -> input->post('warehouse_Name');
         $Dingdandate = $this -> input -> post('Dingdandate');
         $Daohuodate = $this -> input->post('Daohuodate');
-        
         $Note = $this -> input -> post('Note');
        
-
         if(1==1)
         {
           $this -> m_purchase -> addpurchase(/*$purchase_ID,*/$sup_Name, $Qinggouyuan,$Dinggouyuan,$Yanshouyuan,$Crashguanliyuan,$Shouhuoaddress,$warehouse_Name,$Dingdandate,$Daohuodate,0,$Note);
+          $data = array('msg' => 'true');
+        }
+        else $data = array('msg' => 'false');
+        $this->output
+        ->set_content_type('application/json')
+        ->set_output(json_encode($data));
+    }
+
+    public function addpayPurchase() { //添加付款单，权限需求：请购员
+        
+        
+        $payment_Sign = $this -> input -> post('payment_Sign');
+        $payment_JinE = $this -> input->post('payment_JinE');
+        $sup_Name = $this -> input -> post('sup_Name'); 
+        $payment_Ticketuser = $this -> input->post('payment_Ticketuser');
+        $payment_Crashguanliyuan = $this -> input->post('payment_Crashguanliyuan');
+        $payment_TicketDate = $this -> input -> post('payment_TicketDate');
+        $payment_PayDate = $this -> input->post('payment_PayDate');
+        $payment_Note = $this -> input -> post('payment_Note');
+        
+        if(1==1)
+        {
+          $this -> m_purchase -> addpaypurchase($payment_Sign, $payment_JinE,$sup_Name,$payment_Ticketuser,$payment_Crashguanliyuan,$payment_TicketDate,$payment_PayDate,0,$payment_Note);
           $data = array('msg' => 'true');
         }
         else $data = array('msg' => 'false');
@@ -102,21 +140,15 @@ class c_purchase extends CI_Controller {
         ->set_output(json_encode($data));
     }
 
-    public function CheckGoods () { //货物检查，权限需求：验收员
+    /*public function CheckGoods () { //货物检查，权限需求：验收员
         $data = array('title' => "书店进销存管理系统");
         $this->load->view('common/header.php',$data);
         $this->load->view('common/menu.php');
         $this->load->view('purchase/addPurchase.php');
         $this->load->view('common/footer.php');
-    }
+    }*/
 
-    public function PayPurchase () { //进货付款，权限需求：现金管理用户
-        $data = array('title' => "书店进销存管理系统");
-        $this->load->view('common/header.php',$data);
-        $this->load->view('common/menu.php');
-        $this->load->view('purchase/addPurchase.php');
-        $this->load->view('common/footer.php');
-    }
+    
 
     public function SelectPurchase () { //进货单查询，权限需求：进货单查询用户
         $data = array('title' => "书店进销存管理系统");
