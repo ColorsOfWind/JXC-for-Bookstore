@@ -24,6 +24,13 @@ class m_purchase extends CI_Model {
         return $query;
     }
 
+    public function addpurchase_r($purchase_ID, $inf_Barcode,$calinf_Purprice,$calinf_Number,$calinf_JinE,$calinf_Time,$calinf_TotalPrice)
+    {
+        $query = $this->db->query("INSERT INTO purchase_calculateinf(purchase_ID, inf_Barcode,calinf_Purprice,calinf_Number,calinf_JinE,calinf_Time,calinf_TotalPrice) VALUES( '$purchase_ID', '$inf_Barcode', '$calinf_Purprice', '$calinf_Number', '$calinf_JinE','$calinf_Time', '$calinf_TotalPrice')");
+        return $query;
+    }
+
+
 
 
 
@@ -47,6 +54,12 @@ class m_purchase extends CI_Model {
     public function seePurchase($purchase_ID)
     {
         $query = $this->db->query("SELECT * FROM purchase_information WHERE purchase_ID='$purchase_ID'");
+        return $query;
+    }
+
+    public function checkDetail($purchase_ID)
+    {
+        $query = $this->db->query("SELECT * FROM purchase_calculateinf WHERE purchase_ID='$purchase_ID'");
         return $query;
     }
 }

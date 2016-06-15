@@ -283,6 +283,85 @@
       </div>
     </div>
   </div>
+
+  <div class="modal fade model" id="modal-add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content panel panel-info">
+        <form class="form-horizontal">
+          <div class="panel-heading">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="myModalLabel">新增进货明细</h4>
+          </div>
+          <div class="modal-body panel-body" id="modal-add-body">
+
+            <div class="form-group" id="add-purchase_ID-div">
+              <label for="add-purchase_ID" class="col-sm-3 control-label">进货单据编号</label>
+              <div class="col-sm-7">
+                <input id="add-purchase_ID" class="form-control" placeholder="进货单据编号" type="text">
+                <p id="add-purchase_ID-p" class="help-block"></p>
+              </div>
+            </div>
+
+            <div class="form-group" id="add-inf_Barcode-div">
+              <label for="add-inf_Barcode" class="col-sm-3 control-label">商品条形码</label>
+              <div class="col-sm-7">
+                <input id="add-inf_Barcode" class="form-control" placeholder="商品条形码" type="text">
+                <p id="add-inf_Barcode-p" class="help-block"></p>
+              </div>
+            </div>
+
+            <div class="form-group" id="add-calinf_Purprice-div">
+              <label for="add-calinf_Purprice" class="col-sm-3 control-label">进货价</label>
+              <div class="col-sm-7">
+                <input id="add-calinf_Purprice" class="form-control" placeholder="进货价" type="text">
+                <p id="add-calinf_Purprice-p" class="help-block"></p>
+              </div>
+            </div>
+
+            <div class="form-group" id="add-calinf_Number-div">
+              <label for="add-calinf_Number" class="col-sm-3 control-label">数量</label>
+              <div class="col-sm-7">
+                <input id="add-calinf_Number" class="form-control" placeholder="数量" type="text">
+                <p id="add-calinf_Number-p" class="help-block"></p>
+              </div>
+            </div>
+
+            <div class="form-group" id="add-calinf_JinE-div">
+              <label for="add-calinf_JinE" class="col-sm-3 control-label">金额</label>
+              <div class="col-sm-7">
+                <input id="add-calinf_JinE" class="form-control" placeholder="金额" type="text">
+                <p id="add-calinf_JinE-p" class="help-block"></p>
+              </div>
+            </div>
+
+            <div class="form-group" id="add-calinf_Time-div">
+              <label for="add-calinf_Time" class="col-sm-3 control-label">有效期</label>
+              <div class="col-sm-7">
+                <input id="add-calinf_Time" class="form-control" placeholder="有效期" type="text">
+                <p id="add-calinf_Time-p" class="help-block"></p>
+              </div>
+            </div>
+
+            <div class="form-group" id="add-calinf_TotalPrice-div">
+              <label for="add-calinf_TotalPrice" class="col-sm-3 control-label">总价</label>
+              <div class="col-sm-7">
+                <input id="add-calinf_TotalPrice" class="form-control" placeholder="总价" type="text">
+                <p id="add-calinf_TotalPrice-p" class="help-block"></p>
+              </div>
+            </div>
+
+            
+          </div>
+          <div class="modal-footer panel-footer">
+            <button id="add-submit" class='btn btn-warning' type='button' onclick="addsubmit()">确定</button>
+            <button class='btn btn-default' type='button'  data-dismiss="modal">关闭</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 <!-- 提示 -->
   <div class="modal fade" id="modal-prompt" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
     <div class="modal-dialog" role="document">
@@ -337,7 +416,7 @@
       { "data": "purchase_ID" },
       { "data": "sup_Name" },
       { "data": null, "title":"进货单操作","defaultContent": "<button  class='btn-password btn btn-warning btn-sm' type='button' onclick='password(this)' data-toggle='modal' data-target='#modal-see'>查看</button> <button  class='btn-password btn btn-danger btn-sm' type='button' onclick='password(this)' data-toggle='modal' data-target='#modal-delete'>删除</button>" },
-      { "data": null, "title":"进货单明细操作","defaultContent": "<button  class='btn-permission btn btn-info btn-sm' type='button' onclick='permission(this)' data-toggle='modal' data-target='#modal-permission'>查看/修改权限</button>" },
+      { "data": null, "title":"进货单明细操作","defaultContent": "<button  class='btn-permission btn btn-info btn-sm' type='button' data-toggle='modal' data-target='#modal-add'>添加</button> <button  class='btn-permission btn btn-info btn-sm' type='button' data-toggle='modal'>删除</button>" },
       //{ "data": null, "title":"操作","defaultContent": "<button  class='btn-delete btn btn-danger btn-sm' type='button' data-toggle='modal' data-target='#modal-delete'>删除</button>"}
       ],
       select: false
@@ -458,6 +537,54 @@ function createsubmit() {
         },
       error : function() {
         $('#modal-create').modal("hide");
+        $('#modal-prompt-content').text("创建出现错误，请联系管理员或尝试重新登录");
+        document.getElementById('modal-prompt-panel').className = "modal-content panel panel-danger";
+        $('#modal-prompt').modal('show');
+      }  
+  });
+}
+
+
+
+
+function addsubmit() {
+  if(!(verifylength("add-purchase_ID",1,999)&&verifylength("add-inf_Barcode",1,999)&&verifylength("add-calinf_Purprice",1,999)&&verifylength("add-calinf_Number",1,999)&&verifylength("add-calinf_JinE",1,999)&&verifylength("add-calinf_Time",1,999)&&verifylength("add-calinf_TotalPrice",1,999))) {
+      return false;
+  }
+
+  $.ajax( {  
+          url:'/c_purchase/addPurchase_R',// 跳转到 action  
+          data:{  
+            
+            'purchase_ID': $("#add-purchase_ID").val(),
+            'inf_Barcode': $("#add-inf_Barcode").val(),
+            'calinf_Purprice': $("#add-calinf_Purprice").val(),
+            'calinf_Number': $("#add-calinf_Number").val(),
+            'calinf_JinE': $("#add-calinf_JinE").val(),
+            'calinf_Time': $("#add-calinf_Time").val(),
+            'calinf_TotalPrice': $("#add-calinf_TotalPrice").val(),
+            
+            
+          },
+        type:'post',
+        cache:false,
+        async:true,
+        dataType:'json',
+        success:function(data) {  
+            if(data.msg =="true") {
+              retable(); 
+              $('#modal-add').modal("hide");
+              $('#modal-prompt-content').text("新增进货单成功");
+              document.getElementById('modal-prompt-panel').className = "modal-content panel panel-success";
+              $('#modal-prompt').modal('show');
+            }
+          else {
+              document.getElementById("add-username-p").innerHTML="新增进货明细失败";
+              document.getElementById("add-username-div").className="has-error form-group";
+          }
+        },
+      error : function() {
+        $('#modal-add').modal("hide");
         $('#modal-prompt-content').text("创建出现错误，请联系管理员或尝试重新登录");
         document.getElementById('modal-prompt-panel').className = "modal-content panel panel-danger";
         $('#modal-prompt').modal('show');

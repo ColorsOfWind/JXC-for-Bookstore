@@ -79,6 +79,32 @@ class c_purchase extends CI_Controller {
         ->set_output(json_encode($data));
     }
 
+
+
+    public function addPurchase_R() { //添加进货明细，权限需求：请购员
+
+        $purchase_ID = $this -> input -> post('purchase_ID');
+        $inf_Barcode = $this -> input->post('inf_Barcode');
+        $calinf_Purprice = $this -> input -> post('calinf_Purprice'); 
+        $calinf_Number = $this -> input->post('calinf_Number');
+        $calinf_JinE = $this -> input->post('calinf_JinE');
+        $calinf_Time = $this -> input -> post('calinf_Time');
+        $calinf_TotalPrice = $this -> input->post('calinf_TotalPrice');
+        
+       
+        if(1==1)
+        {
+          $this -> m_purchase -> addpurchase_r($purchase_ID, $inf_Barcode,$calinf_Purprice,$calinf_Number,$calinf_JinE,$calinf_Time,$calinf_TotalPrice);
+          $data = array('msg' => 'true');
+        }
+        else $data = array('msg' => 'false');
+        $this->output
+        ->set_content_type('application/json')
+        ->set_output(json_encode($data));
+    }
+
+
+
     public function addpayPurchase() { //添加付款单，权限需求：请购员
         
         
@@ -93,7 +119,7 @@ class c_purchase extends CI_Controller {
         
         if(1==1)
         {
-          $this -> m_purchase -> addpaypurchase($payment_Sign, $payment_JinE,$sup_Name,$payment_Ticketuser,$payment_Crashguanliyuan,$payment_TicketDate,$payment_PayDate,0,$payment_Note);
+          $this -> m_purchase -> addpaypurchase($payment_Sign, $payment_JinE,$sup_Name,$payment_Ticketuser,$payment_Crashguanliyuan,$payment_TicketDate,$payment_PayDate,3,$payment_Note);
           $data = array('msg' => 'true');
         }
         else $data = array('msg' => 'false');
@@ -148,73 +174,24 @@ class c_purchase extends CI_Controller {
         $this->load->view('common/footer.php');
     }*/
 
+
+    public function checkSaleDetailBySaleID()
+    {
+        $purchase_ID = $this -> input -> get('saleID');
+
+        $allInfo = $this -> m_purchase -> checkDetail($purchase_ID);
+        $result = $allInfo -> result();
+        // $arrlength=count($result);
+        // for ($i=0; $i < $arrlength; $i++) { 
+        //     $result[$i] = (array)$result[$i];
+        //     $res = $this -> m_goods -> checkGoodID($result[$i]["inf_Barcode"])-> row_array();
+        //     $result[$i]["inf_Name"] = $res["inf_Name"];
+        // }
+        $data = array('data' => $result);
+        $this->output ->set_content_type('application/json') ->set_output(json_encode($data));
+    }
+
     
 
-    public function SelectPurchase () { //进货单查询，权限需求：进货单查询用户
-        $data = array('title' => "书店进销存管理系统");
-        $this->load->view('common/header.php',$data);
-        $this->load->view('common/menu.php');
-        $this->load->view('purchase/addPurchase.php');
-        $this->load->view('common/footer.php');
-    }
-
-    public function SelectUnpaid () { //应付帐款查询，权限需求：应付账款查询用户
-        $data = array('title' => "书店进销存管理系统");
-        $this->load->view('common/header.php',$data);
-        $this->load->view('common/menu.php');
-        $this->load->view('purchase/addPurchase.php');
-        $this->load->view('common/footer.php');
-    }
-
-    public function Add_R_Purchase () { //添加进货明细，权限需求：请购员
-        $data = array('title' => "书店进销存管理系统");
-        $this->load->view('common/header.php',$data);
-        $this->load->view('common/menu.php');
-        $this->load->view('purchase/addPurchase.php');
-        $this->load->view('common/footer.php');
-    }
     
-    public function Update_R_Purchase () { //修改进货明细，权限需求：请购员
-        $data = array('title' => "书店进销存管理系统");
-        $this->load->view('common/header.php',$data);
-        $this->load->view('common/menu.php');
-        $this->load->view('purchase/addPurchase.php');
-    }   
-
-    public function Delete_R_Purchase () { //删除进货明细，权限需求：请购员
-        $data = array('title' => "书店进销存管理系统");
-        $this->load->view('common/header.php',$data);
-        $this->load->view('common/menu.php');
-        $this->load->view('purchase/addPurchase.php');
-    }   
-
-    public function Select_R_Purchase () { //进货明细查询，权限需求：请购员
-        $data = array('title' => "书店进销存管理系统");
-        $this->load->view('common/header.php',$data);
-        $this->load->view('common/menu.php');
-        $this->load->view('purchase/addPurchase.php');
-    }   
-
-    public function AddPayment () { //添加付款单，权限需求：现金管理员
-        $data = array('title' => "书店进销存管理系统");
-        $this->load->view('common/header.php',$data);
-        $this->load->view('common/menu.php');
-        $this->load->view('purchase/addPurchase.php');
-    }   
-
-    public function DeletePayment () { //删除付款单，权限需求：现金管理员
-        $data = array('title' => "书店进销存管理系统");
-        $this->load->view('common/header.php',$data);
-        $this->load->view('common/menu.php');
-        $this->load->view('purchase/addPurchase.php');
-    }   
-
-    public function SelectPayment () { //付款单查询，权限需求：现金管理员
-        $data = array('title' => "书店进销存管理系统");
-        $this->load->view('common/header.php',$data);
-        $this->load->view('common/menu.php');
-        $this->load->view('purchase/addPurchase.php');
-    }   
-
-
 }

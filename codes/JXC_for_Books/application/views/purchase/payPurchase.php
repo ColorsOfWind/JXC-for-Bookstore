@@ -269,6 +269,49 @@
       </div>
     </div>
   </div>
+
+  <div class="modal fade model" id="modal-look" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content panel panel-info">
+      <form class="form-horizontal">
+        <div class="panel-heading">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="myModalLabel">查看进货明细</h4>
+        </div>
+
+
+        <div class="modal-body panel-body" id="modal-look-body">
+          <div class="dataTables_wrapper form-inline dt-bootstrap">
+            <div class="row">
+              <div class="col-sm-12">
+                <table id="tabledetail" class="table table-striped table-bordered dataTable" cellspacing="0" width="100%" role="grid" aria-describedby="table_info" style="width: 100%;">
+                  <thead>
+                    <tr role="row">   
+                      <th>明细编号</th>
+                      <th>进货单据编号</th>
+                      <th>商品条形码</th>
+                      <th>进货价</th>
+                      <th>数量</th>
+                      <th>金额</th>
+                      <th>有效期</th>
+                      <th>总价</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer panel-footer">
+          <button class='btn btn-default' type='button'  data-dismiss="modal">关闭</button>
+        </div>
+      </form>
+    </div>
+    </div>
+  </div>
 <!-- 提示 -->
   <div class="modal fade" id="modal-prompt" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
     <div class="modal-dialog" role="document">
@@ -323,7 +366,7 @@
       { "data": "purchase_ID" },
       { "data": "sup_Name" },
       { "data": null, "title":"进货单操作","defaultContent": "<button  class='btn-password btn btn-warning btn-sm' type='button' onclick='password(this)' data-toggle='modal' data-target='#modal-see'>查看</button>" },
-      { "data": null, "title":"进货单明细操作","defaultContent": "<button  class='btn-permission btn btn-info btn-sm' type='button' onclick='permission(this)' data-toggle='modal' data-target='#modal-permission'>查看/修改权限</button>" },
+      { "data": null, "title":"进货单明细操作","defaultContent": "<button  class='btn-permission btn btn-info btn-sm' type='button' onclick='permission(this)' data-toggle='modal' data-target='#modal-look'>查看</button>" },
       { "data": null, "title":"付款操作","defaultContent": "<button  class='btn-permission btn btn-info btn-sm' type='button' onclick='permission(this)' data-toggle='modal' data-target='#modal-create'>确定付款</button>" },
       //{ "data": null, "title":"操作","defaultContent": "<button  class='btn-delete btn btn-danger btn-sm' type='button' data-toggle='modal' data-target='#modal-delete'>删除</button>"}
       ],
@@ -331,6 +374,54 @@
   });
     }
 }
+
+function tabledetail(){
+    return $('#tabledetail').DataTable( {
+      language: {
+        "sProcessing":   "处理中...",
+        "sLengthMenu":   "显示 _MENU_ 项结果",
+        "sZeroRecords":  "没有匹配结果",
+        "sInfo":         "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+        "sInfoEmpty":    "显示第 0 至 0 项结果，共 0 项",
+        "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+        "sInfoPostFix":  "",
+        "sSearch":       "搜索:",
+        "sUrl":          "",
+        "sEmptyTable":     "表中数据为空",
+        "sLoadingRecords": "载入中...",
+        "sInfoThousands":  ",",
+        "oPaginate": {
+          "sFirst":    "首页",
+          "sPrevious": "上页",
+          "sNext":     "下页",
+          "sLast":     "末页"
+        },
+        "oAria": {
+          "sSortAscending":  ": 以升序排列此列",
+          "sSortDescending": ": 以降序排列此列"
+        }
+      },
+
+      
+
+      "destroy": true,
+      ajax: "/c_purchase/checkSaleDetailBySaleID",
+      columns: [  
+      { "data": "calinf_ID" },
+      { "data": "purchase_ID" },
+      { "data": "inf_Barcode" },
+      { "data": "calinf_Purprice" },
+      { "data": "calinf_Number" },
+      { "data": "calinf_JinE" },
+      { "data": "calinf_Time" },
+      { "data": "calinf_TotalPrice" }
+      
+      ],
+      select: false
+    });
+    }
+
+
 function bind() {
   $('#modal-create').on('hidden.bs.modal', function (e) {
     $('#modal-create-body').children(".form-group").attr("class","form-group");
@@ -378,6 +469,9 @@ function bind() {
   }  
 });
 });
+  $('#modal-look').on('show.bs.modal', function (e) {
+    dt2.ajax.url('/c_purchase/checkSaleDetailBySaleID?saleID='+$(e.relatedTarget).parent().siblings()[0].innerText).load();
+  });  
   $('#modal-password').on('hidden.bs.modal', function (e) {
     $("#password-userid").val("");
     $("#password-username").val("");
@@ -403,6 +497,7 @@ function retable() {
 
 $(document).ready(function() {
   dt = table();
+  dt2 = tabledetail();
   bind();
 });
 function createsubmit() {
