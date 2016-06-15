@@ -66,7 +66,7 @@
               </div>
             </div>
 
-            <div class="form-group" id="create-Qinggouyuan-div">
+            <div class="form-group hidden" id="create-Qinggouyuan-div">
               <label for="create-Qinggouyuan" class="col-sm-3 control-label">请购员</label>
               <div class="col-sm-7">
                 <input id="create-Qinggouyuan" class="form-control" placeholder="请购员标识" type="text">
@@ -74,7 +74,7 @@
               </div>
             </div>
 
-            <div class="form-group" id="create-Dinggouyuan-div">
+            <div class="form-group hidden" id="create-Dinggouyuan-div">
               <label for="create-Dinggouyuan" class="col-sm-3 control-label">订购员</label>
               <div class="col-sm-7">
                 <input id="create-Dinggouyuan" class="form-control" placeholder="订购员标识" type="text">
@@ -82,7 +82,7 @@
               </div>
             </div>
 
-            <div class="form-group" id="create-Yanshouyuan-div">
+            <div class="form-group hidden" id="create-Yanshouyuan-div">
               <label for="create-Yanshouyuan" class="col-sm-3 control-label">验收员</label>
               <div class="col-sm-7">
                 <input id="create-Yanshouyuan" class="form-control" placeholder="验收员标识" type="text">
@@ -90,7 +90,7 @@
               </div>
             </div>
 
-            <div class="form-group" id="create-Crashguanliyuan-div">
+            <div class="form-group hidden" id="create-Crashguanliyuan-div">
               <label for="create-Crashguanliyuan" class="col-sm-3 control-label">现金管理员</label>
               <div class="col-sm-7">
                 <input id="create-Crashguanliyuan" class="form-control" placeholder="现金管理员标识" type="text">
@@ -106,7 +106,7 @@
               </div>
             </div>
 
-            <div class="form-group" id="create-warehouse_Name-div">
+            <div class="form-group hidden" id="create-warehouse_Name-div">
               <label for="create-warehouse_Name" class="col-sm-3 control-label">仓库名</label>
               <div class="col-sm-7">
                 <input id="create-warehouse_Name" class="form-control" placeholder="仓库名" type="text">
@@ -411,7 +411,7 @@
               "sSortDescending": ": 以降序排列此列"
           }
       },
-      ajax: "/c_purchase/CheckPurchase",
+      ajax: "/c_purchase/CheckPurchase1",
       columns: [
       { "data": "purchase_ID" },
       { "data": "sup_Name" },
@@ -595,101 +595,33 @@ function addsubmit() {
 function deletesubmit() {
   var userid = $("#dele-userid").val();
   $.ajax( {  
-        url:'/c_purchase/DeletePurchase',// 跳转到 action  
-        data:{  
-          'purchase_ID': userid
+          url:'/c_purchase/DeletePurchase',// 跳转到 action  
+          data:{  
+            'purchase_ID': userid
+        },
+        type:'post',
+        cache:false,
+        async:true,
+        dataType:'json',
+        success:function(data) {  
+            if(data.msg =="true") {
+              $('#modal-delete').modal("hide");
+              $('#modal-prompt-content').text("删除进货单成功");
+              document.getElementById('modal-prompt-panel').className = "modal-content panel panel-success";
+              $('#modal-prompt').modal('show');
+              retable();
+          }
+          else {
+              document.getElementById("delete-username-p").innerHTML="删除失败，出现了一些错误⊙︿⊙";
+              document.getElementById("delete-username-div").className="has-error form-group";
+          }
       },
-      type:'post',
-      cache:false,
-      async:true,
-      dataType:'json',
-      success:function(data) {  
-          if(data.msg =="true") {
-            $('#modal-delete').modal("hide");
-            $('#modal-prompt-content').text("删除进货单成功");
-            document.getElementById('modal-prompt-panel').className = "modal-content panel panel-success";
-            $('#modal-prompt').modal('show');
-            retable();
-        }
-        else {
-            document.getElementById("delete-username-p").innerHTML="删除失败，出现了一些错误⊙︿⊙";
-            document.getElementById("delete-username-div").className="has-error form-group";
-        }
-    },
-    error : function() {
-      $('#modal-delete').modal("hide");
-      $('#modal-prompt-content').text("删除出现错误，请联系管理员或尝试重新登录");
-      document.getElementById('modal-prompt-panel').className = "modal-content panel panel-danger";
-      $('#modal-prompt').modal('show');
-  }  
-});
-}
-
-function verifyPassword4password() {
-  var userid = $("#password-userid").val();
-  var password = $("#password-verify").val();
-  $.ajax( {  
-        url:'/c_users/checkCurrentUser',// 跳转到 action  
-        data:{  
-          'userid': userid,
-          'currentUserPassword': password
-      },
-      type:'post',
-      cache:false,
-      async:true,
-      dataType:'json',
-      success:function(data) {  
-          if(data.msg =="true") {
-            $('#password-password').val(data.password[0].user_Password);
-            $('#password-changepassword').css("display","block");
-            $('#password-submit').css("display","inline-block");
-        }
-        else {
-            $('#password-password').val("密码输入错误");
-        }
-    },
-    error : function() {
-      $('#password-password').val("未知错误");
-  }  
-});
-}
-
-function changepasswordsubmit() {
-  if(!(verifylength("password-newpassword",4,16)&&verifylength("password-password4sure",4,16)&&verify4sure("password-newpassword","password-password4sure"))) {
-    return false;
-}
-var userid = $("#password-userid").val();
-var password = $("#password-newpassword").val();
-$.ajax( {  
-        url:'/c_users/changePassword',// 跳转到 action  
-        data:{  
-          'userID': userid,
-          'newPassword': password
-      },
-      type:'post',
-      cache:false,
-      async:true,
-      dataType:'json',
-      success:function(data) {  
-          if(data.msg =="true") {
-            $('#modal-password').modal("hide");
-            $('#modal-prompt-content').text("修改用户密码成功");
-            document.getElementById('modal-prompt-panel').className = "modal-content panel panel-success";
-            $('#modal-prompt').modal('show');
-        }
-        else {
-            $('#modal-password').modal("hide");
-            $('#modal-prompt-content').text("修改出现错误，请联系管理员或尝试重新登录");
-            document.getElementById('modal-prompt-panel').className = "modal-content panel panel-danger";
-            $('#modal-prompt').modal('show');
-        }
-    },
-    error : function() {
-      $('#modal-password').modal("hide");
-      $('#modal-prompt-content').text("修改出现错误，请联系管理员或尝试重新登录");
-      document.getElementById('modal-prompt-panel').className = "modal-content panel panel-danger";
-      $('#modal-prompt').modal('show');
-  }  
-});      
+      error : function() {
+        $('#modal-delete').modal("hide");
+        $('#modal-prompt-content').text("删除出现错误，请联系管理员或尝试重新登录");
+        document.getElementById('modal-prompt-panel').className = "modal-content panel panel-danger";
+        $('#modal-prompt').modal('show');
+    }  
+  });
 }
 </script>

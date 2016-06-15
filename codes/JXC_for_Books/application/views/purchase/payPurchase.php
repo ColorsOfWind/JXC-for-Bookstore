@@ -133,6 +133,38 @@
       </div>
     </div>
   </div>
+  <div class="modal fade model" id="modal-sign" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content panel panel-danger">
+        <div class="panel-heading">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="myModalLabel">付款确认</h4>
+        </div>
+        <div class="modal-body panel-body">
+          <p>你真的要审核完成付款、通过以下记录并完成电签么？</p>
+          <div class="form-group">
+            <label for="sign-userid" class="col-sm-3 control-label">进货单编号</label>
+            <div class="col-sm-7">
+              <input id="sign-userid" class="form-control" value="" type="text" disabled>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="sign-username" class="col-sm-3 control-label">供货商</label>
+            <div class="col-sm-7">
+              <input id="sign-username" class="form-control" value="" type="text" disabled>
+            </div>
+          </div>          
+        </div>
+        <div class="modal-footer panel-footer">
+          <span id="sign-prompt" style="color: red; opacity: 0"></span>
+          <button class='btn btn-warning' type='button' onclick="signsubmit()">确定</button>
+          <button class='btn btn-info' type='button'  data-dismiss="modal">关闭</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="modal fade model" id="modal-see" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -361,13 +393,13 @@
               "sSortDescending": ": 以降序排列此列"
           }
       },
-      ajax: "/c_purchase/CheckPurchase",
+      ajax: "/c_purchase/CheckPurchase4",
       columns: [
       { "data": "purchase_ID" },
       { "data": "sup_Name" },
-      { "data": null, "title":"进货单操作","defaultContent": "<button  class='btn-password btn btn-warning btn-sm' type='button' onclick='password(this)' data-toggle='modal' data-target='#modal-see'>查看</button>" },
-      { "data": null, "title":"进货单明细操作","defaultContent": "<button  class='btn-permission btn btn-info btn-sm' type='button' onclick='permission(this)' data-toggle='modal' data-target='#modal-look'>查看</button>" },
-      { "data": null, "title":"付款操作","defaultContent": "<button  class='btn-permission btn btn-info btn-sm' type='button' onclick='permission(this)' data-toggle='modal' data-target='#modal-create'>确定付款</button>" },
+      { "data": null, "title":"进货单操作","defaultContent": "<button  class='btn-password btn btn-warning btn-sm' type='button' data-toggle='modal' data-target='#modal-see'>查看</button>" },
+      { "data": null, "title":"进货单明细操作","defaultContent": "<button  class='btn-permission btn btn-info btn-sm' type='button' data-toggle='modal' data-target='#modal-look'>查看</button>" },
+      { "data": null, "title":"付款操作","defaultContent": "<button  class='btn-permission btn btn-info btn-sm' type='button' data-toggle='modal' data-target='#modal-sign'>确定付款</button>" },
       //{ "data": null, "title":"操作","defaultContent": "<button  class='btn-delete btn btn-danger btn-sm' type='button' data-toggle='modal' data-target='#modal-delete'>删除</button>"}
       ],
       select: false
@@ -489,6 +521,14 @@ function bind() {
     $("#dele-userid").val("");
     $("#dele-username").val("");
 });
+    $('#modal-sign').on('show.bs.modal', function (e) {
+    $("#sign-userid").val($(e.relatedTarget).parent().siblings()[0].innerText);
+    $("#sign-username").val($(e.relatedTarget).parent().siblings()[1].innerText);
+  });
+  $('#modal-sign').on('hidden.bs.modal', function (e) {
+    $("#sign-userid").val("");
+    $("#sign-username").val("");
+  });  
 }
 
 function retable() {
@@ -578,14 +618,12 @@ function deletesubmit() {
 });
 }
 
-function verifyPassword4password() {
-  var userid = $("#password-userid").val();
-  var password = $("#password-verify").val();
+function signsubmit() {
+  var userid = $("#sign-userid").val();
   $.ajax( {  
-        url:'/c_users/checkCurrentUser',// 跳转到 action  
+        url:'/c_purchase/signPurchase3',// 跳转到 action  
         data:{  
-          'userid': userid,
-          'currentUserPassword': password
+          'purchase_ID': userid
       },
       type:'post',
       cache:false,
@@ -593,56 +631,23 @@ function verifyPassword4password() {
       dataType:'json',
       success:function(data) {  
           if(data.msg =="true") {
-            $('#password-password').val(data.password[0].user_Password);
-            $('#password-changepassword').css("display","block");
-            $('#password-submit').css("display","inline-block");
-        }
-        else {
-            $('#password-password').val("密码输入错误");
-        }
-    },
-    error : function() {
-      $('#password-password').val("未知错误");
-  }  
-});
-}
-
-function changepasswordsubmit() {
-  if(!(verifylength("password-newpassword",4,16)&&verifylength("password-password4sure",4,16)&&verify4sure("password-newpassword","password-password4sure"))) {
-    return false;
-}
-var userid = $("#password-userid").val();
-var password = $("#password-newpassword").val();
-$.ajax( {  
-        url:'/c_users/changePassword',// 跳转到 action  
-        data:{  
-          'userID': userid,
-          'newPassword': password
-      },
-      type:'post',
-      cache:false,
-      async:true,
-      dataType:'json',
-      success:function(data) {  
-          if(data.msg =="true") {
-            $('#modal-password').modal("hide");
-            $('#modal-prompt-content').text("修改用户密码成功");
+            $('#modal-sign').modal("hide");
+            $('#modal-prompt-content').text("电子签名成功");
             document.getElementById('modal-prompt-panel').className = "modal-content panel panel-success";
             $('#modal-prompt').modal('show');
+            retable();
         }
         else {
-            $('#modal-password').modal("hide");
-            $('#modal-prompt-content').text("修改出现错误，请联系管理员或尝试重新登录");
-            document.getElementById('modal-prompt-panel').className = "modal-content panel panel-danger";
-            $('#modal-prompt').modal('show');
+            document.getElementById("sign-username-p").innerHTML="签名失败，出现了一些错误⊙︿⊙";
+            document.getElementById("sign-username-div").className="has-error form-group";
         }
     },
     error : function() {
-      $('#modal-password').modal("hide");
-      $('#modal-prompt-content').text("修改出现错误，请联系管理员或尝试重新登录");
+      $('#modal-sign').modal("hide");
+      $('#modal-prompt-content').text("电签出现错误，请联系管理员或尝试重新登录");
       document.getElementById('modal-prompt-panel').className = "modal-content panel panel-danger";
       $('#modal-prompt').modal('show');
   }  
-});      
+});
 }
 </script>

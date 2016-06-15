@@ -57,7 +57,7 @@
 				                    <a id="purchase_typelists" href="/c_purchase/check">审核管理</a>
 				                </li>
 				                <li>
-				                    <a id="purchase_typelists" href="/c_purchase/checkgoods">进货验收管理</a>
+				                    <a id="purchase_typelists" href="/c_purchase/ca">进货验收管理</a>
 				                </li>
 				                <li>
 				                    <a id="purchase_typelists" href="/c_purchase/paypurchase">付款管理</a>
