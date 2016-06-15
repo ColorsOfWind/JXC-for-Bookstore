@@ -65,13 +65,27 @@ class m_users extends CI_Model {
     /*
     **修改权限
     */
-    public function changePermission($userID, $user_AllPermission, $user_BasicInformationPermission, $user_B_User, $user_B_Good, $user_B_Supplier, $user_B_Client, $user_B_Warehouse, $user_B_Gooddis, $user_PurchasePermission, $user_StockPermission, $user_SellPermission)
+    public function changePermission($userID,$user_BasicInformationPermission,$user_B_User,$user_B_Good,$user_B_Supplier,$user_B_Client,$user_PurchasePermission,$user_P_QingGouyuan,$user_P_DingGouyuan,$user_P_YanShouyuan,$user_P_ChuNayuan,$user_StockPermission,$user_St_GoodFinder,$user_St_BillFinder,$user_St_WarningFinder,$user_SellPermission,$user_Se_Discount,$user_Se_SaleEdit,$user_Se_SaleShow)
     {
-        $query = $this->db->query("UPDATE user SET user_AllPermission = '$user_AllPermission', user_BasicInformationPermission='$user_BasicInformationPermission', 
-            user_B_User = '$user_B_User', 
-            user_B_Good = '$user_B_Good', 
-            user_B_Supplier = '$user_B_Supplier', 
-            user_B_Client = '$user_B_Client', user_B_Warehouse='$user_B_Warehouse', user_B_Gooddis='$user_B_Gooddis', user_StockPermission='$user_StockPermission', user_SellPermission='$user_SellPermission' WHERE user_ID='$userID'");
+        $query = $this->db->query("UPDATE user SET 
+                    user_BasicInformationPermission='$user_BasicInformationPermission',
+                    user_B_User='$user_B_User',
+                    user_B_Good='$user_B_Good',
+                    user_B_Supplier='$user_B_Supplier',
+                    user_B_Client='$user_B_Client',
+                    user_PurchasePermission='$user_PurchasePermission',
+                    user_P_QingGouyuan='$user_P_QingGouyuan',
+                    user_P_DingGouyuan='$user_P_DingGouyuan',
+                    user_P_YanShouyuan='$user_P_YanShouyuan',
+                    user_P_ChuNayuan='$user_P_ChuNayuan',
+                    user_StockPermission='$user_StockPermission',
+                    user_St_GoodFinder='$user_St_GoodFinder',
+                    user_St_BillFinder='$user_St_BillFinder',
+                    user_St_WarningFinder='$user_St_WarningFinder',
+                    user_SellPermission='$user_SellPermission',
+                    user_Se_Discount='$user_Se_Discount',
+                    user_Se_SaleEdit='$user_Se_SaleEdit',
+                    user_Se_SaleShow='$user_Se_SaleShow'WHERE user_ID='$userID'");
         return $query;
     }
 
