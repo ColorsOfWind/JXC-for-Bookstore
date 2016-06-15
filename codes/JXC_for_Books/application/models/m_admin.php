@@ -84,7 +84,7 @@ class m_admin extends CI_Model{
 	}
 
 	/*获得基础信息模块客户管理权限*/
-	public function getBasicUsers()
+	public function getBasicClient()
 	{
 		$query = $this -> getAdmin();
 		$row = $query->row();
