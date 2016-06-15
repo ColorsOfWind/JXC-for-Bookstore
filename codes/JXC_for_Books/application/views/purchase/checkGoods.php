@@ -44,110 +44,6 @@
     </div>
 </div>
 
-  <div class="modal fade model" id="modal-create" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content panel panel-info">
-        <form class="form-horizontal">
-          <div class="panel-heading">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-            <h4 class="modal-title" id="myModalLabel">新增进货单</h4>
-          </div>
-          <div class="modal-body panel-body" id="modal-create-body">
-
-
-
-            <div class="form-group" id="create-sup_Name-div">
-              <label for="create-sup_Name" class="col-sm-3 control-label">供货商</label>
-              <div class="col-sm-7">
-                <input id="create-sup_Name" class="form-control" placeholder="供货商名称" type="text">
-                <p id="create-sup_Name-p" class="help-block"></p>
-              </div>
-            </div>
-
-            <div class="form-group" id="create-Qinggouyuan-div">
-              <label for="create-Qinggouyuan" class="col-sm-3 control-label">请购员</label>
-              <div class="col-sm-7">
-                <input id="create-Qinggouyuan" class="form-control" placeholder="请购员标识" type="text">
-                <p id="create-Qinggouyuan-p" class="help-block"></p>
-              </div>
-            </div>
-
-            <div class="form-group" id="create-Dinggouyuan-div">
-              <label for="create-Dinggouyuan" class="col-sm-3 control-label">订购员</label>
-              <div class="col-sm-7">
-                <input id="create-Dinggouyuan" class="form-control" placeholder="订购员标识" type="text">
-                <p id="create-Dinggouyuan-p" class="help-block"></p>
-              </div>
-            </div>
-
-            <div class="form-group" id="create-Yanshouyuan-div">
-              <label for="create-Yanshouyuan" class="col-sm-3 control-label">验收员</label>
-              <div class="col-sm-7">
-                <input id="create-Yanshouyuan" class="form-control" placeholder="验收员标识" type="text">
-                <p id="create-Yanshouyuan-p" class="help-block"></p>
-              </div>
-            </div>
-
-            <div class="form-group" id="create-Crashguanliyuan-div">
-              <label for="create-Crashguanliyuan" class="col-sm-3 control-label">现金管理员</label>
-              <div class="col-sm-7">
-                <input id="create-Crashguanliyuan" class="form-control" placeholder="现金管理员标识" type="text">
-                <p id="create-Crashguanliyuan-p" class="help-block"></p>
-              </div>
-            </div>
-
-            <div class="form-group" id="create-Shouhuoaddress-div">
-              <label for="create-Shouhuoaddress" class="col-sm-3 control-label">收货地址</label>
-              <div class="col-sm-7">
-                <input id="create-Shouhuoaddress" class="form-control" placeholder="收货地址" type="text">
-                <p id="create-Shouhuoaddress-p" class="help-block"></p>
-              </div>
-            </div>
-
-            <div class="form-group" id="create-warehouse_Name-div">
-              <label for="create-warehouse_Name" class="col-sm-3 control-label">仓库名</label>
-              <div class="col-sm-7">
-                <input id="create-warehouse_Name" class="form-control" placeholder="仓库名" type="text">
-                <p id="create-warehouse_Name-p" class="help-block"></p>
-              </div>
-            </div>
-
-            <div class="form-group" id="create-Dingdandate-div">
-              <label for="create-Dingdandate" class="col-sm-3 control-label">订单日期</label>
-              <div class="col-sm-7">
-                <input id="create-Dingdandate" class="form-control" placeholder="订单日期" type="text">
-                <p id="create-Dingdandate-p" class="help-block"></p>
-              </div>
-            </div>
-
-            <div class="form-group" id="create-Daohuodate-div">
-              <label for="create-Daohuodate" class="col-sm-3 control-label">到货日期</label>
-              <div class="col-sm-7">
-                <input id="create-Daohuodate" class="form-control" placeholder="到货日期" type="text">
-                <p id="create-Daohuodate-p" class="help-block"></p>
-              </div>
-            </div>
-
-
-            <div class="form-group" id="create-Note-div">
-              <label for="create-Note" class="col-sm-3 control-label">备注</label>
-              <div class="col-sm-7">
-                <input id="create-Note" class="form-control" placeholder="备注" type="text">
-                <p id="create-Note-p" class="help-block"></p>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer panel-footer">
-            <button id="create-submit" class='btn btn-warning' type='button' onclick="createsubmit()">确定</button>
-            <button class='btn btn-default' type='button'  data-dismiss="modal">关闭</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-
   <div class="modal fade model" id="modal-see" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content panel panel-info">
@@ -283,7 +179,38 @@
       </div>
     </div>
   </div>
-
+  <div class="modal fade model" id="modal-sign" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content panel panel-danger">
+        <div class="panel-heading">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="myModalLabel">签名确认</h4>
+        </div>
+        <div class="modal-body panel-body">
+          <p>你真的要审核通过以下记录并完成电签么？</p>
+          <div class="form-group">
+            <label for="sign-userid" class="col-sm-3 control-label">进货单编号</label>
+            <div class="col-sm-7">
+              <input id="sign-userid" class="form-control" value="" type="text" disabled>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="sign-username" class="col-sm-3 control-label">供货商</label>
+            <div class="col-sm-7">
+              <input id="sign-username" class="form-control" value="" type="text" disabled>
+            </div>
+          </div>          
+        </div>
+        <div class="modal-footer panel-footer">
+          <span id="sign-prompt" style="color: red; opacity: 0"></span>
+          <button class='btn btn-warning' type='button' onclick="signsubmit()">确定</button>
+          <button class='btn btn-info' type='button'  data-dismiss="modal">关闭</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="modal fade model" id="modal-look" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-lg" role="document">
@@ -376,13 +303,13 @@
                 "sSortDescending": ": 以降序排列此列"
             }
         },
-        ajax: "/c_purchase/CheckPurchase",
+        ajax: "/c_purchase/CheckPurchase3",
         columns: [
         { "data": "purchase_ID" },
         { "data": "sup_Name" },
         { "data": null, "title":"进货单操作","defaultContent": "<button  class='btn-password btn btn-warning btn-sm' type='button' onclick='password(this)' data-toggle='modal' data-target='#modal-see'>查看</button> <button  class='btn-password btn btn-danger btn-sm' type='button' onclick='password(this)' data-toggle='modal' data-target='#modal-delete'>删除</button>" },
-        { "data": null, "title":"进货单明细","defaultContent": "<button  class='btn-permission btn btn-info btn-sm' type='button' onclick='permission(this)' data-toggle='modal' data-target='#modal-look'>查看</button>" },
-        { "data": null, "title":"验收操作","defaultContent": "<button  class='btn-permission btn btn-info btn-sm' type='button' onclick='permission(this)' data-toggle='modal' data-target='#modal-permission'>电子签名</button>" },
+        { "data": null, "title":"进货单明细","defaultContent": "<button  class='btn-permission btn btn-info btn-sm' type='button' data-toggle='modal' data-target='#modal-look'>查看</button>" },
+        { "data": null, "title":"验收操作","defaultContent": "<button  class='btn-permission btn btn-info btn-sm' type='button' data-toggle='modal' data-target='#modal-sign'>电子签名</button>" },
         //{ "data": null, "title":"操作","defaultContent": "<button  class='btn-delete btn btn-danger btn-sm' type='button' data-toggle='modal' data-target='#modal-delete'>删除</button>"}
         ],
         select: false
@@ -499,6 +426,14 @@ function bind() {
     $("#dele-userid").val("");
     $("#dele-username").val("");
 });
+    $('#modal-sign').on('show.bs.modal', function (e) {
+    $("#sign-userid").val($(e.relatedTarget).parent().siblings()[0].innerText);
+    $("#sign-username").val($(e.relatedTarget).parent().siblings()[1].innerText);
+  });
+  $('#modal-sign').on('hidden.bs.modal', function (e) {
+    $("#sign-userid").val("");
+    $("#sign-username").val("");
+  });  
 }
 
 function retable() {
@@ -656,5 +591,38 @@ $.ajax( {
       $('#modal-prompt').modal('show');
   }  
 });      
+}
+
+function signsubmit() {
+  var userid = $("#sign-userid").val();
+  $.ajax( {  
+        url:'/c_purchase/signPurchase2',// 跳转到 action  
+        data:{  
+          'purchase_ID': userid
+      },
+      type:'post',
+      cache:false,
+      async:true,
+      dataType:'json',
+      success:function(data) {  
+          if(data.msg =="true") {
+            $('#modal-sign').modal("hide");
+            $('#modal-prompt-content').text("电子签名成功");
+            document.getElementById('modal-prompt-panel').className = "modal-content panel panel-success";
+            $('#modal-prompt').modal('show');
+            retable();
+        }
+        else {
+            document.getElementById("sign-username-p").innerHTML="签名失败，出现了一些错误⊙︿⊙";
+            document.getElementById("sign-username-div").className="has-error form-group";
+        }
+    },
+    error : function() {
+      $('#modal-sign').modal("hide");
+      $('#modal-prompt-content').text("电签出现错误，请联系管理员或尝试重新登录");
+      document.getElementById('modal-prompt-panel').className = "modal-content panel panel-danger";
+      $('#modal-prompt').modal('show');
+  }  
+});
 }
 </script>
