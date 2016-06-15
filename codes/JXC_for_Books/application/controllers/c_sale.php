@@ -12,6 +12,8 @@ class c_sale extends CI_Controller {
 		$this -> load -> model('m_saleFront');
 		$this -> load -> model('m_saleFrontDetail');
 		$this -> load -> model('m_goods');
+		$this -> load -> model('m_goodsDiscount');
+		$this -> load -> model('m_salespecialgoods');
 	}
 
 	public function index() 
@@ -31,6 +33,7 @@ class c_sale extends CI_Controller {
 		$this->load->view('sales/sale.php');
 		$this->load->view('common/footer.php');
 	}
+
 	public function showSale() 
 	{
 		$data = array('title' => "书店进销存管理系统");
@@ -39,6 +42,17 @@ class c_sale extends CI_Controller {
 		$this->load->view('sales/showSale.php');
 		$this->load->view('common/footer.php');
 	}
+
+     
+   	public function showOnSale() //商品特价信息  
+   	{
+    	$data = array('title' => "书店进销存管理系统");
+    	$this->load->view('common/header.php',$data);
+    	$this->load->view('common/menu.php');
+    	$this->load->view('sales/showOnSale.php');
+    	$this->load->view('common/footer.php');
+   	}
+
 
 
 	/*新建一行，返回单据编号*/
@@ -228,6 +242,17 @@ class c_sale extends CI_Controller {
     	$data = array('data' => $result);
     	$this->output ->set_content_type('application/json') ->set_output(json_encode($data));
 	}
-}
+
+    public function checkAllsalespecialgoods() //查询特价商品  
+   	{
+    	$allInfo = $this -> m_salespecialgoods -> checkAllsalespecialgoods();
+    	$result = $allInfo -> result();
+    	$data = array('data' => $result);
+    	$this->output
+    	->set_content_type('application/json')
+    	->set_output(json_encode($data));
+  	}
+
+} 	
 
 ?>

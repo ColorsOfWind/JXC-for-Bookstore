@@ -15,7 +15,9 @@ class m_goodsDiscount extends CI_Model {
     */
     public function addDiscount($goodID, $disDis)
     {
-        $query = $this->db->query("INSERT INTO goods_discoutinformation (inf_Barcode, disInf_Discount) VALUES('$disID', '$goodID', '$disDis')");
+        $res = $this->db->query("SELECT *  FROM goods_information WHERE inf_Barcode = '$goodID'")->row_array();
+        $inf_Name = $res['inf_Name'];
+        $query = $this->db->query("INSERT INTO goods_discoutinformation (inf_Barcode,inf_Name, disInf_Discount) VALUES('$goodID','$inf_Name', '$disDis')");
     }
 
     /*
@@ -31,7 +33,9 @@ class m_goodsDiscount extends CI_Model {
     */
     public function changeDiscount($disID, $goodID, $disDis)
     {
-        $query = $this->db->query("UPDATE goods_discoutinformation SET inf_Barcode = '$goodID', disInf_Discount = '$disDis'
+        $res = $this->db->query("SELECT *  FROM goods_information WHERE inf_Barcode = '$goodID'")->row_array();
+        $inf_Name = $res['inf_Name'];
+        $query = $this->db->query("UPDATE goods_discoutinformation SET inf_Barcode = '$goodID', inf_Name = '$inf_Name',disInf_Discount = '$disDis'
             WHERE disInf_ID = '$disID'");
         return $query;
     }

@@ -34,7 +34,10 @@
 				                    <a id="base_users" href="/c_users">用户管理</a>
 				                </li>
 				                <li>
-				                    <a id="base_goods" href="/c_goods">商品管理</a>
+				                    <a id="base_goods" href="/c_goods/index">商品管理</a>
+				                </li>
+				                <li>
+				                    <a id="base_goodsDiscount" href="/c_goods/discount">商品折扣管理</a>
 				                </li>
 				                <li>
 				                    <a id="base_suppliers" href="/c_suppliers">供应商管理</a>
@@ -79,7 +82,7 @@
 				                    <a id="sales_showSale" href="/c_sale/showSale">销售单查询</a>
 				                </li>
 				                <li>
-				                    <a id="sales_showSale" href="/c_sale/showOnSale">特价查询</a>
+				                    <a id="sales_showOnSale" href="/c_sale/showOnSale">特价商品查询</a>
 				                </li>
 				            </ul>
 				        </li> 

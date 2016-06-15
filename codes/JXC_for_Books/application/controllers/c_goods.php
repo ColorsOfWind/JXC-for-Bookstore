@@ -23,6 +23,14 @@ class c_goods extends CI_Controller {
     $this->load->view('common/footer.php');
   }
 
+  public function discount() 
+  {
+    $data = array('title' => "书店进销存管理系统");
+    $this->load->view('common/header.php',$data);
+    $this->load->view('common/menu.php');
+    $this->load->view('base/goodsDiscount.php');
+    $this->load->view('common/footer.php');
+  }
   /*
   **添加商品
   */
@@ -77,9 +85,9 @@ class c_goods extends CI_Controller {
     $goodDiscount = $this -> input->post('goodDiscount');
 
     $query = $this -> m_goodsDiscount -> checkDiscountsGood($goodID);
-    if($query -> num_rows == 0)
+    if($query -> num_rows() == 0)
     {
-      $this -> m_goods -> addDiscount($goodID, $disDis);
+      $this -> m_goodsDiscount -> addDiscount($goodID, $goodDiscount);
       $data = array('msg' => 'true');
     }
     else $data = array('msg' => 'false');
@@ -116,11 +124,10 @@ class c_goods extends CI_Controller {
   public function delGoodDis()
   {
     $goodDisID = $this -> input -> post('goodDisID');
-
-    $query = $this -> m_goodsDiscount -> checkUserID($goodDisID);
-    if($query -> num_rows != 0)
+    $query = $this -> m_goodsDiscount -> checkDiscountsDis($goodDisID);
+    if($query -> num_rows() != 0)
     {
-      $query = $this -> m_goodsDiscount -> delDiscount($goodDisID);
+      $this -> m_goodsDiscount -> delDiscount($goodDisID);
       $data = array('msg' => 'true');
     }
     else
@@ -139,7 +146,7 @@ class c_goods extends CI_Controller {
     $goodCatID = $this -> input -> post('goodCatID');
 
     $query = $this -> m_goodsCat -> checkGoodCat($goodCatID);
-    if($query -> num_rows != 0)
+    if($query -> num_rows() != 0)
     {
       $query = $this -> m_goodsCat -> delGoodCat($goodCatID);
       $data = array('msg' => 'true');
@@ -224,6 +231,10 @@ class c_goods extends CI_Controller {
     $goodCatDes = $this -> input -> post('goodCatDes');
 
     $this -> m_goodsCat -> changeGoodCat($goodCatID, $goodCatIndex, $goodCatName, $goodCatDes);
+    $data = array('msg' => "true");
+        $this->output
+    ->set_content_type('application/json')
+    ->set_output(json_encode($data));   
   }
 
   /*
@@ -231,11 +242,16 @@ class c_goods extends CI_Controller {
   */
   public function changeGoodsDis()
   {
-    $disID = $this -> this -> post('disID');
+    $disID = $this -> input -> post('disID');
     $goodID = $this -> input -> post('goodID');
     $goodDiscount = $this -> input->post('goodDiscount');
 
     $this -> m_goodsDiscount -> changeDiscount($disID, $goodID, $goodDiscount);
+    $data = array('msg' => "true");
+    $this->output
+    ->set_content_type('application/json')
+    ->set_output(json_encode($data));   
   }
-}
+}  
+
 ?>
