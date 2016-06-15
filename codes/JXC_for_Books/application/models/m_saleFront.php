@@ -9,9 +9,9 @@ class m_saleFront extends CI_Model{
 	}
 
 	/*新建一行，返回单据编号*/
-	public function getSaleID($clientName)
+	public function getSaleID($clientName, $counterName)
 	{
-		$query = $this->db->query("INSERT INTO front_sale(cl_Name) VALUES('$clientName')");
+		$query = $this->db->query("INSERT INTO front_sale(cl_Name, sale_Counter) VALUES('$clientName', '$counterName')");
 
 		$query = $this->db->query("SELECT * FROM front_saledetail ORDER BY saledetail_ID DESC LIMIT 0,1");
 		return $query;

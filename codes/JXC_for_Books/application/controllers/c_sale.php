@@ -38,7 +38,7 @@ class c_sale extends CI_Controller {
 		}
 	}
 
-	public function sale() 
+	public function sale()
 	{
 		if($this -> m_admin -> getSuper() || 
 			($this -> m_admin -> getSell() && 
@@ -111,7 +111,8 @@ class c_sale extends CI_Controller {
 	public function getSaleID()
 	{
 		$clientName = $this -> input -> post('clientName');
-		$query = $this -> m_saleFront -> getSaleID($clientName);
+		$counterName = $this -> input -> post('counterName');
+		$query = $this -> m_saleFront -> getSaleID($clientName, $counterName);
 		$row = $query->row();
 		$saleID = $row -> salebill_ID;
 
