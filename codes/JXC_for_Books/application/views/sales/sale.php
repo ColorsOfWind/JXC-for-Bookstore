@@ -103,7 +103,7 @@
 <script type="text/javascript">
 	function getclNames() {
 		$.ajax( {  
-	        url:'/c_sale/getAllcl',// 跳转到 action  
+	        url:'/c_sale/getClient',// 跳转到 action  
 	        data:{},
 	        type:'get',
 	        cache:false,
@@ -153,11 +153,11 @@
 	function getInfo(id) {
 		var inf_Barcode = $("#inf_Barcode-"+id).val();
 		$.ajax( {  
-	        url:'/c_sale/getInfo',// 跳转到 action  
+	        url:'/c_sale/getBookInfo',// 跳转到 action  
 	        data:{
 	        	'inf_Barcode': inf_Barcode
 	        },
-	        type:'get',
+	        type:'post',
 	        cache:false,
 	        async:true,
 	        dataType:'json',
@@ -179,13 +179,15 @@
 	}
 
 	function add(id) {
+		var sale_ID = $("#sale_ID").val();
 		var inf_Barcode = $("#inf_Barcode-"+id).val();
 		var saledetail_Number = $("#saledetail_Number-"+id).val();
 		$.ajax( {  
-	        url:'/c_sale/addDetail',// 跳转到 action  
+	        url:'/c_sale/addSaleDetail',// 跳转到 action  
 	        data:{
-	        	'inf_Barcode': inf_Barcode,
-	        	'saledetail_Number': saledetail_Number
+	        	'saleID': sale_ID,
+	        	'goodID': inf_Barcode,
+	        	'saledetailNumber': saledetail_Number
 	        },
 	        type:'post',
 	        cache:false,
@@ -255,7 +257,7 @@
 		$("#sale-"+id).remove();
 	}
 	$(document).ready(function() {
-		// getclNames();
+		getclNames();
 	});
 
 
