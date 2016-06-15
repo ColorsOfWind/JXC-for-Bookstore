@@ -16,11 +16,24 @@ class c_goods extends CI_Controller {
 
   public function index() 
   {
-    $data = array('title' => "书店进销存管理系统");
-    $this->load->view('common/header.php',$data);
-    $this->load->view('common/menu.php');
-    $this->load->view('base/goods.php');
-    $this->load->view('common/footer.php');
+    if($this -> m_admin -> getSuper() || 
+      ($this -> m_admin -> getBasic() && 
+        $this -> m_admin -> getBasicGood()))
+    {
+      $data = array('title' => "书店进销存管理系统");
+      $this->load->view('common/header.php',$data);
+      $this->load->view('common/menu.php');
+      $this->load->view('base/goods.php');
+      $this->load->view('common/footer.php');
+    }
+    else
+    {
+      $data = array('title' => "书店进销存管理系统");
+      $this->load->view('common/header.php',$data);
+      $this->load->view('common/menu.php');
+      $this->load->view('common/401.php');
+      $this->load->view('common/footer.php');
+    }
   }
 
   public function discount() 

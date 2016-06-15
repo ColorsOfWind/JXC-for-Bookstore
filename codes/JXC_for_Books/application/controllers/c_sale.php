@@ -14,46 +14,95 @@ class c_sale extends CI_Controller {
 		$this -> load -> model('m_goods');
 		$this -> load -> model('m_goodsDiscount');
 		$this -> load -> model('m_salespecialgoods');
-		$this -> load -> model('m_stockcommodity');
-		$this -> load -> model('m_stockwarning');
-
+		$this -> load -> model('m_admin');
 	}
 
 	public function index() 
 	{
-		$data = array('title' => "书店进销存管理系统");
-		$this->load->view('common/header.php',$data);
-		$this->load->view('common/menu.php');
-		$this->load->view('base/users.php');
-		$this->load->view('common/footer.php');
+		if($this -> m_admin -> getSuper() || 
+			$this -> m_admin -> getSell())
+		{
+			$data = array('title' => "书店进销存管理系统");
+			$this->load->view('common/header.php',$data);
+			$this->load->view('common/menu.php');
+			$this->load->view('base/users.php');
+			$this->load->view('common/footer.php');
+		}
+		else
+		{
+			$data = array('title' => "书店进销存管理系统");
+			$this->load->view('common/header.php',$data);
+			$this->load->view('common/menu.php');
+			$this->load->view('common/401.php');
+			$this->load->view('common/footer.php');
+		}
 	}
 
 	public function sale() 
 	{
-		$data = array('title' => "书店进销存管理系统");
-		$this->load->view('common/header.php',$data);
-		$this->load->view('common/menu.php');
-		$this->load->view('sales/sale.php');
-		$this->load->view('common/footer.php');
+		if($this -> m_admin -> getSuper() || 
+			($this -> m_admin -> getSell() && 
+				$this -> m_admin -> getSellEdit()))	
+		{
+			$data = array('title' => "书店进销存管理系统");
+			$this->load->view('common/header.php',$data);
+			$this->load->view('common/menu.php');
+			$this->load->view('sales/sale.php');
+			$this->load->view('common/footer.php');
+		}
+		else
+		{
+			$data = array('title' => "书店进销存管理系统");
+			$this->load->view('common/header.php',$data);
+			$this->load->view('common/menu.php');
+			$this->load->view('common/401.php');
+			$this->load->view('common/footer.php');
+		}
 	}
 
 	public function showSale() 
 	{
-		$data = array('title' => "书店进销存管理系统");
-		$this->load->view('common/header.php',$data);
-		$this->load->view('common/menu.php');
-		$this->load->view('sales/showSale.php');
-		$this->load->view('common/footer.php');
+		if($this -> m_admin -> getSuper() || 
+			($this -> m_admin -> getSell() && 
+				$this -> m_admin -> getSellShow()))	
+		{
+			$data = array('title' => "书店进销存管理系统");
+			$this->load->view('common/header.php',$data);
+			$this->load->view('common/menu.php');
+			$this->load->view('sales/showSale.php');
+			$this->load->view('common/footer.php');
+		}
+		else
+		{
+			$data = array('title' => "书店进销存管理系统");
+			$this->load->view('common/header.php',$data);
+			$this->load->view('common/menu.php');
+			$this->load->view('common/401.php');
+			$this->load->view('common/footer.php');
+		}
 	}
 
      
    	public function showOnSale() //商品特价信息  
    	{
-    	$data = array('title' => "书店进销存管理系统");
-    	$this->load->view('common/header.php',$data);
-    	$this->load->view('common/menu.php');
-    	$this->load->view('sales/showOnSale.php');
-    	$this->load->view('common/footer.php');
+   		if($this -> m_admin -> getSuper() || 
+			($this -> m_admin -> getSell() && 
+				$this -> m_admin -> getSellDiscount()))	
+		{
+    		$data = array('title' => "书店进销存管理系统");
+    		$this->load->view('common/header.php',$data);
+    		$this->load->view('common/menu.php');
+    		$this->load->view('sales/showOnSale.php');
+    		$this->load->view('common/footer.php');
+		}
+    	else
+		{
+			$data = array('title' => "书店进销存管理系统");
+			$this->load->view('common/header.php',$data);
+			$this->load->view('common/menu.php');
+			$this->load->view('common/401.php');
+			$this->load->view('common/footer.php');
+		}
    	}
 
 
@@ -101,7 +150,6 @@ class c_sale extends CI_Controller {
 		$saleRemarks = $this -> input -> post('saleRemarks');
 
 		$this -> m_saleFront -> addSaleFront($clName, $saleUserID, $saleCounter, $saleFilldate, $saleDealdate, $saleState, $saleRemarks);
-		
 	}
 
 	/*删除销售单*/
